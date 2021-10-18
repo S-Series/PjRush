@@ -1,0 +1,38 @@
+{
+    "MaxCombo": [
+        5,
+        2222,
+        3333,
+        4444
+    ],
+    "MaxPure": [
+        4,
+        0,
+        0,
+        0
+    ],
+    "HighScore": [
+        100000000,
+        888,
+        999,
+        789
+    ],
+    "ClearRate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+    ],
+    "is_SongOwned": [
+        true,
+        false,
+        false,
+        false
+    ],
+    "is_Secret": [
+        false,
+        false,
+        false,
+        false
+    ]
+}

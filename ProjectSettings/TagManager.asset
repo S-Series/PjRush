@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Lm
+  - Le
+  - Note
+  - Ls
+  - Ef
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - URP
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackBroundUI
+    uniqueID: 921489811
+    locked: 0
+  - name: LinerUI
+    uniqueID: 3773715225
+    locked: 0
+  - name: NoteField
+    uniqueID: 3871678051
+    locked: 0
+  - name: ActiveUI
+    uniqueID: 435917115
+    locked: 0
+  - name: FrontUI
+    uniqueID: 294311089
+    locked: 0
