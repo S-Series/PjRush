@@ -27,12 +27,12 @@ public class NoteMove : MonoBehaviour
         StartCoroutine(noteMoveStart());
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (NoteMovingTrigger == true)
         {
-            NotefileLoad.noteLoad.NoteMoveField.gameObject.transform.localPosition 
-                += Vector3.down * Time.deltaTime * 1600 * GameSpeed / 120; 
+            NotefileLoad.noteLoad.NoteMoveField.gameObject.transform.localPosition
+                = new Vector3(0, -GameSpeed * MainJudgeManage.mainJudge.GameMS / 150, -592.5955f);
         }
     }
 

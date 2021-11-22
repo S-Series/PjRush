@@ -49,19 +49,21 @@ public class NotefileLoad : MonoBehaviour
     {
         LoadDataFromJson();
 
-        MainJudgeManage.mainJudge.GameEndMS = savedData.endMs;
+        NoteMove.noteMove.startDelay = savedData.startDelayMs;
+
+        MainJudgeManage.mainJudge.GameEndMS = MainSystem.mainSystem.gameEndMS;
 
         yield return new WaitForSeconds(1.5f);
 
-        int count = savedData.Note_ms.Count;
+        int count = savedData.NoteMs.Count;
 
         for (int i = 0; i < count; i++)
         {
             GameObject copy;
 
-            if (savedData.Note_line[i] != 5)
+            if (savedData.NoteLine[i] != 5)
             {
-                if (savedData.Note_legnth[i] == 0)
+                if (savedData.NoteLegnth[i] == 0)
                 {
                     // NotePrefabs[0] == Chip
                     copy = Instantiate(NotePrefabs[0], NoteMoveField.transform);
@@ -74,7 +76,7 @@ public class NotefileLoad : MonoBehaviour
             }
             else
             {
-                if (savedData.Note_legnth[i] == 0)
+                if (savedData.NoteLegnth[i] == 0)
                 {
                     // NotePrefabs[2] == Bt_Chip
                     copy = Instantiate(NotePrefabs[2], NoteMoveField.transform);
@@ -102,45 +104,25 @@ public class NotefileLoad : MonoBehaviour
             // 3 = long
             // if (type != 3) legnth = 0;
 
-            switch (savedData.Note_line[i])
+            switch (savedData.NoteLine[i])
             {
                 default:
                     //이펙트 혹은 조정노트 자리
                     break;
 
                 case 1:
-                    copy.transform.localPosition = new Vector3(-300,
-                        Convert.ToSingle(savedData.Note_ms[i] * savedData.bpm * MainSystem.mainSystem.highSpeed / 150), 0);
-                    Judge1.judge1.Note1.Add
-                        ((copy, savedData.Note_legnth[i], savedData.Note_ms[i]));
                     break;
 
                 case 2:
-                    copy.transform.localPosition = new Vector3(-100,
-                        Convert.ToSingle(savedData.Note_ms[i] * savedData.bpm * MainSystem.mainSystem.highSpeed / 150), 0);
-                    Judge2.judge2.Note2.Add
-                        ((copy, savedData.Note_legnth[i], savedData.Note_ms[i]));
                     break;
 
                 case 3:
-                    copy.transform.localPosition = new Vector3(+100,
-                        Convert.ToSingle(savedData.Note_ms[i] * savedData.bpm * MainSystem.mainSystem.highSpeed / 150), 0);
-                    Judge3.judge3.Note3.Add
-                        ((copy, savedData.Note_legnth[i], savedData.Note_ms[i]));
                     break;
 
                 case 4:
-                    copy.transform.localPosition = new Vector3(+300,
-                        Convert.ToSingle(savedData.Note_ms[i] * savedData.bpm * MainSystem.mainSystem.highSpeed / 150), 0);
-                    Judge4.judge4.Note4.Add
-                        ((copy, savedData.Note_legnth[i], savedData.Note_ms[i]));
                     break;
 
                 case 5:
-                    copy.transform.localPosition = new Vector3(0,
-                         Convert.ToSingle(savedData.Note_ms[i] * savedData.bpm * MainSystem.mainSystem.highSpeed / 150), 0);
-                    JudgeBottom.judge_bt.NoteBt.Add
-                        ((copy, savedData.Note_legnth[i], savedData.Note_ms[i]));
                     break;
             }
         }
@@ -194,15 +176,15 @@ public class NotefileLoad : MonoBehaviour
     {
         int count;
         count = 0;
-        for (int i = 0; i < savedData.Note_ms.Count; i++)
+        for (int i = 0; i < savedData.NoteMs.Count; i++)
         {
-            if (savedData.Note_legnth[i] == 0)
+            if (savedData.NoteLegnth[i] == 0)
             {
                 count++;
             }
             else
             {
-                count += savedData.Note_legnth[i];
+                count += savedData.NoteLegnth[i];
             }
         }
         return count;
@@ -213,9 +195,16 @@ public class NotefileLoad : MonoBehaviour
 public class NoteSavedData
 {
     public float bpm;
-    public int endMs;
+    public int startDelayMs;
 
-    public List<int> Note_legnth;
-    public List<int> Note_ms;
-    public List<int> Note_line;
+    public List<int> NoteLegnth;
+    public List<int> NoteMs;
+    public List<int> NoteLine;
+
+    public List<int> EffectMs;
+    public List<float> EffectForce;
+    public List<int> EffectDuration;
+
+    public List<int> SpeedMs;
+    public List<float> SpeedBpm;
 }

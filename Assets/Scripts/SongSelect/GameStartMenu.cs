@@ -117,6 +117,7 @@ public class GameStartMenu : MonoBehaviour
         {
             mainSystem.SceneAnimateTMPro[0].text = songInfo.difficulty[mainSystem.difficultyNum].ToString();
         }
+        mainSystem.gameEndMS = songInfo.endMs;
         mainSystem.songName = songInfo.SongName;
         mainSystem.SceneAnimateTMPro[1].text = songInfo.SongName;
         mainSystem.SceneAnimateTMPro[2].text = songInfo.WhoMade;
