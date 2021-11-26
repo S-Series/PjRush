@@ -41,7 +41,6 @@ public class MainSystem : MonoBehaviour
 
     public string GameType;
 
-
     private void Awake()
     {
         mainSystem = this;
