@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -19,7 +20,7 @@ public class BackEnd : MonoBehaviour
 
     [SerializeField]
     GameObject main;
-         
+
     [SerializeField]
     TMP_InputField IDInput;
 
@@ -32,14 +33,38 @@ public class BackEnd : MonoBehaviour
     [SerializeField]
     TextMeshPro[] AccountInfoShadow;
 
+    [SerializeField]
+    Animator AnimatorAccount;
+
+    [SerializeField]
+    Animator AnimatorLogin;
+
+    [SerializeField]
+    Button topBoxButton;
+
     string id, pass;
 
     public bool isOnline;
+    public bool isLogin;
+    private bool isDown;
 
     private void Awake()
     {
+        isLogin = false;
+        isDown = false;
         if (backEnd == null) backEnd = this;
         else Destroy(this);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainScene") main.SetActive(true);
+        else main.SetActive(false);
     }
 
     void Start()
@@ -77,14 +102,7 @@ public class BackEnd : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Result");
-        }
-        if (Input.GetKeyDown(KeyCode.Slash))
-        {
-            SceneManager.LoadScene("MainScene");
-        }
+
     }
 
     private bool CheckOnline()
@@ -117,6 +135,14 @@ public class BackEnd : MonoBehaviour
         StartCoroutine(LoginPost(form, id, pass));
     }
 
+    public void Logout()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("order", "logout");
+
+        StartCoroutine(LogoutPost(form));
+    }
+
     public void Register()
     {
         if (!SetIDPass())
@@ -130,6 +156,35 @@ public class BackEnd : MonoBehaviour
         form.AddField("pass", pass);
 
         StartCoroutine(Post(form));
+    }
+
+    public void Account()
+    {
+        topBoxButton.interactable = false;
+        StartCoroutine(IeAccount());
+    }
+
+    IEnumerator IeAccount()
+    {
+
+        if (isDown)
+        {
+            AnimatorAccount.SetTrigger("Down");
+
+            yield return new WaitForSeconds(1.0f);
+
+            topBoxButton.interactable = true;
+            isDown = false;
+        }
+        else
+        {
+            AnimatorAccount.SetTrigger("Up");
+
+            yield return new WaitForSeconds(1.0f);
+
+            topBoxButton.interactable = true;
+            isDown = true;
+        }
     }
 
     IEnumerator VersionPost(WWWForm form)
@@ -166,6 +221,9 @@ public class BackEnd : MonoBehaviour
                     Debug.Log("로그인실패");
                     PlayerPrefs.SetString("id", null);
                     PlayerPrefs.SetString("pass", null);
+
+                    isLogin = false;
+                    LoginCheck();
                 }
                 else
                 {
@@ -186,8 +244,35 @@ public class BackEnd : MonoBehaviour
                     PlayerPrefs.SetString("id", id);
                     PlayerPrefs.SetString("pass", pass);
 
+                    isLogin = true;
                     //로그인 성공 -> 로그인 화면 숨김처리
+                    LoginCheck();
                 }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    private void LoginCheck()
+    {
+        if (isLogin) AnimatorLogin.SetTrigger("Login");
+        else AnimatorLogin.SetTrigger("Logout");
+    }
+
+    IEnumerator LogoutPost(WWWForm form)
+    {
+        if (!isOnline) yield break;
+
+        using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isDone)
+            {
+                AnimatorLogin.SetTrigger("logout");
             }
             else
             {
