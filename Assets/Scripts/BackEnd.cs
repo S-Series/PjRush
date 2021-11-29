@@ -42,6 +42,9 @@ public class BackEnd : MonoBehaviour
     [SerializeField]
     Button topBoxButton;
 
+    [SerializeField]
+    Toggle ToggleSave;
+
     string id, pass;
 
     public bool isOnline;
@@ -140,7 +143,20 @@ public class BackEnd : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("order", "logout");
 
-        StartCoroutine(LogoutPost(form));
+        //StartCoroutine(LogoutPost(form));
+
+        isLogin = false;
+        foreach (TextMeshPro tmp in AccountInfo)
+        {
+            tmp.text = "----";
+        }
+        foreach (TextMeshPro tmp in AccountInfoShadow)
+        {
+            tmp.text = "----";
+        }
+        IDInput.text = "";
+        PassInput.text = "";
+        LoginCheck();
     }
 
     public void Register()
@@ -218,22 +234,12 @@ public class BackEnd : MonoBehaviour
             {
                 if (www.downloadHandler.text == "false")
                 {
-                    Debug.Log("로그인실패");
                     PlayerPrefs.SetString("id", null);
                     PlayerPrefs.SetString("pass", null);
-
-                    isLogin = false;
-                    LoginCheck();
                 }
                 else
                 {
                     textLines = www.downloadHandler.text.Split(seperator);
-
-                    print("Force는 " + textLines[0] + "입니다");
-                    print("닉네임는 " + textLines[1] + "입니다");
-                    print("소지 골드량은 " + textLines[2] + "입니다");
-                    print("소지 보석량은 " + textLines[3] + "입니다");
-                    print("계정 레벨은 " + textLines[4] + "입니다");
 
                     for (int i = 0; i < 5; i++)
                     {
@@ -241,8 +247,16 @@ public class BackEnd : MonoBehaviour
                         AccountInfoShadow[i].text = textLines[i];
                     }
 
-                    PlayerPrefs.SetString("id", id);
-                    PlayerPrefs.SetString("pass", pass);
+                    if (ToggleSave.isOn)
+                    {
+                        PlayerPrefs.SetString("id", id);
+                        PlayerPrefs.SetString("pass", pass);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("id", null);
+                        PlayerPrefs.SetString("pass", null);
+                    }
 
                     isLogin = true;
                     //로그인 성공 -> 로그인 화면 숨김처리
@@ -300,7 +314,6 @@ public class BackEnd : MonoBehaviour
 
     IEnumerator SystemShutdown()
     {
-        Debug.LogError("버전이 일치하지 않습니다.\nEnter를 누르거나 화면을 클릭해 시스템을 종료합니다.");
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
