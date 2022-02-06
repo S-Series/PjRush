@@ -8,13 +8,25 @@ public class MainSystem : MonoBehaviour
 {
     public static MainSystem mainSystem;
 
-    PlayedData playedData = new PlayedData();
+    private void Awake()
+    {
+        if (mainSystem != null) 
+        { 
+            Destroy(this); 
+            return; 
+        }
+        mainSystem = this;
+        DontDestroyOnLoad(this);
+    }
 
-    [SerializeField]
+    #region Manager System
     public GamePlayed gamePlayed;
+    public MusicManager musicManager;
+    public InputManager inputManager;
+    #endregion
 
     [SerializeField]
-    public List<Animator> Animator;
+    public Animator[] GameAnimator;
 
     [SerializeField]
     public SpriteRenderer[] SceneAnimateJacket;
@@ -28,10 +40,20 @@ public class MainSystem : MonoBehaviour
     [SerializeField]
     public Animator[] AudioFadeOut;
 
+    [SerializeField]
+    Sprite[] RankSprite;
+    [SerializeField]
+    Sprite[] RankSpritePlus;
+
     public int difficulty; // 0 ~ 15 계획
     public int difficultyNum; // 0 : Easy || 1 : Normal || 2 : Hard || 3 : Extra || 4 : Special
 
     public int gameEndMS;
+
+    public static int UID = 100001;
+
+    public bool isUserOnline;
+    public bool isUserLogin;
 
     public string songName;
 
@@ -39,69 +61,24 @@ public class MainSystem : MonoBehaviour
     public double highSpeed;
     public double gameSpeed;
 
-    public string GameType;
+    public int gameType;
+    /// <summary>
+    /// 0 || !Error (GameType Missed)
+    /// 1 || NormalMode
+    /// 2 || ArcadeMode - 
+    /// 3 || ArcadeMode - 
+    /// 4 || ArcadeMode - 
+    /// </summary>
 
-    private void Awake()
+    public Sprite Rank(int index)
     {
-        mainSystem = this;
+        if (index == -1) return null;
+        return RankSprite[index];
     }
 
-    void Start()
+    public Sprite RankPlus(int index)
     {
-        mainSystem = this;
+        if (index == -1) return null;
+        return RankSpritePlus[index];
     }
-
-    private void Update()
-    {
-        if (mainSystem != this)
-        {
-            mainSystem = this;
-        }
-    }
-
-    public void SavePlayedData()
-    {
-        playedData.MaxCombo = new int[4];
-        playedData.MaxPure = new int[4];
-        playedData.HighScore = new int[4];
-        playedData.ClearRate = new double[4];
-        playedData.is_SongOwned = new bool[4];
-        playedData.is_Secret = new bool[4];
-
-        string name;
-        name = "PlayedData/" + songName + ".json";
-        string path = Path.Combine(Application.dataPath, name);
-        string jsonData = File.ReadAllText(path);
-        playedData = JsonUtility.FromJson<PlayedData>(jsonData);
-
-        int dif;
-        dif = mainSystem.difficultyNum;
-
-        if (playedData.MaxCombo[dif] < ComboManager.comboManager.maxCombo)
-        playedData.MaxCombo[dif] = ComboManager.comboManager.maxCombo;
-
-        if (playedData.MaxPure[dif] < gamePlayed.PRP)
-            playedData.MaxPure[dif] = gamePlayed.PRP;
-
-        if (playedData.HighScore[dif] < (int)ScoreManage.scoreManage.systemScore)
-            playedData.HighScore[dif] = (int)ScoreManage.scoreManage.systemScore;
-
-        /*if (playedData.ClearRate[dif] < )
-            playedData.ClearRate[dif] = ;*/
-
-        string saveJsonData = JsonUtility.ToJson(playedData, true);
-        string savePath = Path.Combine(Application.dataPath, name);
-
-        File.WriteAllText(savePath, saveJsonData);
-    }
-}
-
-public class PlayedData
-{
-    public int[] MaxCombo;
-    public int[] MaxPure;
-    public int[] HighScore;
-    public double[] ClearRate;
-    public bool[] is_SongOwned;
-    public bool[] is_Secret;
 }

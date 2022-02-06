@@ -1,289 +1,380 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class MusicSelectAct : MonoBehaviour
 {
-    public static MusicSelectAct musicSelectAct;
+    public static MusicSelectAct musicSelect;
 
-    public bool isMusicSelectActAvailable;
-
-    public bool[] isAvailable;
-
-    public int firstIndex;
-    public int NowOnIndex;
-
-    public int NowOnDifficulty;
+    #region SelectAct
+    private static List<GameObject> MusicList;
 
     [SerializeField]
-    SpriteRenderer MusicSelectFrameSprite;
-
-    [SerializeField] // 0 = song name, 1 = who made
-    TextMeshPro[] tmpSongInfo;
+    GameObject MusicFramePrefab;
 
     [SerializeField]
-    TextMeshPro tmpBpm;
+    GameObject MusicFrameCopyField;
 
     [SerializeField]
-    TextMeshPro tmpClearRate;
+    GameObject MusicSelectBox;
 
     [SerializeField]
-    TextMeshPro[] tmpScore;
+    private int MaxMusicIndex;
+    [SerializeField]
+    private int MusicIndex;
+
+    private int difficultyNum;
+
+    public bool isActiveSelect;
+    public bool isPlayReady;
+
+    private GameObject AudioSync;
+    #endregion
+
+    #region LeftInfoBox
+    private float GameSpeed;
 
     [SerializeField]
-    SpriteRenderer songJacket;
+    TextMeshPro[] GameInfo;
+    /// <summary>
+    /// 0 || MusicName
+    /// 1 || MusicArtist
+    /// 2 || Difficulty Easy
+    /// 3 || Difficulty Normal
+    /// 4 || Difficulty Hard
+    /// 5 || Difficulty Expert
+    /// 6 || PlayedBestScore
+    /// 7 || BPM
+    /// 5 || 
+    /// 6 || 
+    /// </summary>
 
     [SerializeField]
-    SpriteRenderer songJacketPlus;
+    SpriteRenderer[] GameSpriteRenderer;
+    /// <summary>
+    /// 0 || Jacket
+    /// 1 || Difficulty Easy
+    /// 2 || Difficulty Normal
+    /// 3 || Difficulty Hard
+    /// 4 || Difficulty Expert
+    /// 5 || PlayedBestRank
+    /// 6 || ++
+    /// 4 || 
+    /// 5 || 
+    /// </summary>
+
+    public AudioSource audioSource;
 
     [SerializeField]
-    SpriteRenderer[] tmpSongDifficulty;
+    Sprite[] DifficultySprite;
+
+    [SerializeField]
+    GameObject[] Difficulty;
+
+    [SerializeField]
+    SpriteRenderer MusicJacekt;
+    [SerializeField]
+    GameObject Secret;
+
+    [SerializeField]
+    TextMeshPro[] ScoreText;
+    #endregion
+
+    #region PlayReady
+    [SerializeField]
+    GameObject TurnOffAnimator;
+    #endregion
+
+    [SerializeField]
+    AudioClip audSecretClip;
 
     private void Awake()
     {
-        musicSelectAct = this;
-    }
-
-    void Start()
-    {
-        isMusicSelectActAvailable = true;
-        isAvailable = new bool[8];
-        for (int i = 0; i < 8; i++) isAvailable[i] = true;
-        firstIndex = 0;
-        NowOnIndex = 0;
-        NowOnDifficulty = 0;
-    }
-
-    void Update()
-    {
-        if(isMusicSelectActAvailable == true)
+        if (musicSelect != null)
+        { 
+            Destroy(gameObject); 
+        }
+        else
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            TurnOffAnimator.SetActive(true);
+            audioSource = GetComponent<AudioSource>();
+            MusicList = new List<GameObject>();
+            MaxMusicIndex = Music.MusicCount;
+            MusicIndex = 0;
+            difficultyNum = 0;
+            isActiveSelect = false;
+            isPlayReady = false;
+            musicSelect = this;
+        }
+    }
+
+    private void Update()
+    {
+        if (isActiveSelect)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow)
+                || Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-                NowOnIndex++;
-                checkingAvailable(1);
-                changeFramePosition();
-                getAudioClip();
+                MusicIndex--;
+                CheckMusicIndex();
+                SelectFramePosition();
+                SetTopBoxInfo();
+                ScaleSync();
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+
+            if (Input.GetKeyDown(KeyCode.RightArrow)
+                || Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                NowOnIndex--;
-                checkingAvailable(2);
-                changeFramePosition();
-                getAudioClip();
+                MusicIndex++;
+                CheckMusicIndex();
+                SelectFramePosition();
+                SetTopBoxInfo();
+                ScaleSync();
             }
+
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                NowOnIndex -= 4;
-                checkingAvailable(3);
-                changeFramePosition();
-                getAudioClip();
+                MusicIndex -= 4;
+                CheckMusicIndex();
+                SelectFramePosition();
+                SetTopBoxInfo();
+                ScaleSync();
             }
+
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                NowOnIndex += 4;
-                checkingAvailable(4);
-                changeFramePosition();
-                getAudioClip();
+                MusicIndex += 4;
+                CheckMusicIndex();
+                SelectFramePosition();
+                SetTopBoxInfo();
+                ScaleSync();
             }
+
+            // -----------------------------------------------------
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                // Music Sorting Option
+            }
+
+            // -----------------------------------------------------
+
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                if (NowOnDifficulty > 0)
+                difficultyNum--;
+                if (difficultyNum < 0) { difficultyNum = 0; }
+
+                SetTopBoxInfo();
+                ScaleSync();
+
+                foreach(GameObject game in MusicList)
                 {
-                    NowOnDifficulty--;
+                    game.GetComponent<SongFrame>().SetInfo(difficultyNum);
                 }
             }
+
             if (Input.GetKeyDown(KeyCode.RightShift))
             {
-                if (NowOnDifficulty < 3)
+                difficultyNum++;
+                if (difficultyNum > 4) { difficultyNum = 4; }
+          
+                SetTopBoxInfo();
+                ScaleSync();
+
+                foreach (GameObject game in MusicList)
                 {
-                    NowOnDifficulty++;
+                    game.GetComponent<SongFrame>().SetInfo(difficultyNum);
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Return))
+
+            // -----------------------------------------------------
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             {
-                isMusicSelectActAvailable = false;
-                GameStartMenu.gameStartMenu.isGameStartSelectActAvailable = true;
-                GameStartMenu.gameStartMenu.edit_difficultyNum = NowOnDifficulty;
+
             }
-            DisplayMusic.displayMusic.DisplayMusicInfo();
+        }
+
+        else if (isPlayReady)
+        {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                PlayerPrefs.SetFloat("PlaySpeed", GameSpeed);
+                StartCoroutine(GameStartAnimate());
+                isPlayReady = false;
+            }
         }
     }
 
-    private void checkingAvailable(int type)
+    #region Setting Function
+    private void CheckMusicIndex()
     {
-        if(NowOnIndex > 7)
+        if (MusicIndex < 0)
         {
-            if (firstIndex + 8 <= MusicBox.musicBox.MusicInfoObjectList.Count)
+            MusicIndex = MaxMusicIndex;
+        }
+        if (MusicIndex > MaxMusicIndex)
+        {
+            MusicIndex = 0;
+        }
+    }
+
+    private void SelectFramePosition()
+    {
+        MusicSelectBox.transform.localPosition
+            = new Vector3(-3.25f + 3.75f * (MusicIndex % 4), 0, 0);
+
+        MusicFrameCopyField.transform.localPosition
+            = new Vector3(0, 3.75f * ((MusicIndex - MusicIndex % 4) / 4), 0);
+
+        audioSource.clip = Music.MusicList[MusicIndex].audPreMusicFile;
+        audioSource.Play();
+    }
+
+    private void SetTopBoxInfo()
+    {
+        Music music;
+        music = Music.MusicList[MusicIndex];
+
+        GameInfo[0].text = music.MusicName;
+        GameInfo[1].text = music.MusicArtist;
+        for (int i = 0; i < 4; i++)
+        {
+            if (music.Difficulty[i] == 0)
             {
-                NowOnIndex -= 4;
-                firstIndex += 4;
+                Difficulty[i].SetActive(false);
             }
             else
             {
-                switch (type)
-                {
-                    case 1:
-                        NowOnIndex--;
-                        break;
+                Difficulty[i].SetActive(true);
 
-                    case 4:
-                        NowOnIndex -= 4;
-                        break;
+                if (music.isSecret[i])
+                {
+                    GameInfo[i + 2].text = "??";
+                }
+                else
+                {
+                    GameInfo[i + 2].text = music.Difficulty[i].ToString();
                 }
             }
         }
-        else if(NowOnIndex < 0)
+        GameInfo[6].text = music.playHighScore[difficultyNum].ToString();
+        if (music.LowBPM == music.HighBPM)
         {
-            if (firstIndex - 4 >= 0)
+            GameInfo[7].text = "BPM  " + music.LowBPM.ToString();
+        }
+        else
+        {
+            GameInfo[7].text = "BPM  " + music.LowBPM.ToString()
+                + " - " + music.HighBPM.ToString();
+        }
+
+        MusicJacekt.sprite = music.sprJacket;
+        Secret.SetActive(music.isSecret[difficultyNum]);
+
+        if (music.isSecret[difficultyNum])
+        {
+            //audio.clip = audSecretClip;
+            //audio.Play();
+            audioSource.Stop();
+        }
+        else
+        {
+            audioSource.clip = Music.MusicList[MusicIndex].audPreMusicFile;
+            audioSource.Play();
+        }
+
+        int score = music.playHighScore[difficultyNum];
+        print(score);
+        if (score == 0)
+        {
+            for (int i = 0; i < 9; i++)
             {
-                NowOnIndex += 4;
-                firstIndex -= 4;
+                ScoreText[i].enabled = false;
             }
-            else
+            ScoreText[9].enabled = true;
+            return;
+        }
+
+        for (int i = 0; i < 9; i++)
+        {
+            ScoreText[i].enabled = true;
+        }
+        ScoreText[9].enabled = false;
+
+        ScoreText[0].text = ((score % 10)).ToString();
+        for (int i = 1; i < 9; i++)
+        {
+            double calculate1 = Convert.ToDouble(score / Mathf.Pow(10, i));
+            print(calculate1);
+            double calculate2 = (calculate1) - ((calculate1) % 1);
+            print(calculate2);
+            ScoreText[i].text = ((int)(calculate2 % 10)).ToString();
+            ScoreText[i].color = new Color32(255, 255, 255, 255);
+        }
+        for (int i = 0; i < 9; i++)
+        {
+            if (score < Mathf.Pow(10,8 - i))
             {
-                switch (type)
-                {
-                    case 2:
-                        NowOnIndex++;
-                        break;
-
-                    case 3:
-                        NowOnIndex += 4;
-                        break;
-                }
+                ScoreText[8 - i].color = new Color32(255, 255, 255, 150);
             }
-        }
-
-        switch (NowOnIndex)
-        {
-            case 0:
-                if (isAvailable[0] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 1:
-                if (isAvailable[1] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 2:
-                if (isAvailable[2] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 3:
-                if (isAvailable[3] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 4:
-                if (isAvailable[4] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 5:
-                if (isAvailable[5] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 6:
-                if (isAvailable[6] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-            case 7:
-                if (isAvailable[7] == false)
-                {
-                    NowOnIndex--;
-                    checkingAvailable(2);
-                }
-                break;
-        }
-
-        while (firstIndex + NowOnIndex > MusicBox.musicBox.MusicInfoObjectList.Count - 1)
-        {
-            NowOnIndex--;
+            else { break; }
         }
     }
 
-    private void changeFramePosition()
+    private void ScaleSync()
     {
-        switch (NowOnIndex) 
-        {
-            case 0:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-8.0f, +0.8f, 0);
-                break;
+        GameObject tag = AudioSync;
+        tag.GetComponent<AudioSyncScale>().enabled = false;
 
-            case 1:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-4.25f, +0.8f, 0);
-                break;
+        AudioSync = MusicList[MusicIndex];
+        AudioSync.GetComponent<AudioSyncScale>().enabled = true;
 
-            case 2:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-0.5f, +0.8f, 0);
-                break;
-
-            case 3:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(+3.25f, +0.8f, 0);
-                break;
-
-            case 4:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-8.0f, -3.2f, 0);
-                break;
-
-            case 5:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-4.25f, -3.2f, 0);
-                break;
-
-            case 6:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(-0.5f, -3.2f, 0);
-                break;
-
-            case 7:
-                MusicSelectFrameSprite.transform.localPosition =
-                        new Vector3(+3.25f, -3.2f, 0);
-                break;
-        }
+        tag.transform.localScale = new Vector3(0.35f, 0.35f, 1);
     }
 
-    public void getAudioClip()
+    IEnumerator GameStartAnimate()
     {
-        try
-        {
-            AudioSource previewAudio = this.gameObject.GetComponent<AudioSource>();
-
-            previewAudio.clip = MusicBox.musicBox
-                .MusicInfoObjectList[NowOnIndex].GetComponent<SongInfo>().GameMusicPerview;
-
-            previewAudio.Play();
-        }
-        catch { }
+        MainSystem.mainSystem.GameAnimator[0].SetTrigger("LoadStart");
+        yield return new WaitForSeconds(1.5f);
+        TurnOffAnimator.SetActive(false);
     }
+    #endregion
 
-    private void UpdateTopBoxInfo()
+    // Activate in MusicManager
+    public void GenerateMusicBox()
     {
+        for (int i = 0; i < Music.MusicCount; i++)
+        {
+            GameObject generate;
+            generate = Instantiate(MusicFramePrefab, MusicFrameCopyField.transform);
 
+            SongFrame frame;
+            frame = generate.GetComponent<SongFrame>();
+
+            frame.music = Music.MusicList[i];
+
+            frame.SetInfo(difficultyNum);
+
+            Vector3 pos;
+            pos = new Vector3(-3.25f, 0, 0);
+
+            pos.x = -3.25f + 3.75f * (i % 4);
+            pos.y = -3.75f * ((i - i % 4) / 4);
+
+            generate.transform.localPosition = pos;
+            generate.transform.localScale = new Vector3(0.35f, 0.35f, 1);
+
+            MusicList.Add(generate);
+        }
+
+        isActiveSelect = true;
+        MaxMusicIndex = Music.MusicCount - 1;
+
+        AudioSync = MusicList[0];
+        AudioSync.GetComponent<AudioSyncScale>().enabled = true;
+        SetTopBoxInfo();
     }
 }

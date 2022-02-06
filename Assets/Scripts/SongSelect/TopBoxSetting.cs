@@ -34,5 +34,4 @@ public class TopBoxSetting : MonoBehaviour
 
     [SerializeField]
     public TextMeshPro[] topDifText;
-
 }

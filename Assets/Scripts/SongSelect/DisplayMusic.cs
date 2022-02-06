@@ -6,7 +6,7 @@ using UnityEngine;
 public class DisplayMusic : MonoBehaviour
 {
     public static DisplayMusic displayMusic;
-
+    /*
     public int sorting;
     public bool isReverse;
     /// <summary>
@@ -446,5 +446,5 @@ public class DisplayMusic : MonoBehaviour
                 });
                 break;
         }
-    }
+    }*/
 }

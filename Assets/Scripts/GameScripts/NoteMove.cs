@@ -40,7 +40,7 @@ public class NoteMove : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
 
-        foreach(Animator animate in MainSystem.mainSystem.Animator)
+        foreach(Animator animate in MainSystem.mainSystem.GameAnimator)
         {
             try
             {

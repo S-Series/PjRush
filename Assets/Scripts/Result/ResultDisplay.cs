@@ -49,7 +49,7 @@ public class ResultDisplay : MonoBehaviour
 
 
     void Start()
-    {
+    {/*
         InfoObject = MusicBox.musicBox.MusicInfoObjectList.Find
             (GameObject => GameObject.name == MainSystem.mainSystem.songName);
 
@@ -90,11 +90,11 @@ public class ResultDisplay : MonoBehaviour
 
         SongName.text = MainSystem.mainSystem.songName;
 
-        MainSystem.mainSystem.SavePlayedData();
+        MainSystem.mainSystem.SavePlayedData();*/
     }
 
     void ranking()
-    {
+    {/*
         var played = MainSystem.mainSystem.gamePlayed;
 
         try
@@ -178,6 +178,6 @@ public class ResultDisplay : MonoBehaviour
         catch
         {
 
-        }
+        }*/
     }
 }

@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Load_Start
+    m_ConditionEvent: LoadStart
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1107988562307487702}
@@ -167,7 +167,7 @@ AnimatorController:
   m_Name: GameObject
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Load_Start
+  - m_Name: LoadStart
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

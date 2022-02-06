@@ -11,11 +11,11 @@ public class BackEnd : MonoBehaviour
     public static BackEnd backEnd;
 
     const string ver = "0.1a";
-
-    /*const string DatabaseLink = 
+    
+    /*private const string DatabaseLink = 
         "https://docs.google.com/spreadsheets/d/1qzc_NXa0slJjoGExU37vnw0cmDaYvsT70XZK29i8n1I/export?format=tsv";*/
 
-    const string ScriptLink =
+    private const string ScriptLink =
         "https://script.google.com/macros/s/AKfycbyc3kLfHJOdIZ5klrKfoMZSDAyfGnocv24dTIB5ynV6zTVzs-U/exec";
 
     [SerializeField]
@@ -57,6 +57,7 @@ public class BackEnd : MonoBehaviour
         isDown = false;
         if (backEnd == null) backEnd = this;
         else Destroy(this);
+        DontDestroyOnLoad(this);
     }
 
     private void OnEnable()
@@ -69,11 +70,9 @@ public class BackEnd : MonoBehaviour
         if (scene.name == "MainScene") main.SetActive(true);
         else main.SetActive(false);
     }
-
+    /*
     void Start()
     {
-        DontDestroyOnLoad(this);
-
         foreach (TextMeshPro tmp in AccountInfo)
         {
             tmp.text = "----";
@@ -224,7 +223,7 @@ public class BackEnd : MonoBehaviour
 
     IEnumerator LoginPost(WWWForm form, string id, string pass)
     {
-        char seperator = ',';
+        char seperator = '|';
         string[] textLines;
         using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form))
         {
@@ -326,7 +325,7 @@ public class BackEnd : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
     /*
     IEnumerator DatabaseStart()
     {

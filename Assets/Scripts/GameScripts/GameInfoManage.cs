@@ -45,7 +45,7 @@ public class GameInfoManage : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(getInfo());
+        //StartCoroutine(getInfo());
     }
 
     private void Update()
@@ -53,7 +53,7 @@ public class GameInfoManage : MonoBehaviour
         
     }
 
-    IEnumerator getInfo()
+    /*IEnumerator getInfo()
     {
         yield return new WaitForSeconds(1.0f);
         InfoObject = MusicBox.musicBox.MusicInfoObjectList.Find
@@ -82,5 +82,5 @@ public class GameInfoManage : MonoBehaviour
         Debug.Log(num);
 
         //main.simulationSpeed = 3.5f * num;
-    }
+    }*/
 }

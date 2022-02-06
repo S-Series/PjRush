@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameStartMenu : MonoBehaviour
 {
+    /*
     public static GameStartMenu gameStartMenu;
 
     public bool isGameStartSelectActAvailable;
@@ -130,5 +131,5 @@ public class GameStartMenu : MonoBehaviour
     {
         if (edit_highSpeed > 10) edit_highSpeed = 10;
         if (edit_highSpeed < 1) edit_highSpeed = 1;
-    }
+    }*/
 }
