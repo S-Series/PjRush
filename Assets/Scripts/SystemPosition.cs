@@ -6,37 +6,22 @@ using UnityEngine;
 public class SystemPosition : MonoBehaviour
 {
     [SerializeField]
-    GameObject Camera;
+    GameObject SystemPositionObject;
 
-    Vector3 recentA;
-    Quaternion recentB;
-
-    private void Start()
+    private void Awake()
     {
-        recentA = new Vector3(0, 0, 0);
-        recentB = new Quaternion(0, 0, 0, 0);
+
     }
 
     void Update()
     {
-        if (Camera == null)
+        if (SystemPositionObject == null)
         {
-            Camera = GameObject.Find("Main Camera");
+            SystemPositionObject = GameObject.FindWithTag("systemPos");
+            transform.position
+                = SystemPositionObject.transform.position;
+            transform.eulerAngles
+                = SystemPositionObject.transform.eulerAngles;
         }
-        try
-        {
-            Vector3 posA = Camera.transform.GetChild(0).position;
-            Quaternion posB = Camera.transform.GetChild(0).rotation;
-
-            if (recentA != posA || recentB != posB)
-            {
-                recentA = posA;
-                recentB = posB;
-
-                this.gameObject.transform.localPosition = posA;
-                this.gameObject.transform.localRotation = posB;
-            }
-        }
-        catch { Camera = GameObject.Find("Main Camera"); }
     }
 }
