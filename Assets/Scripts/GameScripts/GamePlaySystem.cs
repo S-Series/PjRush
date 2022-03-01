@@ -9,6 +9,9 @@ public class GamePlaySystem : MonoBehaviour
     public static GamePlaySystem gamePlay;
     NoteSavedData noteSaved = new NoteSavedData();
 
+    [SerializeField]
+    JudgeSystem[] judgeSystem;
+
     public static bool isPlay;
     public static float testBpm;
     public static float gameSpeed;
@@ -72,7 +75,19 @@ public class GamePlaySystem : MonoBehaviour
             posY = TestSpeedPos + ((playMs - TestSpeedMs) * testBpm / 150);
             MovingNoteField.transform.localPosition = new Vector3(0, -posY * gameSpeed, 0);
 
-            Debug.Log(TestSpeedPos);
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                Debug.Log("down");
+                gameSpeed--;
+                SpeedSetting();
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                Debug.Log("up");
+                gameSpeed++;
+                SpeedSetting();
+            }
         }
     }
 
@@ -81,7 +96,12 @@ public class GamePlaySystem : MonoBehaviour
     {
         gameMusic.clip = MainSystem.NowOnMusic.audMusicFile;
 
-        print("Loadstart");
+        for (int i = 0; i < 5; i++)
+        {
+            judgeSystem[i].Setkey
+                (KeySetting.keys[(KeyActions)i], KeySetting.keys[(KeyActions)i + 5]);
+        }
+
         ResetSavedData();
         try
         {

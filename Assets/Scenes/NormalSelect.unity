@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -366,70 +366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffd0b7ea9ad9cb439a3a8d8273c93ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &9890959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9890960}
-  - component: {fileID: 9890961}
-  m_Layer: 0
-  m_Name: GalaxyFriends
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &9890960
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9890959}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9890961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9890959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 13
-  LowBPM: 300
-  HighBPM: 300
-  MusicName: GalaxyFriends
-  MusicArtist: Kobaryo
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: cbd4740fcdb02b24ea86455875cac8d5, type: 3}
-  audMusicFile: {fileID: 8300000, guid: a420a8b210f3ed547b6ece6b8286cf52, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 2dc2370ca116cd1409d150b76c63170f, type: 3}
 --- !u!1 &20176262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,70 +1647,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 24
---- !u!1 &143893689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 143893690}
-  - component: {fileID: 143893691}
-  m_Layer: 0
-  m_Name: 666
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &143893690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143893689}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &143893691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143893689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 1
-  LowBPM: 666
-  HighBPM: 666
-  MusicName: 666
-  MusicArtist: Rough Sketch
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0b0000000c0000000d0000000e00000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0101010101
-  sprJacket: {fileID: 21300000, guid: 0647f49472537ad419a737373e8c34a9, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 0ed4c9a8155385440a22088fcc8b6dea, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 394672b2f744ac448849e796985c51c7, type: 3}
 --- !u!1 &143964321
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,70 +5317,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!1 &374191679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 374191680}
-  - component: {fileID: 374191681}
-  m_Layer: 0
-  m_Name: DeadEnd
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &374191680
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374191679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &374191681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374191679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 5
-  LowBPM: 240
-  HighBPM: 240
-  MusicName: THE END OF HATSUNE MIKU
-  MusicArtist: BousouP
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: 21955f9a60e02344b9d6d928baf50545, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 51f44d00b3126944e86fe669384e9376, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 1ff0fa61732571f418f2d4e120bd6d60, type: 3}
 --- !u!1 &383303481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,70 +5741,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 13
---- !u!1 &429606488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 429606489}
-  - component: {fileID: 429606490}
-  m_Layer: 0
-  m_Name: Anima
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &429606489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429606488}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &429606490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429606488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 4
-  LowBPM: 183.5
-  HighBPM: 183.5
-  MusicName: Anima
-  MusicArtist: Xi
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: f2aaecfdb9a80fa409d551120710573f, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 0878d105a53fc0e4eb9c2fd138eec47d, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 83c43fdd6e6911d42a986d7110ce4430, type: 3}
 --- !u!1 &446219182
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,19 +5769,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 143893690}
-  - {fileID: 1313048952}
-  - {fileID: 2030970372}
-  - {fileID: 429606489}
-  - {fileID: 374191680}
-  - {fileID: 1132469651}
-  - {fileID: 1264254515}
-  - {fileID: 1347895454}
-  - {fileID: 1340580054}
-  - {fileID: 1406803952}
-  - {fileID: 1676493822}
-  - {fileID: 1176128961}
-  - {fileID: 9890960}
+  - {fileID: 1009158852}
   m_Father: {fileID: 571980155}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8141,6 +7873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08d5c95d1d04874dac3a12e25ce102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainInputCode: 0000000000000000000000000000000000000000
+  SubInputCode: 0000000000000000000000000000000000000000
+  keyBindings: {fileID: 11400000, guid: dec4c540f149dd3499f5e3bd2ecfa9f4, type: 2}
 --- !u!1 &731096993
 GameObject:
   m_ObjectHideFlags: 0
@@ -10104,6 +9839,70 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1009158851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009158852}
+  - component: {fileID: 1009158853}
+  m_Layer: 0
+  m_Name: Datamania
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1009158852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009158851}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446219183}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009158853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009158851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicID: 1
+  LowBPM: 135
+  HighBPM: 175
+  MusicName: Datamania(tpz Overheat Remix)
+  MusicArtist: t+pazolite
+  Effecter:
+  - 
+  - 
+  - 
+  - 
+  - 
+  Difficulty: 070000000b0000000e0000000f00000000000000
+  NoteCount: 0000000000000000000000000000000000000000
+  playPure: 0000000000000000000000000000000000000000
+  playMaxCombo: 0000000000000000000000000000000000000000
+  playHighScore: 0000000000000000000000000000000000000000
+  isOwned: 0000010101
+  isSecret: 0000000100
+  sprJacket: {fileID: 21300000, guid: ca1387307b45e334ab6c9841eeb4809e, type: 3}
+  audMusicFile: {fileID: 8300000, guid: 7d8ec3ae4a04cd6418930662722dbed3, type: 3}
+  audPreMusicFile: {fileID: 8300000, guid: c4663b8ab186bc542be5a7a9da9cada7, type: 3}
 --- !u!1 &1014176990
 GameObject:
   m_ObjectHideFlags: 0
@@ -10751,70 +10550,6 @@ Transform:
   m_Father: {fileID: 1388075763}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1132469650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1132469651}
-  - component: {fileID: 1132469652}
-  m_Layer: 0
-  m_Name: AMAZING MIGHTYYYY!!!!
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1132469651
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132469650}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1132469652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132469650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 6
-  LowBPM: 185
-  HighBPM: 185
-  MusicName: AMAZING MIGHTYYYY!!!!
-  MusicArtist: WAiKURO
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: e6e67aed9ed4ff347b4a8a5a2b792fac, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 36501a1c6715bd54a8039946e3a83d79, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: d4bc322150da0304db7d835dd708f5d4, type: 3}
 --- !u!1 &1132482844
 GameObject:
   m_ObjectHideFlags: 0
@@ -11672,70 +11407,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1176128960
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1176128961}
-  - component: {fileID: 1176128962}
-  m_Layer: 0
-  m_Name: BrainPower
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1176128961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176128960}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1176128962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176128960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 12
-  LowBPM: 170
-  HighBPM: 173
-  MusicName: BrainPower
-  MusicArtist: NOMA
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: 2fbff671cd6f0fb47863d49001315a16, type: 3}
-  audMusicFile: {fileID: 8300000, guid: d527c602410a4f94db5b4a81a0cc0aa0, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 099233b378679214f9a45cd37136ab80, type: 3}
 --- !u!1 &1189556659
 GameObject:
   m_ObjectHideFlags: 0
@@ -12489,70 +12160,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 3
---- !u!1 &1264254514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1264254515}
-  - component: {fileID: 1264254516}
-  m_Layer: 0
-  m_Name: ChromeVOX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1264254515
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264254514}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1264254516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264254514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 7
-  LowBPM: 205
-  HighBPM: 205
-  MusicName: ChromeVOX
-  MusicArtist: t+pazolite
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: d89083ad5114b1441aecf5310abbbfe2, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 920d8a4e7a8ea97428d3fafdeee4849c, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 35125e55e569392498c84b6f021d7321, type: 3}
 --- !u!1 &1278811187
 GameObject:
   m_ObjectHideFlags: 0
@@ -12634,70 +12241,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1313048951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1313048952}
-  - component: {fileID: 1313048953}
-  m_Layer: 0
-  m_Name: i
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1313048952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313048951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1313048953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313048951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 2
-  LowBPM: 225
-  HighBPM: 225
-  MusicName: i
-  MusicArtist: Kuroma
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0b0000000c0000000d0000000e00000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: ffec0914b65defd4f8cccf6ec34f6cee, type: 3}
-  audMusicFile: {fileID: 8300000, guid: f18d4079c54bab348a15a6a3b4f82422, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 75b94b5d9daeafd4e97b491a6350d750, type: 3}
 --- !u!1 &1321576670
 GameObject:
   m_ObjectHideFlags: 0
@@ -13310,134 +12853,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 3
---- !u!1 &1340580053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1340580054}
-  - component: {fileID: 1340580055}
-  m_Layer: 0
-  m_Name: XhronoXapsulE
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1340580054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340580053}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1340580055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340580053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 9
-  LowBPM: 277
-  HighBPM: 277
-  MusicName: XhronoXapsulE
-  MusicArtist: Silent Room
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: 1cfbc065820a888419d18ce9e1bd4447, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 46317268199d6fd4aa23a498f3e8e980, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 6ce4dd07eb7893748a7342be178f4e6c, type: 3}
---- !u!1 &1347895453
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1347895454}
-  - component: {fileID: 1347895455}
-  m_Layer: 0
-  m_Name: SilentRush
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1347895454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347895453}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1347895455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347895453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 8
-  LowBPM: 158
-  HighBPM: 158
-  MusicName: SilentRush
-  MusicArtist: Soleily
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: b2c1d80c893912f40b9c39a7f327418a, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 259cc07680d0b7f4cb8bb2e262a4c20c, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 0424fb1e95d4cad4cb70e24c12ee612f, type: 3}
 --- !u!1 &1354628596
 GameObject:
   m_ObjectHideFlags: 0
@@ -14530,70 +13945,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 3
---- !u!1 &1406803951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1406803952}
-  - component: {fileID: 1406803953}
-  m_Layer: 0
-  m_Name: Cyaegha
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1406803952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406803951}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1406803953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406803951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 10
-  LowBPM: 200
-  HighBPM: 200
-  MusicName: Cyaegha
-  MusicArtist: USAO
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: 1bbb3fa909fd99943a5a72037e164f1e, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 0c4818c262b2cb94083da5b1f4b8ca96, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 7e5df86308c6ad549b49c6d493b96515, type: 3}
 --- !u!1 &1415942966
 GameObject:
   m_ObjectHideFlags: 0
@@ -15212,6 +14563,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faafcc3ac0892e6488439fa6f3fd0ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  judgeSystems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Rush: 000000000000000000000000
+  Step: 0000000000000000
+  Lost: 0000000000000000
 --- !u!1 &1499038554
 GameObject:
   m_ObjectHideFlags: 0
@@ -16960,70 +16320,6 @@ MeshRenderer:
   m_SortingLayerID: 294311089
   m_SortingLayer: 5
   m_SortingOrder: 3
---- !u!1 &1676493821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1676493822}
-  - component: {fileID: 1676493823}
-  m_Layer: 0
-  m_Name: GoodTek
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1676493822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676493821}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1676493823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676493821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 11
-  LowBPM: 190
-  HighBPM: 190
-  MusicName: GoodTek
-  MusicArtist: EBIMAYO
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: 67b00b6eb4d3d34489582f29e2de16f7, type: 3}
-  audMusicFile: {fileID: 8300000, guid: fd75e58a51f0c97499bd621dfbc007a6, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: 1dc471ec9bd8e394892ab38c2c772060, type: 3}
 --- !u!1 &1677326050
 GameObject:
   m_ObjectHideFlags: 0
@@ -20214,70 +19510,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2030970371
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2030970372}
-  - component: {fileID: 2030970373}
-  m_Layer: 0
-  m_Name: inkar-usi
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &2030970372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030970371}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 446219183}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2030970373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030970371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicID: 3
-  LowBPM: 102
-  HighBPM: 102
-  MusicName: inkar-usi
-  MusicArtist: DIA
-  Effecter:
-  - 
-  - 
-  - 
-  - 
-  - 
-  Difficulty: 0000000000000000000000000000000000000000
-  NoteCount: 0000000000000000000000000000000000000000
-  playPure: 0000000000000000000000000000000000000000
-  playMaxCombo: 0000000000000000000000000000000000000000
-  playHighScore: 0000000000000000000000000000000000000000
-  isOwned: 0000000000
-  isSecret: 0000000000
-  sprJacket: {fileID: 21300000, guid: a21ae65a36e100548ae12acf8cdc6135, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 87304838558a4b34bbb00d943d046a1e, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: f9e60343dd170974c8a8fd9502c8c445, type: 3}
 --- !u!1 &2062466706
 GameObject:
   m_ObjectHideFlags: 0

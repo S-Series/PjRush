@@ -28,13 +28,4 @@ public class GameManager : MonoBehaviour
         Step = new int[2] { 0, 0 };
         Lost = new int[2] { 0, 0 };
     }
-
-    public void managerSetKey()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            judgeSystems[i].Setkey
-            (MainSystem.inputManager.MainInputCode[i], MainSystem.inputManager.SubInputCode[i]);
-        }
-    }
 }

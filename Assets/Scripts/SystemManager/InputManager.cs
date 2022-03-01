@@ -3,36 +3,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class KeySetting
+{
+    public static Dictionary<KeyActions, KeyCode> keys = new Dictionary<KeyActions, KeyCode>();
+}
+
 public class InputManager : MonoBehaviour
 {
-    public KeyCode[] MainInputCode = new KeyCode[5];
-    public KeyCode[] SubInputCode = new KeyCode[5];
+    int key = -1;
 
-    public Dictionary<string, KeyCode> keybinds { get; set; }
-
-    private string bindName;
-
-    private void Awake()
+    KeyCode[] defaultKeys = new KeyCode[]
     {
-        keybinds = new Dictionary<string, KeyCode>();
+        KeyCode.Z,
+        KeyCode.X,
+        KeyCode.C,
+        KeyCode.V,
+        KeyCode.LeftShift,
+        KeyCode.M,
+        KeyCode.Comma,
+        KeyCode.Period,
+        KeyCode.Slash,
+        KeyCode.RightShift,
+        KeyCode.None
+    };
+
+    private void Start()
+    {
+        for (int i = 0; i < (int)KeyActions.KeyCount; i++)
+        {
+            KeySetting.keys.Add((KeyActions)i, defaultKeys[i]);
+        }
     }
 
-    public void BindKey(string key, KeyCode keyBind)
+    private void OnGUI()
     {
-        Dictionary<string, KeyCode> currentDictionary = keybinds;
-
-        if (!currentDictionary.ContainsValue(keyBind))
+        Event keyEvent = Event.current;
+        if (keyEvent.isKey)
         {
-            currentDictionary.Add(key, keyBind);
+            KeySetting.keys[(KeyActions)key] = keyEvent.keyCode;
+            key = -1;
         }
-        else if (currentDictionary.ContainsValue(keyBind))
-        {
-            string inputKey = currentDictionary.FirstOrDefault(x => x.Value == keyBind).Key;
-
-            currentDictionary[inputKey] = KeyCode.None;
-        }
-
-        currentDictionary[key] = keyBind;
-        bindName = string.Empty;
     }
+
+    public void ChangeKey(int num)
+    {
+        key = num;
+    }
+}
+
+public enum KeyActions
+{
+    Line1,
+    Line2,
+    Line3,
+    Line4,
+    LineBottom,
+    SubLine1,
+    SubLine2,
+    SubLine3,
+    SubLine4,
+    SubLineBottom,
+    KeyCount
 }
