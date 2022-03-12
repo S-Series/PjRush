@@ -26,6 +26,10 @@ public class MainSystem : MonoBehaviour
     }
     private void Start()
     {
+        gameManager = GetComponentInChildren<GameManager>();
+        musicManager = GetComponentInChildren<MusicManager>();
+        inputManager = GetComponentInChildren<InputManager>();
+        spriteManager = GetComponentInChildren<SpriteManager>();
         StartCoroutine(ILoadUserData());
     }
 
@@ -35,6 +39,7 @@ public class MainSystem : MonoBehaviour
     public static GameManager gameManager;
     public static MusicManager musicManager;
     public static InputManager inputManager;
+    public static SpriteManager spriteManager;
     #endregion
 
     [SerializeField]

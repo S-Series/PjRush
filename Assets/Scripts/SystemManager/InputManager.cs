@@ -51,6 +51,7 @@ public class InputManager : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public enum KeyActions
 {
     Line1,
