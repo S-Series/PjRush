@@ -22,9 +22,19 @@ public class GameInfoField : MonoBehaviour
     public TextMeshPro[] ScoreText;
     public TextMeshPro PureScoreText;
 
+    public static int score = 0;
+
     private void Awake()
     {
         GameInfoSettingAnimator = GetComponent<Animator>();
+    }
+
+    private void LateUpdate() {
+        char[] scoreText;
+        scoreText = (string.Format("{0:D9}", score)).ToCharArray();
+        for (int i = 0; i < 9; i++){
+            ScoreText[i].text = scoreText[i].ToString();
+        }
     }
 
     public void InfoSetting()

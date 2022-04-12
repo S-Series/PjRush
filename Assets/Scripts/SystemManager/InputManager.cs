@@ -8,8 +8,7 @@ public static class KeySetting
     public static Dictionary<KeyActions, KeyCode> keys = new Dictionary<KeyActions, KeyCode>();
 }
 
-public class InputManager : MonoBehaviour
-{
+public class InputManager : MonoBehaviour {
     int key = -1;
 
     KeyCode[] defaultKeys = new KeyCode[]
@@ -29,6 +28,10 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        if (MainSystem.inputManager != this){
+            Destroy(this.gameObject);
+            return;
+        }
         for (int i = 0; i < (int)KeyActions.KeyCount; i++)
         {
             KeySetting.keys.Add((KeyActions)i, defaultKeys[i]);

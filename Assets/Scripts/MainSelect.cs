@@ -109,7 +109,7 @@ public class MainSelect : MonoBehaviour
         if (b)
         {
             isMain = false; 
-            MainSystem.mainSystem.isUserOnline = b;
+            MainSystem.isUserOnline = b;
             GameStartAnimate.SetTrigger(trigger);
             yield return new WaitForSeconds(5.0f);
             SceneManager.LoadScene(Scene);

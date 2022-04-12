@@ -225,8 +225,7 @@ public class BackEnd : MonoBehaviour
     {
         char seperator = '|';
         string[] textLines;
-        using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form))
-        {
+        using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form)){
             yield return www.SendWebRequest();
 
             if (www.isDone)

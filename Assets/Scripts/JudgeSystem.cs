@@ -5,37 +5,42 @@ using UnityEngine;
 public class JudgeSystem : MonoBehaviour
 {
     public List<Note> gameNote;
-    public List<Note> gameLongNote;
-
     public GamePlaySystem gamePlaySystem;
-
+    public GamePlayScore gamePlayScore;
     int noteIndex;
     int longIndex;
     public static bool isOnPlay;
     private bool isLongJudge;
-
     [SerializeField] KeyCode MainKey;
     [SerializeField] KeyCode SubKey;
-
     private void Awake()
     {
         isLongJudge = false;
         gameNote = new List<Note>();
-        gameLongNote = new List<Note>();
     }
-
-    void Update()
-    {
+    void Update(){
         if (isOnPlay)
         {
+            try
+            {
+                if (gameNote[longIndex].ms <= GamePlaySystem.playMs){
+                    if (gameNote[longIndex].legnth != 0){
+                        StartCoroutine(ILongStart(longIndex, gameNote[longIndex].legnth, gameNote[0].line));
+                    }
+                    longIndex++;
+                }
+            }
+            catch { }
+
             float msDif;
-            try { msDif = gameNote[noteIndex].ms - GamePlaySystem.playMs; print(msDif); }
+            try { 
+                msDif = gameNote[noteIndex].ms - GamePlaySystem.playMs; 
+            }
             catch { return; }
 
             if (Input.GetKeyDown(MainKey) || Input.GetKeyDown(SubKey))
             {
                 isLongJudge = true;
-                StopCoroutine(ILongJudgeUnableDelay());
                 try
                 {
                     if (msDif <= 110.0f && msDif >= -90.0f)
@@ -53,56 +58,33 @@ public class JudgeSystem : MonoBehaviour
                 isLongJudge = false;
             }
 
-            try
-            {
-                if (gameLongNote[longIndex].ms <= GamePlaySystem.playMs)
-                {
-                    StartCoroutine(ILongStart(longIndex, gameNote[longIndex].line));
-                    longIndex++;
-                }
-            }
-            catch { }
-
-            if (msDif < -90.0f)
-            {
+            if (msDif < -90.0f){
                 gamePlaySystem.JudgeApply(0, gameNote[noteIndex].line);
                 print("running");
                 noteIndex++;
             }
         }
     }
-
     public void Setkey(KeyCode main, KeyCode sub)
     {
         MainKey = main;
         SubKey = sub;
     }
-
-    private IEnumerator ILongStart(int Index, int line)
+    private IEnumerator ILongStart(int Index, int legnth, int line)
     {
         float delay = 15 / GamePlaySystem.testBpm;
         yield return new WaitForSeconds(delay);
-        for (int i = 1; i < gameLongNote[Index].legnth; i++)
+        for (int i = 1; i < legnth; i++)
         {
-            if (isLongJudge)
-            {
+            if (isLongJudge){
                 gamePlaySystem.JudgeApply(0, line);
             }
-            else
-            {
+            else{
                 gamePlaySystem.JudgeApply(0, line);
             }
             yield return new WaitForSeconds(delay);
         }
     }
-
-    private IEnumerator ILongJudgeUnableDelay()
-    {
-        print("run");
-        yield return new WaitForSeconds(30 / GamePlaySystem.testBpm);
-        isLongJudge = false;
-    }
-
     private void NoteJudge(float judge, int line)
     {
         if (Mathf.Abs(judge) <= 22.5f)

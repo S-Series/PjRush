@@ -10,13 +10,13 @@ public class GamePlaySystem : MonoBehaviour
     public static GamePlaySystem gamePlay;
     NoteSavedData noteSaved = new NoteSavedData();
 
-    [SerializeField]
-    JudgeSystem[] judgeSystem;
+    [SerializeField] JudgeSystem[] judgeSystem;
 
     public static bool isPlay;
     public static float testBpm;
     public static float gameSpeed;
     public GameInfoField gameInfo;
+    public GamePlayScore gameScore;
 
     private List<float> GuidePos;
 
@@ -49,8 +49,6 @@ public class GamePlaySystem : MonoBehaviour
 
     [SerializeField]
     Animator[] JudgeAnimate;
-    TextMeshPro[] JudgeAnimateText;
-
     private protected readonly Color32[] TextScoreColor = 
         { 
         // White    Index(0|1)
@@ -63,19 +61,14 @@ public class GamePlaySystem : MonoBehaviour
         new Color32(255, 255, 150, 255),
         new Color32(255, 255, 150, 100)
     };
-
     AudioSource gameMusic;
+    private void Start(){
 
-    private void Awake()
-    {
         gamePlay = this;
         MovingNoteField = NoteField.transform.parent.gameObject;
-        JudgeAnimateText = new TextMeshPro[6];
-        for(int i = 0; i < 6; i++)
-        {
-            JudgeAnimateText[i] = JudgeAnimate[i].GetComponentInChildren<TextMeshPro>();
-        }
+
         gameMusic = GetComponent<AudioSource>();
+        gameScore = GetComponent<GamePlayScore>();
     }
 
     private void FixedUpdate()
@@ -85,7 +78,6 @@ public class GamePlaySystem : MonoBehaviour
             playMs++;
         }
     }
-
     private void Update()
     {
         if (isPlay)
@@ -130,25 +122,27 @@ public class GamePlaySystem : MonoBehaviour
     }
 
     [ContextMenu("Load")]
-    public IEnumerator ILoadDataFromJson()
-    {
+    public IEnumerator ILoadDataFromJson(){
         ResetGame();
-        foreach (JudgeSystem judge in judgeSystem)
-        {
-            judge.gamePlaySystem = GetComponent<GamePlaySystem>();
+        while(true){
+            try{
+                foreach (JudgeSystem judge in judgeSystem){
+                    judge.gamePlaySystem = GetComponent<GamePlaySystem>();
+                }
+                break;
+            }
+            catch{}
+            yield return null;
         }
-
         gameMusic.clip = MainSystem.NowOnMusic.audMusicFile;
 
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++){
             judgeSystem[i].Setkey
                 (KeySetting.keys[(KeyActions)i], KeySetting.keys[(KeyActions)i + 5]);
         }
 
         ResetSavedData();
-        try
-        {
+        try{
             string path = Path.Combine(Application.dataPath, "NoteBox/" + MainSystem.NowOnMusic.MusicName
                 + "/" + (MainSystem.mainSystem.difficulty + 1).ToString() + ".json");
             Debug.Log(path);
@@ -156,16 +150,14 @@ public class GamePlaySystem : MonoBehaviour
             print(path);
             noteSaved = JsonUtility.FromJson<NoteSavedData>(jsonData);
         }
-        catch
-        {
+        catch{
             Debug.LogError("NoteFile Note Founded");
             yield break;
         }
 
         yield return new WaitForSeconds(.5f);
 
-        for (int i = 0; i < Note.noteObjectList.Count; i++)
-        {
+        for (int i = 0; i < Note.noteObjectList.Count; i++){
             Destroy(Note.noteObjectList[i]);
         }
 
@@ -175,31 +167,24 @@ public class GamePlaySystem : MonoBehaviour
         Note.noteObjectList = new List<GameObject>();
         Speed.speedNote = new List<Speed>();
 
-        for (int i = 0; i < noteSaved.NoteMs.Count; i++)
-        {
+        for (int i = 0; i < noteSaved.NoteMs.Count; i++){
             Note note = new Note();
             JudgeSystem trgetJudgeSystem;
 
             GameObject copy;
-            if (noteSaved.NoteLegnth[i] == 0)
-            {
-                if (noteSaved.NoteLine[i] <= 4)
-                {
+            if (noteSaved.NoteLegnth[i] == 0){
+                if (noteSaved.NoteLine[i] <= 4){
                     copy = Instantiate(PrefabObject[0], NoteField.transform);
                 }
-                else
-                {
+                else{
                     copy = Instantiate(PrefabObject[2], NoteField.transform);
                 }
             }
-            else
-            {
-                if (noteSaved.NoteLine[i] <= 4)
-                {
+            else{
+                if (noteSaved.NoteLine[i] <= 4){
                     copy = Instantiate(PrefabObject[1], NoteField.transform);
                 }
-                else
-                {
+                else{
                     copy = Instantiate(PrefabObject[3], NoteField.transform);
                 }
             }
@@ -233,7 +218,7 @@ public class GamePlaySystem : MonoBehaviour
 
                 case 5:
                     trgetJudgeSystem = judgeSystem[4];
-                    if (UserInfo.isBottomDisplay)
+                    if (UserSetting.isBottomDisplay)
                     {
                         copy.transform.localPosition = new Vector3(-100, noteSaved.NotePos[i], 0);
                         copy.transform.localScale = new Vector3(0.75f, 2.75f, 1);
@@ -247,13 +232,11 @@ public class GamePlaySystem : MonoBehaviour
 
                 case 6:
                     trgetJudgeSystem = judgeSystem[4];
-                    if (UserInfo.isBottomDisplay)
-                    {
+                    if (UserSetting.isBottomDisplay){
                         copy.transform.localPosition = new Vector3(+100, noteSaved.NotePos[i], 0);
                         copy.transform.localScale = new Vector3(0.75f, 2.75f, 1);
                     }
-                    else
-                    {
+                    else{
                         copy.transform.localPosition = new Vector3(0, noteSaved.NotePos[i], 0);
                         copy.transform.localScale = new Vector3(1, 2.75f, 1);
                     }
@@ -265,8 +248,7 @@ public class GamePlaySystem : MonoBehaviour
             }
 
             note.legnth = noteSaved.NoteLegnth[i];
-            if (note.legnth != 0)
-            {
+            if (note.legnth != 0){
                 Vector3 scale;
                 scale = copy.transform.localScale;
                 scale.y = note.legnth;
@@ -274,12 +256,9 @@ public class GamePlaySystem : MonoBehaviour
             }
 
             Note.listNote.Add(note);
-            
-            if (note.legnth != 0) { trgetJudgeSystem.gameLongNote.Add(note); }
-            else { trgetJudgeSystem.gameNote.Add(note); }
+            trgetJudgeSystem.gameNote.Add(note);
         }
-        for (int i = 0; i < noteSaved.SpeedMs.Count; i++)
-        {
+        for (int i = 0; i < noteSaved.SpeedMs.Count; i++){
             Speed speed = new Speed();
             speed.ms = noteSaved.SpeedMs[i];
             speed.bpm = noteSaved.SpeedBpm[i];
@@ -317,9 +296,17 @@ public class GamePlaySystem : MonoBehaviour
                 }
             }
         }
+        int noteCount = 0;
+        for (int i = 0; i < noteSaved.NoteLegnth.Count; i++){
+            if (noteSaved.NoteLegnth[i] == 0) { noteCount++; }
+            else { 
+                noteCount += noteSaved.NoteLegnth[i];
+            }
+        }
 
         yield return new WaitForSeconds(.5f);
         SpeedSetting();
+        gameScore.setNoteScore(noteCount);
         yield return new WaitForSeconds(.5f);
         gameInfo.InfoSetting();
         MainSystem.mainSystem.GameAnimator[0].SetTrigger("GameStart");
@@ -331,16 +318,17 @@ public class GamePlaySystem : MonoBehaviour
         JudgeSystem.isOnPlay = true;
         StartCoroutine(IPlayMusic());
     }
-
     private IEnumerator IGameEnd()
     {
         if (GameManager.isAllPerfect) {; }
         else if (GameManager.isFullCombo) {; }
-        yield return new WaitForSeconds(1.0f);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.0f);
+        MainSystem.mainSystem.GameAnimator[1].SetTrigger("ChangeIn");
+        MainSystem.mainSystem.RunIResultStart();
+        yield return new WaitForSeconds(4.0f);
+        gamePlay = null;
         SceneManager.LoadScene("Result");
     }
-
     private void ResetSavedData()
     {
         playMs = 0;
@@ -363,7 +351,6 @@ public class GamePlaySystem : MonoBehaviour
         noteSaved.SpeedBpm = new List<float>();
         noteSaved.SpeedNum = new List<float>();
     }
-
     public void SpeedSetting()
     {
         gameSpeed = MainSystem.gameSpeed / 100.0f;
@@ -396,6 +383,7 @@ public class GamePlaySystem : MonoBehaviour
             guidePosSet.y = GuidePos[i] * gameSpeed;
             GuideLine[i].transform.localPosition = guidePosSet;
         }*/
+        PlayerPrefs.SetFloat("speed", gameSpeed);
     }
 
     /*private void GuideGenerate(float num)
@@ -428,13 +416,11 @@ public class GamePlaySystem : MonoBehaviour
             note.SetActive(true);
         }
     }
-
     IEnumerator IPlayMusic()
     {
         yield return new WaitForSeconds(noteSaved.startDelayMs / 1000);
         gameMusic.Play();
     }
-
     private void AddCombo()
     {
         ComboCount++;
@@ -463,7 +449,6 @@ public class GamePlaySystem : MonoBehaviour
             ComboAnimate.SetTrigger("Play");
         }
     }
-
     private void ResetCombo()
     {
         GameManager.isFullCombo = false;
@@ -477,7 +462,6 @@ public class GamePlaySystem : MonoBehaviour
             text.text = "0";
         }
     }
-
     private void ColorSetting()
     {
         Color32[] color = new Color32[2];
@@ -514,40 +498,41 @@ public class GamePlaySystem : MonoBehaviour
             ComboText[3 - i].color = color[1];
         }
     }
-
-    public void JudgeApply(int JudgeCase, int Line)
-    {
+    public void JudgeApply(int JudgeCase, int Line){
         int judgeLine = Line - 1;
         switch (JudgeCase)
         {
             case 0:
                 AddCombo();
                 ColorSetting();
-                JudgeAnimateText[judgeLine].text = "RecorD+";
-                JudgeAnimate[judgeLine].SetTrigger("0");
+                gameScore.AddScore(0);
+                GameManager.Record[1]++;
+                JudgeAnimate[judgeLine].SetTrigger("Perfect");
                 break;
 
             case 1:
                 AddCombo();
                 ColorSetting();
-                JudgeAnimateText[judgeLine].text = "RecorD";
-                JudgeAnimate[judgeLine].SetTrigger("1");
+                gameScore.AddScore(0);
+                GameManager.Record[0]++;
+                JudgeAnimate[judgeLine].SetTrigger("Perfect");
                 break;
 
             case -1:
                 AddCombo();
                 ColorSetting();
-                JudgeAnimateText[judgeLine].text = "RecorD";
-                JudgeAnimate[judgeLine].SetTrigger("-1");
+                gameScore.AddScore(0);
+                GameManager.Record[2]++;
+                JudgeAnimate[judgeLine].SetTrigger("Perfect");
                 break;
 
             case 2:
                 AddCombo();
                 ColorSetting();
-                JudgeAnimateText[judgeLine].text = "Trace";
-                JudgeAnimate[judgeLine].SetTrigger("2");
-                if (GameManager.isAllPerfect)
-                {
+                gameScore.AddScore(1);
+                GameManager.Rough[0]++;
+                JudgeAnimate[judgeLine].SetTrigger("Near");
+                if (GameManager.isAllPerfect){
                     foreach(TextMeshPro text in ComboAnimationText)
                     {
                         text.color = TextScoreColor[2];
@@ -559,8 +544,9 @@ public class GamePlaySystem : MonoBehaviour
             case -2:
                 AddCombo();
                 ColorSetting();
-                JudgeAnimateText[judgeLine].text = "Trace";
-                JudgeAnimate[judgeLine].SetTrigger("-2");
+                gameScore.AddScore(1);
+                GameManager.Rough[1]++;
+                JudgeAnimate[judgeLine].SetTrigger("Near");
                 if (GameManager.isAllPerfect)
                 {
                     foreach (TextMeshPro text in ComboAnimationText)
@@ -573,8 +559,8 @@ public class GamePlaySystem : MonoBehaviour
 
             case 3:
                 ResetCombo();
-                JudgeAnimateText[judgeLine].text = "Lost";
-                JudgeAnimate[judgeLine].SetTrigger("3");
+                GameManager.Lost[0]++;
+                JudgeAnimate[judgeLine].SetTrigger("Lost");
                 if (GameManager.isAllPerfect || GameManager.isFullCombo)
                 {
                     foreach (TextMeshPro text in ComboAnimationText)
@@ -588,8 +574,8 @@ public class GamePlaySystem : MonoBehaviour
 
             case -3:
                 ResetCombo();
-                JudgeAnimateText[judgeLine].text = "Lost";
-                JudgeAnimate[judgeLine].SetTrigger("-3");
+                GameManager.Lost[1]++;
+                JudgeAnimate[judgeLine].SetTrigger("Lost");
                 if (GameManager.isAllPerfect || GameManager.isFullCombo)
                 {
                     foreach (TextMeshPro text in ComboAnimationText)
@@ -602,9 +588,8 @@ public class GamePlaySystem : MonoBehaviour
                 break;
         }
     }
-
-    public void ResetGame()
-    {
+    public void ResetGame(){
+        ResetCombo();
         GameManager.isFullCombo = true;
         GameManager.isAllPerfect = true;
         foreach (TextMeshPro text in ComboText)
@@ -616,6 +601,7 @@ public class GamePlaySystem : MonoBehaviour
         {
             text.color = TextScoreColor[4];
         }
+        GameManager.ResetJudge();
     }
 }
 
@@ -636,7 +622,6 @@ public class Note
         set { noteObjectList[index] = value; }
     }
 }
-
 public class Speed
 {
     public static int speedIndex;
@@ -647,8 +632,6 @@ public class Speed
     public float pos;
     public float gameSpeed;
 }
-
-[System.Serializable]
 public class NoteSavedData
 {
     public float bpm;

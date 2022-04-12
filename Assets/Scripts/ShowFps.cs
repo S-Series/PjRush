@@ -31,11 +31,10 @@ public class ShowFps : MonoBehaviour
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
     }
 
-    void OnGUI()//소스로 GUI 표시.
-    {
+    void OnGUI(){
 
         msec = deltaTime * 1000.0f;
-        fps = 1.0f / deltaTime;  //초당 프레임 - 1초에
+        fps = 1.0f / deltaTime;
 
         text = fps.ToString("F1") + "fps (" + msec.ToString("F1") + "ms" + ") ";
         GUI.Label(rect, text, style);

@@ -5,26 +5,23 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    GamePlaySystem gamePlaySystem;
+    private static GamePlaySystem gamePlaySystem;
 
-    public int GamePlayScore;
-    public float GamePlayClearRate;
+    public static int GamePlayScore;
+    public static float GamePlayClearRate = 99.99f;
 
-    public int[] Record = new int[3] { 0, 0, 0 };
-    public int[] Rough = new int[2] { 0, 0 };
-    public int[] Lost = new int[2] { 0, 0 };
-    public int MaxSustain;
-
+    public static int[] Record = new int[3] { 0, 0, 0 };
+    public static int[] Rough = new int[2] { 0, 0 };
+    public static int[] Lost = new int[2] { 0, 0 };
+    public static int MaxSustain;
     public static bool isFullCombo;
     public static bool isAllPerfect;
     public static bool isHardGame;
 
-    private void Awake()
-    {
+    private void Awake(){
         ResetJudge();
     }
-
-    public void ResetJudge()
+    public static void ResetJudge()
     {
         isFullCombo = true;
         isAllPerfect = true;
@@ -35,8 +32,7 @@ public class GameManager : MonoBehaviour
         Rough = new int[2] { 0, 0 };
         Lost = new int[2] { 0, 0 };
 
-        try
-        {
+        try{
             gamePlaySystem.ResetGame();
         }
         catch { }

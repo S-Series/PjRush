@@ -18,6 +18,6 @@ public class RankingBox : MonoBehaviour
         RankingInfo[1].text = info[1];
         RankingInfo[2].text = String.Format("{0:F2}",float.Parse(info[2])) + "%";
         RankingInfo[3].text = String.Format("{0:D9}",Int32.Parse(info[3]));
-        CharacterIcon.sprite = MainSystem.mainSystem.getCharacter(Int32.Parse(info[3]));
+        CharacterIcon.sprite = MainSystem.spriteManager.getCharacterIconSprite(Int32.Parse(info[3]));
     }
 }

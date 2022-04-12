@@ -57,7 +57,7 @@ public class SongFrame : MonoBehaviour
                 }
             }
 
-            Rank.sprite = MainSystem.mainSystem.Rank(-1);
+            Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
         }
         else
         {
@@ -99,7 +99,7 @@ public class SongFrame : MonoBehaviour
                 }
             }
 
-            Rank.sprite = MainSystem.mainSystem.Rank(-1);
+            Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
         }
 
         SetDifficultyBox(difficulty);

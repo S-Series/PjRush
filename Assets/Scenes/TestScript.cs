@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField]
-    ParticleSystem test;
-
+    private void Awake() {
+        StartCoroutine(RunCoroutine());
+    }
     private void Start()
     {
-        test.Play();
+        print("Start");
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
 
-        }
-
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            test.Play();
-        }
+    }
+    IEnumerator RunCoroutine(){
+        yield return A();
+        yield return B();
+        yield return C();
+        print("Coroutine End");
+    }
+    IEnumerator A(){
+        print("A");
+        yield return new WaitForSeconds(1.0f);
+    }
+    IEnumerator B(){
+        print("B");
+        yield return new WaitForSeconds(1.0f);
+    }
+    IEnumerator C(){
+        print("C");
+        yield return new WaitForSeconds(1.0f);
     }
 }

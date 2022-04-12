@@ -106,14 +106,11 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField]
     Animator MusicSelectedAnimator;
 
-    private void Awake()
-    {
-        if (musicSelect != null)
-        { 
-            Destroy(gameObject); 
+    private void Awake() {
+        if (musicSelect != null) { 
+            Destroy(this.gameObject); 
         }
-        else
-        {
+        else {
             audioSource = GetComponent<AudioSource>();
             MusicList = new List<GameObject>();
             MaxMusicIndex = Music.MusicCount;
@@ -132,10 +129,8 @@ public class MusicSelectAct : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (isActiveSelect)
-        {
+    private void Update(){
+        if (isActiveSelect){
             if (Input.GetKeyDown(KeyCode.LeftArrow)
                 || Input.GetAxis("Mouse ScrollWheel") > 0)
             {
@@ -147,8 +142,7 @@ public class MusicSelectAct : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow)
-                || Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
+                || Input.GetAxis("Mouse ScrollWheel") < 0){
                 MusicIndex++;
                 MusicFrameIndex++;
                 CheckMusicIndex();
@@ -156,8 +150,7 @@ public class MusicSelectAct : MonoBehaviour
                 SetTopBoxInfo();
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
+            if (Input.GetKeyDown(KeyCode.UpArrow)){
                 MusicIndex -= 3;
                 MusicFrameIndex -= 3;
                 CheckMusicIndex();
@@ -165,8 +158,7 @@ public class MusicSelectAct : MonoBehaviour
                 SetTopBoxInfo();
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
+            if (Input.GetKeyDown(KeyCode.DownArrow)){
                 MusicIndex += 3;
                 MusicFrameIndex += 3;
                 CheckMusicIndex();
@@ -176,15 +168,13 @@ public class MusicSelectAct : MonoBehaviour
 
             // -----------------------------------------------------
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
+            if (Input.GetKeyDown(KeyCode.Tab)){
                 // Music Sorting Option
             }
 
             // -----------------------------------------------------
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
+            if (Input.GetKeyDown(KeyCode.LeftShift)){
                 difficultyNum--;
                 if (difficultyNum < 0) { difficultyNum = 0; }
 
@@ -196,8 +186,7 @@ public class MusicSelectAct : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
+            if (Input.GetKeyDown(KeyCode.RightShift)){
                 difficultyNum++;
                 if (difficultyNum > 4) { difficultyNum = 4; }
           
@@ -211,8 +200,7 @@ public class MusicSelectAct : MonoBehaviour
 
             // -----------------------------------------------------
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-            {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)){
                 MainSystem.NowOnMusic = Music.MusicList[MusicIndex];
                 MusicSelectedAnimator.SetTrigger("Selected");
                 isActiveSelect = false;
@@ -229,15 +217,13 @@ public class MusicSelectAct : MonoBehaviour
             }
         }
 
-        else if (isPlayReady)
-        {
+        else if (isPlayReady){
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             {
                 StartCoroutine(IGameStartAnimate());
                 isPlayReady = false;
             }
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
+            if (Input.GetKeyDown(KeyCode.Tab)){
                 int index;
                 index = MainSystem.GuageType;
                 GameGuageTypeRenderer[index].enabled = false;
@@ -248,59 +234,47 @@ public class MusicSelectAct : MonoBehaviour
                 GameGuageTypeRenderer[index].GetComponent<AudioSyncScale>().enabled = true;
                 MainSystem.GuageType = index;
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
+            if (Input.GetKeyDown(KeyCode.Escape)){
                 MusicSelectedAnimator.SetTrigger("Deselected");
                 isPlayReady = false;
                 isActiveSelect = true;
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow) 
-                || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
+            || Input.GetKeyDown(KeyCode.LeftArrow)){
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
                     SetRecordSpeed(-10);
                 }
-                else
-                {
+                else{
                     SetRecordSpeed(-1);
                 }
             }
 
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
                     SetRecordSpeed(-10);
                 }
-                else
-                {
+                else{
                     SetRecordSpeed(-1);
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow)
-                || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
+            || Input.GetKeyDown(KeyCode.RightArrow)){
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
                     SetRecordSpeed(+10);
                 }
-                else
-                {
+                else{
                     SetRecordSpeed(+1);
                 }
             }
 
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0){
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
                     SetRecordSpeed(+10);
                 }
-                else
-                {
+                else{
                     SetRecordSpeed(+1);
                 }
             }
@@ -308,8 +282,7 @@ public class MusicSelectAct : MonoBehaviour
     }
 
     #region Setting Function
-    private void CheckMusicIndex()
-    {
+    private void CheckMusicIndex(){
         if (MusicIndex < 0)
         {
             MusicIndex = MaxMusicIndex;
@@ -320,8 +293,7 @@ public class MusicSelectAct : MonoBehaviour
         }
     }
 
-    private void SelectFramePosition()
-    {
+    private void SelectFramePosition(){
         if (MusicFrameIndex < 0)
         {
             MusicFrameIndex += 3;
@@ -365,9 +337,7 @@ public class MusicSelectAct : MonoBehaviour
         audioSource.clip = Music.MusicList[MusicIndex].audPreMusicFile;
         audioSource.Play();
     }
-
-    private void SetTopBoxInfo()
-    {
+    private void SetTopBoxInfo(){
         Music music;
         music = Music.MusicList[MusicIndex];
 
@@ -464,9 +434,7 @@ public class MusicSelectAct : MonoBehaviour
             else { break; }
         }
     }
-
-    private void SetRecordSpeed(int change)
-    {
+    private void SetRecordSpeed(int change){
         int gameSpeed;
         gameSpeed = MainSystem.gameSpeed;
         gameSpeed += change;
@@ -477,18 +445,14 @@ public class MusicSelectAct : MonoBehaviour
         SpeedControlTmp[2].text = gameSpeed.ToString();
     }
 
-    IEnumerator IGameStartAnimate()
-    {
+    IEnumerator IGameStartAnimate(){
         GameStartAudio.Play();
         MainSystem.mainSystem.RunIgameStart();
         yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene("GameField");
     }
     #endregion
-
-    // Activate in MusicManager
-    public void GenerateMusicBox()
-    {
+    public void GenerateMusicBox(){
         for (int i = 0; i < Music.MusicCount; i++)
         {
             GameObject generate;

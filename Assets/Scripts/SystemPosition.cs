@@ -7,16 +7,8 @@ public class SystemPosition : MonoBehaviour
 {
     [SerializeField]
     GameObject SystemPositionObject;
-
-    private void Awake()
-    {
-
-    }
-
-    void Update()
-    {
-        if (SystemPositionObject == null)
-        {
+    void Update(){
+        if (SystemPositionObject == null){
             SystemPositionObject = GameObject.FindWithTag("systemPos");
             transform.position
                 = SystemPositionObject.transform.position;
