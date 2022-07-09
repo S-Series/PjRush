@@ -14,7 +14,7 @@ public class MainSystem : MonoBehaviour
     private const string Ver = "0.1";
     UserSetting userSetting = new UserSetting();
     public const string ScriptLink
-        ="https://script.google.com/macros/s/AKfycbypRi5_bJGzDX_ajjD0RvCjYkwbr8ajSxvaYmJkXnlf7zd8mBDEATTwnNUPaFm6FnJmYQ/exec";
+        = "https://script.google.com/macros/s/AKfycbypRi5_bJGzDX_ajjD0RvCjYkwbr8ajSxvaYmJkXnlf7zd8mBDEATTwnNUPaFm6FnJmYQ/exec";
 
     #region Manager System
     public static Music NowOnMusic;
@@ -32,18 +32,26 @@ public class MainSystem : MonoBehaviour
     [SerializeField] Sprite[] CharacterIcon;
     [SerializeField] TextMeshPro SystemMessage;
     [SerializeField] public static int gameSpeed;
-    private void Awake(){
-        if (Application.internetReachability == NetworkReachability.NotReachable){
+    private void Awake()
+    {
+        /*
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
             isUserOnline = false;
         }
-        else{
-            isUserOnline = true;
+        else
+        {
+            // 오픈단계에는 오프라인 버전만 출시할 예정
+            // isUserOnline = true;
+            isUserOnline = false;
         }
-        
+        */
+        isUserOnline = false;
+
         UserInfoManager.userId = PlayerPrefs.GetString("id");
-        UserInfoManager.userId = "Test";
+        // UserInfoManager.userId = "Test";
         UserInfoManager.userPassword = PlayerPrefs.GetString("pass");
-        UserInfoManager.userPassword = "TestPass";
+        // UserInfoManager.userPassword = "TestPass";
 
         mainSystem = this;
         DontDestroyOnLoad(this);
@@ -56,7 +64,8 @@ public class MainSystem : MonoBehaviour
 
         UserSetting.isBottomDisplay = true;
     }
-    private void Start(){
+    private void Start()
+    {
         DefualtAnimator.SetTrigger("FadeIn");
         StartCoroutine(ILoadUserData());
         StartCoroutine(GameStartReady());
@@ -76,13 +85,18 @@ public class MainSystem : MonoBehaviour
     /// 3 || ArcadeMode - 
     /// 4 || ArcadeMode - 
     /// </summary>
-    public void RunISelectScene(){
+    #region  SceneChange //-------------------
+    public void RunISelectScene()
+    {
         GameAnimator[1].SetTrigger("ChangeIn");
         StartCoroutine(ISelectScene());
     }
-    private IEnumerator ISelectScene(){
-        while (true){
-            try {
+    private IEnumerator ISelectScene()
+    {
+        while (true)
+        {
+            try
+            {
                 MusicSelectAct.musicSelect.GenerateMusicBox();
                 break;
             }
@@ -97,10 +111,13 @@ public class MainSystem : MonoBehaviour
         GameAnimator[0].SetTrigger("LoadStart");
         StartCoroutine(IgameStart());
     }
-    private IEnumerator IgameStart(){
-        while (true){
+    private IEnumerator IgameStart()
+    {
+        while (true)
+        {
             print("Looping");
-            try {
+            try
+            {
                 //UserInfo.defualtGameSpeed = gameSpeed;
                 //gameManager.managerSetKey();
                 StartCoroutine(GamePlaySystem.gamePlay.ILoadDataFromJson());
@@ -111,10 +128,12 @@ public class MainSystem : MonoBehaviour
             yield return null;
         }
     }
-    public void RunIResultStart(){
+    public void RunIResultStart()
+    {
         StartCoroutine(IResultStart());
     }
-    private IEnumerator IResultStart(){
+    private IEnumerator IResultStart()
+    {
         /*while (true){
             print("Looping");
             try {
@@ -130,36 +149,119 @@ public class MainSystem : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         GameAnimator[1].SetTrigger("ChangeOut");
     }
+    #endregion // ----------------------------
+    private IEnumerator GameStartReady()
+    {
+        Music.MusicCount = 0;
+        for (int i = 0; i < musicManager.transform.childCount; i++)
+        {
+            Music music;
+            music = musicManager.transform.GetChild(i).GetComponent<Music>();
+            Music.MusicList.Add(music);
+            Music.MusicCount++;
+        }
+
+        Music.MusicList.Sort(delegate (Music A, Music B)
+        {
+            if (A.MusicID > B.MusicID) return +1;
+            else if (A.MusicID < B.MusicID) return -1;
+            else if (A.MusicID == B.MusicID) Debug.LogError("Same MusicID Detected!!!");
+            return 0;
+        });
+
+        yield return new WaitForSeconds(2.0f);
+
+        if (isUserOnline)
+        {
+            // 게임 버전 체크
+            WWWForm formA = new WWWForm();
+            formA.AddField("order", "version");
+            formA.AddField("version", Ver);
+
+            WWWForm formB = new WWWForm();
+            formB.AddField("order", "login");
+            formB.AddField("id", UserInfoManager.userId);
+            formB.AddField("pass", UserInfoManager.userPassword);
+            
+            WWWForm formC = new WWWForm();
+            formC.AddField("order", "load");
+            formC.AddField("UID", MainSystem.UID);
+            
+            yield return ICheckVersion(formA);
+            if (isUserOnline)
+            {
+                yield return ILogin(formB);
+                yield return OnlineLoad(formC);
+            }
+            else
+            {
+                // 오프라인 모드
+                yield return ILoadOfflineData();
+            }            
+        }
+        else
+        {
+            // 오프라인 모드
+            yield return ILoadOfflineData();
+        }
+
+        // 게임 Scene으로 전환 시작
+        DefualtAnimator.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("Select");
+        SystemMessage.text = "";
+        while (true)
+        {
+            try
+            {
+                MusicSelectAct.musicSelect.GenerateMusicBox();
+                break;
+            }
+            catch { }
+            yield return null;
+        }
+        yield return new WaitForSeconds(1.0f);
+        DefualtAnimator.SetTrigger("FadeIn");
+    }
+    // 
     // ------------------------------------------------------------------ //
-    public IEnumerator ISaveUserData(){
+    // 온라인을 위한 스크립트들
+    public IEnumerator ISaveUserData()
+    {
         int retry = 0;
-        while (true){
-            try{
+        while (true)
+        {
+            try
+            {
                 string path = Path.Combine(Application.dataPath, UserDataPath);
                 File.WriteAllText(path, JsonUtility.ToJson(userSetting));
                 break;
             }
-            catch{
+            catch
+            {
                 if (retry < 5) { retry++; }
                 else { break; }
             }
             yield return new WaitForSeconds(1.0f);
         }
     }
-    public IEnumerator ILoadUserData(){
+    public IEnumerator ILoadUserData()
+    {
         int retry = 0;
-        while (true){
-            try{
+        while (true)
+        {
+            try
+            {
                 string path = Path.Combine(Application.dataPath, UserDataPath);
                 string jsonData = File.ReadAllText(path);
                 userSetting = JsonUtility.FromJson<UserSetting>(jsonData);
-                UID = UserSetting.UID;
                 break;
             }
-            catch{
+            catch
+            {
                 if (retry < 5) { retry++; }
-                else{
-                    UserSetting.UID = UID;
+                else
+                {
                     UserSetting.volume = new int[3] { 70, 70, 70 };
                     UserSetting.JudgeCorrection = new int[3] { 0, 0, 0 };
                     UserSetting.defualtGameSpeed = 100;
@@ -170,101 +272,53 @@ public class MainSystem : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
-    private IEnumerator GameStartReady(){
-        Music.MusicCount = 0;
-        for (int i = 0; i < musicManager.transform.childCount; i++){
-            Music music;
-            music = musicManager.transform.GetChild(i).GetComponent<Music>();
-            Music.MusicList.Add(music);
-            Music.MusicCount++;
-        }
-
-        Music.MusicList.Sort(delegate (Music A, Music B){
-            if (A.MusicID > B.MusicID) return +1;
-            else if (A.MusicID < B.MusicID) return -1;
-            else if (A.MusicID == B.MusicID) Debug.LogError("Same MusicID Detected!!!");
-            return 0;
-        });
-
-        yield return new WaitForSeconds(2.0f);
-
-        if (isUserOnline){
-            WWWForm form = new WWWForm();
-            form.AddField("order", "version");
-            form.AddField("version", Ver);
-            yield return ICheckVersion(form);
-        }
-        
-        if (isUserOnline){
-            if (UserInfoManager.userId != ""
-            && UserInfoManager.userPassword != ""){
-                WWWForm form = new WWWForm();
-                form.AddField("order", "login");
-                form.AddField("id", UserInfoManager.userId);
-                form.AddField("pass", UserInfoManager.userPassword);
-                yield return ILogin(form);
-            }
-        }
-
-        if (!isUserLogin || !isUserOnline){
-            yield return ILoadOfflineData();
-        }
-        else{
-            WWWForm form = new WWWForm();
-            form.AddField("order", "load");
-            form.AddField("UID", MainSystem.UID);
-            yield return OnlineLoad(form);
-        }
-
-        DefualtAnimator.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene("Select");
-        SystemMessage.text = "";
-        while(true){
-            try{
-                MusicSelectAct.musicSelect.GenerateMusicBox();
-                break;
-            }
-            catch{}
-            yield return null;
-        }
-        yield return new WaitForSeconds(1.0f);
-        DefualtAnimator.SetTrigger("FadeIn");
-    }
-    IEnumerator ILoadOfflineData(){
-        for (int i = 0; i < Music.MusicCount; i++){
+    IEnumerator ILoadOfflineData()
+    {
+        for (int i = 0; i < Music.MusicCount; i++)
+        {
             musicManager.LoadDataFromJson(i);
             yield return null;
         }
         UserInfoManager.LoadPlayerData();
         yield return null;
     }
-    IEnumerator ICheckVersion(WWWForm form){
+    IEnumerator ICheckVersion(WWWForm form)
+    {
         SystemMessage.text = "Checking Version...";
-        using (UnityWebRequest www = UnityWebRequest.Post(MainSystem.ScriptLink, form)){
+        using (UnityWebRequest www = UnityWebRequest.Post(MainSystem.ScriptLink, form))
+        {
             yield return www.SendWebRequest();
 
-            if (www.isDone){
-                if (www.downloadHandler.text == "true") {
+            if (www.isDone)
+            {
+                if (www.downloadHandler.text == "true")
+                {
                     isUserOnline = true;
                 }
-                else{
-                    while(true){
-                        if(Input.GetKeyDown(KeyCode.Return)
-                        || Input.GetKeyDown(KeyCode.Space)){
-                            
+                else
+                {
+                    while (true)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Return)
+                        || Input.GetKeyDown(KeyCode.Space))
+                        {
+
                         }
-                        if (Input.GetKeyDown(KeyCode.Escape)){
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
 
                         }
                         isUserOnline = false;
                     }
                 }
             }
-            else{
+            else
+            {
                 SystemMessage.text = "Version UnAvailable";
-                while(true){
-                    if (Input.GetKeyDown(KeyCode.None)){
+                while (true)
+                {
+                    if (Input.GetKeyDown(KeyCode.None))
+                    {
 
                     }
                 }
@@ -272,21 +326,25 @@ public class MainSystem : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
     }
-    IEnumerator ILogin(WWWForm form){
+    IEnumerator ILogin(WWWForm form)
+    {
         SystemMessage.text = "Connecting Login Server...";
         char seperator = '|';
         string[] textLines;
-        using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form)){
+        using (UnityWebRequest www = UnityWebRequest.Post(ScriptLink, form))
+        {
             yield return www.SendWebRequest();
             if (www.isDone)
             {
-                if (www.downloadHandler.text == "false"){
+                if (www.downloadHandler.text == "false")
+                {
                     PlayerPrefs.SetString("id", null);
                     PlayerPrefs.SetString("pass", null);
                     isUserLogin = false;
                     isUserOnline = false;
                 }
-                else{
+                else
+                {
                     isUserLogin = true;
                     SystemMessage.text = "Login Complete";
                     PlayerPrefs.SetString("id", UserInfoManager.userId);
@@ -302,16 +360,20 @@ public class MainSystem : MonoBehaviour
                     yield return new WaitForSeconds(2.0f);
                 }
             }
-            else{
-                
+            else
+            {
+
             }
         }
     }
-    IEnumerator OnlineLoad(WWWForm form){
+    IEnumerator OnlineLoad(WWWForm form)
+    {
         SystemMessage.text = "Loading PlayData...";
-        using (UnityWebRequest www = UnityWebRequest.Post(MainSystem.ScriptLink, form)){
+        using (UnityWebRequest www = UnityWebRequest.Post(MainSystem.ScriptLink, form))
+        {
             yield return www.SendWebRequest();
-            if (www.isDone){
+            if (www.isDone)
+            {
                 SystemMessage.text = "Loading Complete";
                 musicManager.SetMusicInfo(www.downloadHandler.text);
             }
@@ -319,8 +381,9 @@ public class MainSystem : MonoBehaviour
         }
     }
 }
-public class UserSetting{
-    public static int UID;
+public class UserSetting
+{
+    public static int lastDate = 0;
     public static int[] volume = new int[3];
     public static int[] JudgeCorrection = new int[3];
     public static int defualtGameSpeed;

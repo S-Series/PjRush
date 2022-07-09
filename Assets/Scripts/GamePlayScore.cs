@@ -11,11 +11,11 @@ public class GamePlayScore : MonoBehaviour
         int count = 0;
         switch(type){
             case 0:
-                count = 12;
+                count = 60;
                 break;
 
             case 1:
-                count = 6;
+                count = 30;
                 break;
 
             default: 
@@ -26,7 +26,7 @@ public class GamePlayScore : MonoBehaviour
     private IEnumerator IAddScore(int count){
         for (int i = 0; i < count; i++){
             scoreNoteCount ++;
-            yield return new WaitForSeconds(0.125f);
+            yield return null;
             int calScore = (int)(100000000d * (Convert.ToDouble(scoreNoteCount) / scoreMaxNoteCount));
             GameInfoField.score = calScore;
             GameManager.GamePlayScore = calScore;
@@ -36,6 +36,6 @@ public class GamePlayScore : MonoBehaviour
         print(noteCount);
         GameInfoField.score = 0;
         scoreNoteCount = 0;
-        scoreMaxNoteCount = noteCount * 12;
+        scoreMaxNoteCount = noteCount * 60;
     }
 }

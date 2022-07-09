@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -320,12 +320,20 @@ public class GamePlaySystem : MonoBehaviour
     }
     private IEnumerator IGameEnd()
     {
-        if (GameManager.isAllPerfect) {; }
-        else if (GameManager.isFullCombo) {; }
+        if (GameManager.isAllPerfect) {
+
+        }
+        else if (GameManager.isFullCombo) {
+            
+        }
+        
         yield return new WaitForSeconds(4.0f);
+
         MainSystem.mainSystem.GameAnimator[1].SetTrigger("ChangeIn");
         MainSystem.mainSystem.RunIResultStart();
+
         yield return new WaitForSeconds(4.0f);
+
         gamePlay = null;
         SceneManager.LoadScene("Result");
     }
@@ -351,14 +359,12 @@ public class GamePlaySystem : MonoBehaviour
         noteSaved.SpeedBpm = new List<float>();
         noteSaved.SpeedNum = new List<float>();
     }
-    public void SpeedSetting()
-    {
+    public void SpeedSetting(){
         gameSpeed = MainSystem.gameSpeed / 100.0f;
         print(gameSpeed);
         print(MainSystem.gameSpeed);
 
-        for (int i = 0; i < Note.listNote.Count; i++)
-        {
+        for (int i = 0; i < Note.listNote.Count; i++){
             Note note;
             note = Note.listNote[i];
 
@@ -367,8 +373,7 @@ public class GamePlaySystem : MonoBehaviour
             notePosSet.y = note.pos * gameSpeed;
             Note.noteObjectList[i].transform.localPosition = notePosSet;
 
-            if (Note.listNote[i].legnth != 0)
-            {
+            if (Note.listNote[i].legnth != 0){
                 Vector3 noteScale;
                 noteScale = note[i].transform.localScale;
                 noteScale.y = note.legnth * gameSpeed;
@@ -376,8 +381,7 @@ public class GamePlaySystem : MonoBehaviour
             }
         }
         /*
-        for (int i = 0; i < GuideLine.Count; i++)
-        {
+        for (int i = 0; i < GuideLine.Count; i++){
             Vector3 guidePosSet;
             guidePosSet = GuideLine[i].transform.localPosition;
             guidePosSet.y = GuidePos[i] * gameSpeed;
@@ -386,8 +390,7 @@ public class GamePlaySystem : MonoBehaviour
         PlayerPrefs.SetFloat("speed", gameSpeed);
     }
 
-    /*private void GuideGenerate(float num)
-    {
+    /*private void GuideGenerate(float num){
         for (int i = 0; i < PlayGuideParent.transform.childCount; i++)
         {
             Destroy(PlayGuideParent.transform.GetChild(0).gameObject);
@@ -398,8 +401,7 @@ public class GamePlaySystem : MonoBehaviour
         // ms = 150 * 1600 / bpm
         count = Mathf.CeilToInt(num * bpm / 240000) + 2;
 
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < count; i++){
             GameObject copy;
             copy = Instantiate(PlayGuide, PlayGuideParent.transform);
             copy.transform.localPosition = new Vector3(0, 1600 * i, 0);
