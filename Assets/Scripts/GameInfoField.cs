@@ -39,8 +39,8 @@ public class GameInfoField : MonoBehaviour
 
     public void InfoSetting()
     {
-        int index = MainSystem.mainSystem.difficulty;
-        Music music = MainSystem.NowOnMusic;
+        int index = 0;//MainSystem.mainSystem.difficulty;
+        Music music = null;//MainSystem.NowOnMusic;
 
         infoJacket.sprite = music.sprJacket;
 

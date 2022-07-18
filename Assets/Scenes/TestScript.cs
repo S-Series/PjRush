@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    private void Awake() {
+    private void Awake() 
+    {
         StartCoroutine(RunCoroutine());
     }
     private void Start()
@@ -15,7 +16,8 @@ public class TestScript : MonoBehaviour
     {
 
     }
-    IEnumerator RunCoroutine(){
+    IEnumerator RunCoroutine()
+    {
         yield return A();
         yield return B();
         yield return C();
