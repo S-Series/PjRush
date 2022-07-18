@@ -2,130 +2,127 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainSelect : MonoBehaviour
 {
-    bool isMain;
-    int itemNum;
-    /// <summary>
-    /// index num   || Mode Name    || Trigger
-    /// itemNum = 1 || Option       || "Option"
-    /// itemNum = 2 || Quit         || "Quit"
-    /// itemNum = 3 || Normal Mode  || "Normal"
-    /// itemNum = 4 || Arcade Mode  || "Arcade"
-    /// itemNum = 5 || Shop         || "Shop"
-    /// </summary>
-
-    [SerializeField]
-    GameObject MovingPart;
-
-    [SerializeField]
-    Animator GameStartAnimate;
-
-    private void Awake()
+    //* const --------------------------------------//
+    private const int MaxItemCount = 7;
+    private const string SendAlertTrigger = "AlertStart";
+    private const string EndAlertTrigger = "AlertEnd";
+    private const KeyCode Up = KeyCode.UpArrow;
+    private const KeyCode Down = KeyCode.DownArrow;
+    private const KeyCode Left = KeyCode.LeftArrow;
+    private const KeyCode Right = KeyCode.RightArrow;
+    private const KeyCode Enter = KeyCode.Return;
+    private const KeyCode Space = KeyCode.Space;
+    private const KeyCode ESC = KeyCode.Escape;
+    //* public --------------------------------------//
+    //* private --------------------------------------//
+    private bool isSelectable = true;
+    private bool isEventAvailable = false;
+    private int ItemIndex = 0;
+    private Vector3[] SelectItemPos = new Vector3[]
     {
-        isMain = true;
-        itemNum = 3;
-    }
-
-    private void Start()
-    {
-        isMain = true;
-        itemNum = 3;
-    }
+        new Vector3(-3.0f, +0.0f, 0.0f),
+        new Vector3(+0.0f, +0.0f, 0.0f),
+        new Vector3(+3.0f, +0.0f, 0.0f),
+        new Vector3(-4.5f, -2.6f, 0.0f),
+        new Vector3(-1.5f, -2.6f, 0.0f),
+        new Vector3(+1.5f, -2.6f, 0.0f),
+        new Vector3(+4.5f, -2.6f, 0.0f)
+    };
+    //* SerializeField --------------------------------------//
+    [SerializeField] private Animator CursorAnimator;
+    [SerializeField] private Animator AlertAnimator;
+    [SerializeField] private TextMeshPro TmpAlertMessage;
 
     private void Update()
     {
-        if (isMain)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                // 게임종료 선택창 활성화 처리
-            }
-            if (Input.GetKeyDown(KeyCode.Return) 
-                || Input.GetKeyDown(KeyCode.Space))
-            {
-                // 메인화면 -> 선택화면
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                // 선택화면 -> 메인화면
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                itemNum--;
-                checkItemIndex();
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                itemNum++;
-                checkItemIndex();
-            }
-            if (Input.GetKeyDown(KeyCode.Return)
-                || Input.GetKeyDown(KeyCode.Space))
-            {
-                switch (itemNum)
-                {
-                    case 1:
-
-                        break;
-
-                    case 2:
-
-                        break;
-
-                    case 3:
-                        StartCoroutine(IcheckOnlice("Normal", "NormalSelect"));
-                        break;
-
-                    case 4:
-
-                        break;
-
-                    case 5:
-
-                        break;
-                }
-            }
-        }
-
-
+        if (!isSelectable) return;
+        if (Input.GetKeyDown(Enter) || Input.GetKeyDown(Space)) { RunItem(ItemIndex); }
+        if (Input.GetKeyDown(Up)) { MoveItem(isUp: true); }
+        if (Input.GetKeyDown(Down)) { MoveItem(isDown: true); }
+        if (Input.GetKeyDown(Left)) { MoveItem(isLeft: true); }
+        if (Input.GetKeyDown(Right)) { MoveItem(isRight: true); }
+        if (Input.GetKeyDown(ESC)) { /*게임 종료 여부 확인 메시지*/ }
     }
-
-    private void checkItemIndex()
+    public void MouseOver(int index)
     {
-        if (itemNum <= 0) itemNum = 5;
-        else if (itemNum >= 6) itemNum = 1;
+        ItemIndex = index;
     }
-
-    private IEnumerator IcheckOnlice(string trigger, string Scene)
+    private void MoveItem(bool isUp = false, bool isDown = false, bool isLeft = false, bool isRight = false)
     {
-        bool b = false;
-        yield return b = CheckOnline();
-
-        if (b)
+        if (isUp)
         {
-            isMain = false; 
-            MainSystem.isUserOnline = b;
-            GameStartAnimate.SetTrigger(trigger);
-            yield return new WaitForSeconds(5.0f);
-            SceneManager.LoadScene(Scene);
+            if (ItemIndex == 6) { ItemIndex = 2; }
+            else if (ItemIndex >= 3) { ItemIndex -= 3; }
+            else return;
         }
-        else
+        if (isDown) 
+        { 
+            if (ItemIndex <= 2) { ItemIndex += 3; } 
+            else return;
+        }
+        if (isLeft) 
         {
-            // 재시도 할건지 묻는 메시지 출력
+            if (ItemIndex != 0 && ItemIndex != 3) { ItemIndex--; } 
+            else return;
+        }
+        if (isRight) 
+        { 
+            if (ItemIndex != 2 && ItemIndex != 6) { ItemIndex++; } 
+            else return;
+        }
+        CursorAnimator.SetTrigger("Play");
+        CursorAnimator.gameObject.transform.localPosition = SelectItemPos[ItemIndex];
+    }
+    private void RunItem(int index)
+    {
+        if (index >= MaxItemCount) return;
+        switch(index)
+        {
+            // World Mode
+            case 0:
+                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                break;
+            // Normal Mode
+            case 1:
+
+                break;
+            // Event
+            case 2:
+                if (!isEventAvailable) { StartCoroutine(SendAlert("There is no Event now.")); }
+                break;
+            // Memorial
+            case 3:
+                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                break;
+            // Shop
+            case 4:
+                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                break;
+            // Setting
+            case 5:
+                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                break;
+            // More
+            case 6:
+                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                break;
         }
     }
-
-    private bool CheckOnline()
+    private IEnumerator SendAlert(string message)
     {
-        if (Application.internetReachability 
-            == NetworkReachability.NotReachable) 
-            return false;
-        else 
-            return true;
+        isSelectable = false;
+        TmpAlertMessage.text = message;
+        AlertAnimator.SetTrigger(SendAlertTrigger);
+        yield return new WaitForSeconds(0.2f);
+        while(!isSelectable)
+        {
+            if (Input.anyKeyDown) { isSelectable = true; }
+            yield return null;
+        }
+        AlertAnimator.SetTrigger(EndAlertTrigger);
     }
 }

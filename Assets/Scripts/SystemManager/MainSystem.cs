@@ -15,6 +15,8 @@ public class MainSystem : MonoBehaviour
     UserSetting userSetting = new UserSetting();
     public const string ScriptLink
         = "https://script.google.com/macros/s/AKfycbypRi5_bJGzDX_ajjD0RvCjYkwbr8ajSxvaYmJkXnlf7zd8mBDEATTwnNUPaFm6FnJmYQ/exec";
+    private const string SendAlertTrigger = "Start";
+    private const string EndAlertTrigger = "End";
 
     #region Manager System
     public static Music NowOnMusic;
@@ -32,6 +34,9 @@ public class MainSystem : MonoBehaviour
     [SerializeField] Sprite[] CharacterIcon;
     [SerializeField] TextMeshPro SystemMessage;
     [SerializeField] public static int gameSpeed;
+    [SerializeField] private Animator AlertAnimator;
+    [SerializeField] private TextMeshPro TmpAlertMessage;
+    
     private void Awake()
     {
         /*
@@ -380,9 +385,27 @@ public class MainSystem : MonoBehaviour
             else { }
         }
     }
+    //* ------------------------------- 
+    public static void SendAlert(string message = "")
+    {
+
+    }
+    private IEnumerator ISendAlert(string message)
+    {
+        bool isSelectable = false;
+        TmpAlertMessage.text = message;
+        AlertAnimator.SetTrigger(SendAlertTrigger);
+        while(!isSelectable)
+        {
+            if (Input.anyKeyDown) { isSelectable = true; }
+            yield return null;
+        }
+        AlertAnimator.SetTrigger(EndAlertTrigger);
+    }
 }
 public class UserSetting
 {
+    [SerializeField] private Animator AlertAnimator;
     public static int lastDate = 0;
     public static int[] volume = new int[3];
     public static int[] JudgeCorrection = new int[3];
