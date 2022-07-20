@@ -7,8 +7,13 @@ using UnityEngine.Networking;
 
 public class MusicManager : MonoBehaviour
 {
-    private static MusicSave musicSave = new MusicSave();
+    private static Transform musicTransform;
+    private static MusicSave musicSave;
     public static List<Music> musicList = new List<Music>();
+    private void Awake() 
+    {
+        musicTransform = this.transform;    
+    }
 
     public static void SaveMusic(int index)
     {
@@ -16,8 +21,26 @@ public class MusicManager : MonoBehaviour
     }
     public static IEnumerator ILoadMusic()
     {
+        Music target;
+        for (int i = 0; i < musicTransform.childCount; i++)
+        {
+            target = musicTransform.GetChild(i).GetComponent<Music>();
+            yield return ILoadMusicForEach(target);
+        }
+    }
+    private static IEnumerator ILoadMusicForEach(Music music)
+    {
+        musicSave = new MusicSave();
         string savePath = "";
-        savePath = Path.Combine(Application.dataPath, );
+        try
+        {
+            savePath = Path.Combine(Application.dataPath, "");
+        }
+        catch
+        {
+            savePath = Path.Combine(Application.dataPath, "");
+        }
+        yield return null;
     }
 }
 

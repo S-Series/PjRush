@@ -8,14 +8,6 @@ public class TestScript : MonoBehaviour
     {
         StartCoroutine(RunCoroutine());
     }
-    private void Start()
-    {
-        print("Start");
-    }
-    void Update()
-    {
-
-    }
     IEnumerator RunCoroutine()
     {
         yield return A();
