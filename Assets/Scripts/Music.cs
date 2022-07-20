@@ -8,6 +8,7 @@ public class Music : MonoBehaviour
     public Sprite sprJacket;
     public AudioClip audMusicFile;
     public AudioClip audPreMusicFile;
+    private bool[] isAvailable = new bool[5];
     public int MusicID;
     public float LowBPM;
     public float HighBPM;
@@ -23,5 +24,5 @@ public class Music : MonoBehaviour
     public int[] HighScore = new int[5];
 
     public bool[] isOwned = new bool[5];
-    public bool[] isSecret = new bool[5];
+    public bool isSecret;
 }

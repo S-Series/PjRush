@@ -57,11 +57,11 @@ public class SongFrame : MonoBehaviour
                 }
             }
 
-            Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
+            //Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
         }
         else
         {
-            if (music.isSecret[difficulty])
+            if (music.isSecret)
             {
                 MusicBlock[0].enabled = false;
                 MusicBlock[1].enabled = true;
@@ -69,11 +69,8 @@ public class SongFrame : MonoBehaviour
                 SongNameTmp.text = "????";
                 SongArtistTmp.text = "????";
 
-                for (int i = 0; i < 5; i++)
-                {
-                    Difficulty[i].gameObject.SetActive(true);
-                    Difficulty[i].GetComponentInChildren<TextMeshPro>().text = "??";
-                }
+                Difficulty[5].gameObject.SetActive(true);
+                Difficulty[5].GetComponentInChildren<TextMeshPro>().text = "??";
 
             }
             else
@@ -99,7 +96,7 @@ public class SongFrame : MonoBehaviour
                 }
             }
 
-            Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
+            //Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
         }
 
         SetDifficultyBox(difficulty);

@@ -10,6 +10,11 @@ public class SystemManager : MonoBehaviour
     public static GuageStatus guageStatus = GuageStatus.Normal;
     public static int difficulty;
     public static int difficultyIndex;
+
+    public static IEnumerator ILoadUserData()
+    {
+        yield return null;
+    }
 }
 
 public static class User

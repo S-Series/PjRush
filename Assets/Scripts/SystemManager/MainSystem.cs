@@ -9,26 +9,22 @@ using TMPro;
 
 public class MainSystem : MonoBehaviour
 {
-    //** System Managers    ------------------------ //
-    public static GameManager gameManager;
-    public static SystemManager systemManager;
-    public static MusicManager musicManager;
-    public static InputManager inputManager;
-    public static SpriteManager spriteManager;
-    public static SystemSoundManager soundManager;
-    public static CharacterManager characterManager;
-
-    //** SerializeField     ------------------------ //
-
-    private void Awake()
+    private void Start()
     {
-        gameManager = GetComponentInChildren<GameManager>();
-        systemManager = GetComponentInChildren<SystemManager>();
-        musicManager = GetComponentInChildren<MusicManager>();
-        inputManager = GetComponentInChildren<InputManager>();
-        spriteManager = GetComponentInChildren<SpriteManager>();
-        soundManager = GetComponentInChildren<SystemSoundManager>();
-        characterManager = GetComponentInChildren<CharacterManager>();
+        
     }
 
+    private IEnumerator BootingProgram()
+    {
+        AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[0]);
+        yield return SystemManager.ILoadUserData();
+        yield return MusicManager.ILoadMusic();
+        //yield return OnlineManager.IConnectToDB();
+        AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[1]);
+        gameProgramStart();
+    }
+    private void gameProgramStart()
+    {
+
+    }
 }

@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static Animator Booting;
+    public static readonly string[] TriggerBooting = {"", ""};
 
-    // Update is called once per frame
-    void Update()
+    public static Animator AnimatorSceneChange;
+    public static readonly string[] TriggerSceneChange = {"",""};
+
+    public static Animator AnimatorLoadMusic;
+    public static readonly string[] TriggerLoadMusic = {"",""};
+
+    [SerializeField] GameObject[] animatorObject;
+    private void Awake()
     {
-        
+        Booting = animatorObject[0].GetComponent<Animator>();
+        AnimatorSceneChange = animatorObject[1].GetComponent<Animator>();
+        AnimatorLoadMusic = animatorObject[2].GetComponent<Animator>();
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpriteManager : MonoBehaviour
 {
+    public static SpriteManager spriteManager;
+    private void Awake() { spriteManager = this; }
     [SerializeField] Sprite[] CharacterSprite;
     [SerializeField] Sprite[] CharacterIconSprite;
 

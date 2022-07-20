@@ -28,10 +28,6 @@ public class InputManager : MonoBehaviour {
 
     private void Start()
     {
-        if (MainSystem.inputManager != this){
-            Destroy(this.gameObject);
-            return;
-        }
         for (int i = 0; i < (int)KeyActions.KeyCount; i++)
         {
             KeySetting.keys.Add((KeyActions)i, defaultKeys[i]);

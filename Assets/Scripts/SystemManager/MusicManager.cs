@@ -15,7 +15,7 @@ public class MusicManager : MonoBehaviour
         musicTransform = this.transform;    
     }
 
-    public static void SaveMusic(int index)
+    public static void SaveMusic()
     {
 
     }
@@ -31,14 +31,22 @@ public class MusicManager : MonoBehaviour
     private static IEnumerator ILoadMusicForEach(Music music)
     {
         musicSave = new MusicSave();
+
+        string path = "";
+        path = "Note/" + String.Format("{d:04}", music.MusicID);
+
         string savePath = "";
-        try
+        savePath = Path.Combine(Application.dataPath, path + "/Played");
+        Debug.Log(savePath);
+
+        if (File.Exists(savePath))
         {
-            savePath = Path.Combine(Application.dataPath, "");
+            musicSave = JsonUtility.FromJson<MusicSave>(savePath);
         }
-        catch
+        else
         {
-            savePath = Path.Combine(Application.dataPath, "");
+            savePath = Path.Combine(Application.dataPath, path + "/Default");
+            musicSave = JsonUtility.FromJson<MusicSave>(savePath);
         }
         yield return null;
     }
