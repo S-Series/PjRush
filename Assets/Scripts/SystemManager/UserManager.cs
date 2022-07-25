@@ -3,24 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserInfoManager : MonoBehaviour
+public class UserManager : MonoBehaviour
 {
     private static UserData userData = new UserData();
-    private const string playerDataPath = "PlayedData/PlayerData.json";
+    private const string playerDataPath = "UserData/PlayerData.json";
     public static string userId;
     public static string userPassword;
-    public int characterIndex;
-    /* Character List
-    0 || 
-    1 || 
-    */
     public static string userName = "Defualt";
-    public static int userLevel = 1234;
-    public static float userRating = 12.34f;
-    public static float userLevelProgress = 12.34f;
-    public static float userSpecialProgress = 12.34f;
+    public static int userLevel = 1;
+    public static int characterIndex = 0;
     public static int userCredit;
     public static int userSpecialCredit;
+    public static float userRating = 0.00f;
+    public static float userLevelProgress = 0.00f;
+    public static float userSpecialProgress = 0.00f;
+
     public static void SavePlayerData(){
         string path = Path.Combine(Application.dataPath, playerDataPath);
     }

@@ -12,70 +12,70 @@ public class SpriteManager : MonoBehaviour
     [SerializeField] Sprite[] RankSprite;
 
     [SerializeField] Sprite[] DifficultySprite;
+    [SerializeField] Sprite[] DreamDifficultySprite;
     [SerializeField] string[] DifficultyText;
 
     [SerializeField] Sprite[] userTitleSprite;
     [SerializeField] Sprite[] userRatingSprite;
 
-    public Sprite getCharacterSprite(int index)
+    public static Sprite getCharacterSprite(int index)
     {
         try
         {
-            return CharacterSprite[index];
+            return spriteManager.CharacterSprite[index];
         }
         catch { return null; }
     }
-
-    public Sprite getCharacterIconSprite(int index)
+    public static Sprite getCharacterIconSprite(int index)
     {
         try
         {
-            return CharacterIconSprite[index];
+            return spriteManager.CharacterIconSprite[index];
         }
         catch { return null; }
     }
-
-    public Sprite getRankSprite(int index)
+    public static Sprite getRankSprite(int index)
     {
         try
         {
-            return RankSprite[index];
+            return spriteManager.RankSprite[index];
         }
         catch { return null; }
     }
-
-    public Sprite getDifficultySprite(int index)
+    public static Sprite getDifficultySprite(int index)
     {
         try
         {
-            return DifficultySprite[index];
+            return spriteManager.DifficultySprite[index];
         }
         catch { return null; }
     }
-
-    public string getDifficultyText(int index)
+    public static Sprite getDreamSprite(int index)
+    {
+        if (index < 0 || index > spriteManager.DreamDifficultySprite.Length - 1) return null;
+        else return spriteManager.DreamDifficultySprite[index];
+    }
+    public static string getDifficultyText(int index)
     {
         try
         {
-            return DifficultyText[index];
+            return spriteManager.DifficultyText[index];
         }
         catch { return ""; }
     }
-
-    public Sprite getUserTitleSprite(int index)
+    public static Sprite getUserTitleSprite(int index)
     {
         try
         {
-            return userTitleSprite[index];
+            return spriteManager.userTitleSprite[index];
         }
         catch { return null; }
     }
-
-    public Sprite getUserRankIndex(int index)
+    public static Sprite getUserRankIndex(int index)
     {
         try
         {
-            return userRatingSprite[index];
+            return spriteManager.userRatingSprite[index];
         }
         catch { return null; }
     }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -170,62 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dcb97a3331cda4788832eb956c3095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicFramePrefab: {fileID: 7598167487223871007, guid: 64ac0fbcdb124e443b75d68cc7f85477,
-    type: 3}
-  MusicFrameCopyField: {fileID: 284265179}
-  MusicSelectBox: {fileID: 1952447989}
-  MusicFrameIndex: 0
-  MusicFramePage: 0
-  isActiveSelect: 0
-  isPlayReady: 0
-  GameInfo:
-  - {fileID: 1520794455}
-  - {fileID: 694815920}
-  - {fileID: 868743247}
-  - {fileID: 251787346}
-  - {fileID: 243694117}
-  - {fileID: 2062466708}
-  - {fileID: 1141445733}
-  - {fileID: 1132482846}
-  - {fileID: 1929127780}
-  GameSpriteRenderer:
-  - {fileID: 1595184639}
-  audioSource: {fileID: 0}
-  DifficultySprite: []
-  Difficulty:
-  - {fileID: 1209545327}
-  - {fileID: 1599689753}
-  - {fileID: 689315445}
-  - {fileID: 712866781}
-  - {fileID: 1014176990}
-  MusicJacekt: {fileID: 1595184639}
-  Secret: {fileID: 567979429}
-  ScoreText:
-  - {fileID: 1132482846}
-  - {fileID: 241991827}
-  - {fileID: 1108006408}
-  - {fileID: 334254657}
-  - {fileID: 411652720}
-  - {fileID: 1227153391}
-  - {fileID: 251078024}
-  - {fileID: 451477532}
-  - {fileID: 1189556661}
-  - {fileID: 1697059102}
-  GameGuageTypeRenderer:
-  - {fileID: 1415942968}
-  - {fileID: 1518450144}
-  - {fileID: 462706542}
-  JudgeControlTmp:
-  - {fileID: 1354628598}
-  - {fileID: 1928743662}
-  - {fileID: 1424100555}
-  SpeedControlTmp:
-  - {fileID: 638869830}
-  - {fileID: 1254427010}
-  - {fileID: 915495742}
-  GameStartAudio: {fileID: 5545494}
-  audSecretClip: {fileID: 8300000, guid: 0adcf2e4394d6844ea178a09a25b1e35, type: 3}
-  MusicSelectedAnimator: {fileID: 152547904}
+  FramePrefab: {fileID: 0}
+  FrameParentTransform: {fileID: 0}
 --- !u!82 &5545494
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1078,12 +1024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afbabeaad67e0040abf8010ad8ad469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RankingInfo:
-  - {fileID: 1406024111}
-  - {fileID: 2027433265}
-  - {fileID: 1097082329}
-  - {fileID: 33994156}
-  CharacterIcon: {fileID: 1892229664}
 --- !u!212 &112913149
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3420,12 +3360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afbabeaad67e0040abf8010ad8ad469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RankingInfo:
-  - {fileID: 1638116746}
-  - {fileID: 71846714}
-  - {fileID: 1365447672}
-  - {fileID: 1724495998}
-  CharacterIcon: {fileID: 816818733}
 --- !u!1 &284265179
 GameObject:
   m_ObjectHideFlags: 0
@@ -5651,7 +5585,7 @@ SpriteRenderer:
   m_Size: {x: 9, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &868743245
@@ -7847,12 +7781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afbabeaad67e0040abf8010ad8ad469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RankingInfo:
-  - {fileID: 1846135123}
-  - {fileID: 143964323}
-  - {fileID: 1846306501}
-  - {fileID: 1134043642}
-  CharacterIcon: {fileID: 1278811189}
 --- !u!212 &1200576955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8417,7 +8345,7 @@ SpriteRenderer:
   m_Size: {x: 9, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1321576670
@@ -11930,7 +11858,7 @@ SpriteRenderer:
   m_Size: {x: 9, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1896711316

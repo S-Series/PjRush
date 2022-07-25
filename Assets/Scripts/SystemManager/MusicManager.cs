@@ -9,9 +9,10 @@ public class MusicManager : MonoBehaviour
 {
     private static Transform musicTransform;
     private static MusicSave musicSave;
-    public static List<Music> musicList = new List<Music>();
+    public static List<Music> musicList;
     private void Awake() 
     {
+        musicList = new List<Music>();
         musicTransform = this.transform;    
     }
 
@@ -50,6 +51,7 @@ public class MusicManager : MonoBehaviour
         }
         yield return null;
     }
+    
 }
 
 public class MusicSave

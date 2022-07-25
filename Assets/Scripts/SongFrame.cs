@@ -10,111 +10,35 @@ public class SongFrame : MonoBehaviour
     [SerializeField]
     static AudioClip SecretAudio;
     // -----------------------------------------
-    [SerializeField]
-    public Music music;
-
-    #region FrameObject
-    [SerializeField]
-    SpriteRenderer MusicJacket;
-
-    [SerializeField]
-    SpriteRenderer[] MusicBlock;
-
-    [SerializeField]
-    SpriteRenderer[] Difficulty;
-
-    [SerializeField]
-    TextMeshPro SongNameTmp;
-
-    [SerializeField]
-    TextMeshPro SongArtistTmp;
-
-    [SerializeField]
-    public SpriteRenderer Rank;
-    #endregion
-
-    public void SetInfo(int difficulty)
+    [SerializeField] private SpriteRenderer MusicJacket;
+    [SerializeField] private SpriteRenderer[] MusicBlock;
+    [SerializeField] private SpriteRenderer[] Difficulty;
+    [SerializeField] private TextMeshPro SongNameTmp;
+    [SerializeField] private TextMeshPro SongArtistTmp;
+    [SerializeField] private SpriteRenderer Rank;
+    public void SetFrame(Music music)
     {
-        if (music.isOwned[difficulty])
-        {
-            MusicBlock[0].enabled = false;
-            MusicBlock[1].enabled = false;
-            MusicJacket.sprite = music.sprJacket;
-            SongNameTmp.text = music.MusicName;
-            SongArtistTmp.text = music.MusicArtist;
-
-            for (int i = 0; i < 4; i++)
-            {
-                if (music.Difficulty[i] == 0)
-                {
-                    Difficulty[i].gameObject.SetActive(false);
-                }
-                else
-                {
-                    Difficulty[i].gameObject.SetActive(true);
-                    Difficulty[i].GetComponentInChildren<TextMeshPro>().text
-                        = music.Difficulty[i].ToString();
-                }
-            }
-
-            //Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
-        }
-        else
-        {
-            if (music.isSecret)
-            {
-                MusicBlock[0].enabled = false;
-                MusicBlock[1].enabled = true;
-                MusicJacket.sprite = music.sprJacket;
-                SongNameTmp.text = "????";
-                SongArtistTmp.text = "????";
-
-                Difficulty[5].gameObject.SetActive(true);
-                Difficulty[5].GetComponentInChildren<TextMeshPro>().text = "??";
-
-            }
-            else
-            {
-                MusicBlock[0].enabled = true;
-                MusicBlock[1].enabled = false;
-                MusicJacket.sprite = music.sprJacket;
-                SongNameTmp.text = music.MusicName;
-                SongArtistTmp.text = music.MusicArtist;
-
-                for (int i = 0; i < 4; i++)
-                {
-                    if (music.Difficulty[i] == 0)
-                    {
-                        Difficulty[i].gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        Difficulty[i].gameObject.SetActive(true);
-                        Difficulty[i].GetComponentInChildren<TextMeshPro>().text
-                            = string.Format("{0:D2}",music.Difficulty[i]);
-                    }
-                }
-            }
-
-            //Rank.sprite = MainSystem.spriteManager.getRankSprite(-1);
-        }
-
-        SetDifficultyBox(difficulty);
-    }
-
-    private void SetDifficultyBox(int difficulty)
-    {
-        if (music.Difficulty[difficulty] == 0)
-        {
-            if (difficulty == 0) return;
-            SetDifficultyBox(difficulty - 1);
-            return;
-        }
-
+        MusicJacket.sprite = music.sprJacket;
+        SongNameTmp.text = music.MusicName;
+        SongArtistTmp.text = music.MusicArtist;
         for (int i = 0; i < 5; i++)
         {
-            Difficulty[i].gameObject.SetActive(false);
+            Difficulty[i].gameObject.SetActive(music.isAvailable[i]);
+            Difficulty[i].GetComponentInChildren<TextMeshPro>().text 
+                = string.Format("{d:02}", music.Difficulty[i]);
         }
-        Difficulty[difficulty].gameObject.SetActive(true);
+        switch (music.status) //** Setting Dream Difficulty Sprite
+        {
+            case Music.Status.Null:
+                return;
+            case Music.Status.Hexagon:
+                Difficulty[4].sprite = SpriteManager.getDreamSprite(0);
+                break;
+            case Music.Status.Butterfly:
+                Difficulty[4].sprite = SpriteManager.getDreamSprite(1);
+                break;
+        }
+        
+
     }
 }

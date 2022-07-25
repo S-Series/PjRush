@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SystemSoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
-    private static SystemSoundManager soundManager;
+    private static SoundManager soundManager;
     public static AudioSource systemAudio;
     [SerializeField] private AudioClip[] systemAudioClipArr;
     #region AudioClipSummary
