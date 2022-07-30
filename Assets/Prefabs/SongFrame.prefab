@@ -2027,7 +2027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d285bffaad748d94987b48a416bf7b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
   MusicJacket: {fileID: 7598167488656442882}
   MusicBlock:
   - {fileID: 7598167487386742559}
@@ -2281,7 +2280,7 @@ SpriteRenderer:
   m_Size: {x: 6.5, y: 6.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7598167487735262748
@@ -2573,7 +2572,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7598167488696052820
