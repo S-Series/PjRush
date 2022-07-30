@@ -7,50 +7,55 @@ using TMPro;
 
 public class MainSystem : MonoBehaviour
 {
-    private const string MainScene = "";
-    private const string MusicSelectScene = "";
+    private static MainSystem main;
+    private const string MainScene = "Main";
+    private const string MusicSelectScene = "Select";
     private void Start()
     {
+        main = this;
         DontDestroyOnLoad(this);
         StartCoroutine(BootingProgram());
     }
 
     private IEnumerator BootingProgram()
     {
-        AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[0]);
-        yield return SystemManager.ILoadUserData();
+        //AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[0]);
+        SystemManager.SetSystemText("Loading Player Data...");
+        //yield return SystemManager.ILoadUserData();
+        SystemManager.SetSystemText("Loading Music...");
         yield return MusicManager.ILoadMusic();
-        //yield return OnlineManager.IConnectToDB();
+        SystemManager.SetSystemText("Checking Online...");
         //yield return OnlineManager.IConnectOnline();
-        AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[1]);
-        ILoadMainScene();
+        SystemManager.SetSystemText("Connecting to DataBase...");
+        //yield return OnlineManager.IConnectToDB();
+        //AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[1]);
+        SystemManager.SetSystemText("");
+        yield return ILoadMainScene();
     }
     //** Scene Loader
+    public static void LoadMainScene()
+    {
+        main.StartCoroutine(main.ILoadMainScene());
+    }
     private IEnumerator ILoadMainScene()
     {
         yield return new WaitForSeconds(2.0f);
         AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[0]);
         SceneManager.LoadScene(MainScene);
-        while(true)
-        {
-            try { MusicSelectAct.LoadSelectMusic(); break; }
-            catch { }
-            yield return null;
-        }
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[1]);
+    }
+    public static void LoadSelectScene()
+    {
+        main.StartCoroutine(main.ILoadSelectScene());
     }
     private IEnumerator ILoadSelectScene()
     {
         yield return new WaitForSeconds(2.0f);
         AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[0]);
         SceneManager.LoadScene(MusicSelectScene);
-        while(true)
-        {
-            try { MusicSelectAct.LoadSelectMusic(); break; }
-            catch { }
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.0f);
+        MusicSelectAct.LoadSelectMusic();
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[1]);
     }

@@ -88,7 +88,8 @@ public class MainSelect : MonoBehaviour
                 break;
             // Normal Mode
             case 1:
-
+                MainSystem.LoadSelectScene();
+                isSelectable = false;
                 break;
             // Event
             case 2:

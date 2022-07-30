@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -32,28 +33,104 @@ public class MusicManager : MonoBehaviour
     private static IEnumerator ILoadMusicForEach(Music music)
     {
         musicSave = new MusicSave();
+        MusicDefault musicDefault = new MusicDefault();
 
         string path = "";
-        path = "Note/" + String.Format("{d:04}", music.MusicID);
-
-        string savePath = "";
-        savePath = Path.Combine(Application.dataPath, path + "/Played");
-        Debug.Log(savePath);
-
-        if (File.Exists(savePath))
+        string loadPath = "";
+        string loadPlayed = "";
+        path = "Note/" + String.Format("{0:D4}", music.MusicID);
+        loadPath = Application.dataPath + "/" + path + "/Default.json";
+        loadPlayed = Application.dataPath + "/" + path + "/Played.json";
+        musicDefault = JsonUtility.FromJson<MusicDefault>(File.ReadAllText(loadPath));
+        #region Load Default Data
+        music.isAvailable = musicDefault.isAvailable;
+        music.MusicID = musicDefault.MusicID;
+        music.LowBPM = musicDefault.LowBPM;
+        music.HighBPM = musicDefault.HighBPM;
+        music.MusicName = musicDefault.MusicName;
+        music.MusicArtist = musicDefault.MusicArtist;
+        music.Effecter = musicDefault.Effecter;
+        music.Difficulty = musicDefault.Difficulty;
+        music.NoteCount = musicDefault.NoteCount;
+        music.status = musicDefault.status;
+        music.PerfectCount = musicDefault.PerfectCount;
+        music.MaxCombo = musicDefault.MaxCombo;
+        music.HighScore = musicDefault.HighScore;
+        music.isOwned = musicDefault.isOwned;
+        music.isSecret = musicDefault.isSecret;
+        #endregion
+        //** Played Data
+        if (File.Exists(loadPlayed))
         {
-            musicSave = JsonUtility.FromJson<MusicSave>(savePath);
+            try
+            {
+                musicSave = JsonUtility.FromJson<MusicSave>(File.ReadAllText(loadPlayed));
+                music.PerfectCount = musicSave.PerfectCount;
+                music.MaxCombo = musicSave.MaxCombo;
+                music.HighScore = musicSave.HighScore;
+                music.isOwned = musicSave.isOwned;
+                music.isSecret = musicSave.isSecret;
+            }
+            catch { throw new Exception("Null Played Data Exist"); }
         }
-        else
-        {
-            savePath = Path.Combine(Application.dataPath, path + "/Default");
-            musicSave = JsonUtility.FromJson<MusicSave>(savePath);
-        }
+        musicList.Add(music);
         yield return null;
     }
-    
+    [ContextMenu("Save Default MusicData")]
+    private void SaveMusicDefaultData()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Music music;
+            MusicDefault musicDefault = new MusicDefault();
+            music = transform.GetChild(i).GetComponent<Music>();
+            if (music.MusicID != i + 1) 
+            { throw new Exception(String.Format("Music Id {0:D4} is not Available", i + 1)); }
+            #region saveing
+            musicDefault.isAvailable = music.isAvailable;
+            musicDefault.MusicID = music.MusicID;
+            musicDefault.LowBPM = music.LowBPM;
+            musicDefault.HighBPM = music.HighBPM;
+            musicDefault.MusicName = music.MusicName;
+            musicDefault.MusicArtist = music.MusicArtist;
+            musicDefault.Effecter = music.Effecter;
+            musicDefault.Difficulty = music.Difficulty;
+            musicDefault.NoteCount = music.NoteCount;
+            musicDefault.status = music.status;
+            musicDefault.PerfectCount = music.PerfectCount;
+            musicDefault.MaxCombo = music.MaxCombo;
+            musicDefault.HighScore = music.HighScore;
+            musicDefault.isOwned = music.isOwned;
+            musicDefault.isSecret = music.isSecret;
+            #endregion
+            string path = "";
+            string savePath = "";
+            string jsonData = JsonUtility.ToJson(musicDefault, true);
+            path = "/Note/" + String.Format("{0:D4}", music.MusicID) + "/Default.json";
+            savePath = Application.dataPath + path;
+            print(savePath);
+            File.WriteAllText(savePath, jsonData);
+        }
+    }
 }
-
+public class MusicDefault
+{
+    public bool[] isAvailable = new bool[5];
+    public int MusicID;
+    public float LowBPM;
+    public float HighBPM;
+    public string MusicName;
+    public string MusicArtist;
+    public string[] Effecter = new string[5];
+    public int[] Difficulty = new int[5];
+    public int[] NoteCount = new int[5];
+    public Music.Status status;
+    public int[] PerfectCount = new int[5];
+    public int[] MaxCombo = new int[5];
+    public int[] HighScore = new int[5];
+    public bool[] isOwned = new bool[5];
+    public bool isSecret;
+}
 public class MusicSave
 {
     public int[] PerfectCount = new int[5];
@@ -61,5 +138,5 @@ public class MusicSave
     public int[] HighScore = new int[5];
 
     public bool[] isOwned = new bool[5];
-    public bool[] isSecret = new bool[5];
+    public bool isSecret;
 }

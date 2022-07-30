@@ -58,3 +58,6 @@ TagManager:
   - name: FrontUI
     uniqueID: 294311089
     locked: 0
+  - name: SceneUI
+    uniqueID: 3657518793
+    locked: 0

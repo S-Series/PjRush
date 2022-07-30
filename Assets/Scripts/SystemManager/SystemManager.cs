@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SystemManager : MonoBehaviour
 {
@@ -10,7 +11,15 @@ public class SystemManager : MonoBehaviour
     public static GuageStatus guageStatus = GuageStatus.Normal;
     public static int difficulty;
     public static int difficultyIndex;
-
+    public static TextMeshPro SystemMessage;
+    private void Awake()
+    {
+        SystemMessage = GetComponentInChildren<TextMeshPro>();
+    }
+    public static void SetSystemText(string text)
+    {
+        SystemMessage.text = text;
+    }
     public static IEnumerator ILoadUserData()
     {
         yield return null;

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -170,8 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dcb97a3331cda4788832eb956c3095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FramePrefab: {fileID: 0}
-  FrameParentTransform: {fileID: 0}
+  FramePrefab: {fileID: 7598167487223871007, guid: 64ac0fbcdb124e443b75d68cc7f85477,
+    type: 3}
+  FrameParentTransform: {fileID: 284265180}
 --- !u!82 &5545494
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3371,7 +3372,7 @@ GameObject:
   - component: {fileID: 284265180}
   - component: {fileID: 284265181}
   m_Layer: 0
-  m_Name: JacketBox
+  m_Name: MusicBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

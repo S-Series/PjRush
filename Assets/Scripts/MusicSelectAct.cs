@@ -23,12 +23,12 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField] private Transform FrameParentTransform;
 
     private void Awake() { musicSelectAct = this; }
-
     public static void LoadSelectMusic()
     {
         selectMusicList = MusicManager.musicList;
-        for (int i = 0; i < MusicManager.musicList.Count; i++)
+        for (int i = 0; i < selectMusicList.Count; i++)
         {
+            print(i);
             GameObject copy;
             copy = Instantiate(musicSelectAct.FramePrefab, musicSelectAct.FrameParentTransform);
             SongFrame copyFrame;
@@ -40,6 +40,7 @@ public class MusicSelectAct : MonoBehaviour
             posY = 4.5f + -2.25f * Mathf.FloorToInt(i / 3.0f);
             copy.transform.localPosition = new Vector3(posX, posY, 0.0f);
         }
+        SelectingMusic = selectMusicList[0];
         UpdateFrameInfo();
     }
     public static void UpdateFrameInfo()
