@@ -58,5 +58,7 @@ public class MainSystem : MonoBehaviour
         MusicSelectAct.LoadSelectMusic();
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[1]);
+        yield return new WaitForSeconds(1.0f);
+        MusicSelectAct.isSelectable = true;
     }
 }
