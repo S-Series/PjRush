@@ -27,7 +27,7 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField] private GameObject FramePrefab;
     [SerializeField] private Transform FrameParentTransform;
     [SerializeField] private AudioSource SelectEffectAudio;
-
+    [SerializeField] private TopBoxSetting topBox;
 
     private void Awake() 
     { 
@@ -72,13 +72,17 @@ public class MusicSelectAct : MonoBehaviour
             float posX;
             float posY;
             posX = -2.65f + 5.0f * (i % 3.0f);
-            posY = 1.75f + -2.25f * Mathf.FloorToInt(i / 3.0f);
+            posY = 2.25f -2.25f * Mathf.FloorToInt(i / 3.0f);
             copy.transform.localPosition = new Vector3(posX, posY, 0.0f);
         }
         SelectingMusic = selectMusicList[0];
         musicSelectIndex = 0;
-        musicSelectMaxIndex = selectMusicList.Count;
+        musicSelectMaxIndex = selectMusicList.Count - 1;
         UpdateFrameInfo();
+        SelectingMusic = selectMusicList[musicSelectIndex];
+        PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
+        musicSelectAct.topBox.SetInfo(SelectingMusic, SelectDifficultyIndex);
+        PreMusicPlayer.Play();
     }
     public static void UpdateFrameInfo()
     {
@@ -139,70 +143,71 @@ public class MusicSelectAct : MonoBehaviour
         switch(inputKey)
         {
             case KeyCode.UpArrow:
-                SelectVertical--;
-                if (SelectVertical < 0)
-                { 
-                    SelectVertical = Mathf.CeilToInt(MaxCount / 3) - 1;
-                    while ((SelectVertical * 3) + (SelectHorizon + 1) > MaxCount) { SelectHorizon--; }
+                if (musicSelectIndex < 3)
+                {
+                    musicSelectIndex 
+                        = (Mathf.CeilToInt((musicSelectMaxIndex + 1) / 3.0f) - 1) * 3
+                        + musicSelectIndex;
                 }
+                else { musicSelectIndex -= 3; }
                 break;
 
             case KeyCode.DownArrow:
-                SelectVertical++;
-                int max = Mathf.CeilToInt(MaxCount) - 1;
-                if (SelectVertical > max) { SelectVertical = 0; }
-                else if (SelectVertical == max)
-                    { while ((SelectVertical * 3) + (SelectHorizon + 1) > MaxCount) { SelectHorizon--; } }
+                if (musicSelectIndex > musicSelectMaxIndex - 3)
+                {
+                    if (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f)
+                    == Mathf.CeilToInt((musicSelectMaxIndex + 1) / 3.0f))
+                        { musicSelectIndex = musicSelectMaxIndex; }
+                    else { musicSelectIndex = musicSelectIndex % 3; }
+                }
+                else { musicSelectIndex += 3; }
                 break;
 
             case KeyCode.LeftArrow:
-                SelectHorizon--;
-                if (SelectHorizon < 0)
-                {
-                    SelectHorizon = 2;
-                    SelectVertical--;
-                    if (SelectVertical < 0)
-                    {
-                        SelectVertical = Mathf.CeilToInt(MaxCount / 3) - 1;
-                        while ((SelectVertical * 3) + (SelectHorizon + 1) > MaxCount) { SelectHorizon--; }
-                    }
-                }
+                if (musicSelectIndex == 0) { musicSelectIndex = musicSelectMaxIndex; }
+                else { musicSelectIndex--; }
                 break;
 
             case KeyCode.RightArrow:
-                SelectHorizon++;
-                if (SelectHorizon > 2) { SelectHorizon = 0; SelectVertical++; }
-                if ((SelectVertical * 3) + (SelectHorizon + 1) > MaxCount)
-                    { SelectHorizon = 0; SelectVertical = 0; }
+                if (musicSelectIndex == musicSelectMaxIndex) { musicSelectIndex = 0; }
+                else { musicSelectIndex++; }
                 break;
-
         }
-        int index;
-        index = SelectVertical * 3 + SelectHorizon;
-        print(SelectVertical + "," + SelectHorizon);
-        SelectingMusic = selectMusicList[index];
+        print(musicSelectIndex);
+        SelectingMusic = selectMusicList[musicSelectIndex];
         PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
         UpdateFramePosition();
         //SelectEffectAudio.Play();
+        for (int i = 0; i < 5; i++)
+        {
+            if (SelectingMusic.isAvailable[SelectDifficultyIndex]) break;
+            else
+            {
+                SelectDifficultyIndex--;
+                if (SelectDifficultyIndex < 0) { SelectDifficultyIndex += 5; }
+            }
+        }
+        musicSelectAct.topBox.SetInfo(SelectingMusic, SelectDifficultyIndex);
         PreMusicPlayer.Play();
     }
     private void UpdateFramePosition()
     {
         SelectFrameObject.transform.localPosition
-            = new Vector3(-2.65f + 5.0f * SelectHorizon, 1.75f, 0.0f);
+            = new Vector3(-2.65f + 5.0f * Mathf.CeilToInt(musicSelectIndex % 3.0f), 2.25f, 0.0f);
         FrameParentTransform.localPosition
-            = new Vector3(0.0f, 1.75f - 2.25f * SelectVertical, 0.0f);
+            = new Vector3(0.0f, -2.25f * (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f) - 1), 0.0f);
     }
     private IEnumerator IKeepDown(KeyCode inputKey)
     {
         int count = 0;
-        var wait = new WaitForSeconds(1.0f);
-        var shortWait = new WaitForSeconds(.25f);
+        var wait = new WaitForSeconds(.125f);
+        var shortWait = new WaitForSeconds(.0625f);
+        yield return new WaitForSeconds(.25f);
         while(true)
         {
-            if (!Input.GetKey(inputKey)) break;
-            if (count < 5) { yield return wait; }
+            if (count < 4) { yield return wait; }
             else { yield return shortWait; }
+            if (!Input.GetKey(inputKey)) yield break;
             SelectChange(inputKey);
             count++;
         }

@@ -4120,7 +4120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &950980172
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4160,12 +4160,12 @@ SpriteRenderer:
   m_SortingLayerID: 921489811
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5bfb815319bd4f41be4a0683fb88e68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ab73d90974608d4faf82c384eb203c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12, y: 12}
+  m_Size: {x: 9.892695, y: 20.93}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4179,8 +4179,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950980171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
+  m_LocalPosition: {x: 5.5, y: -4.5, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -7093,8 +7093,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486515329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.05, y: 0.91, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
+  m_LocalPosition: {x: -1.075, y: 0.925, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1629758839}
   m_RootOrder: 0
@@ -7138,7 +7138,7 @@ SpriteRenderer:
   m_SortingLayerID: 921489811
   m_SortingLayer: 1
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 256169f104a81464796f3b139312d9af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60364c608b1e45645a6948de728e04bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7374,53 +7374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70930a6527df98347a1718544210f5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameResultTMP:
-  - {fileID: 1032835496}
-  - {fileID: 932998253}
-  - {fileID: 1780168670}
-  - {fileID: 778952416}
-  - {fileID: 1251757058}
-  - {fileID: 1042955292}
-  - {fileID: 1395179069}
-  - {fileID: 1633524605}
-  - {fileID: 1177303378}
-  - {fileID: 2134064786}
-  - {fileID: 1270676075}
-  - {fileID: 286883841}
-  - {fileID: 1824725477}
-  - {fileID: 713097400}
-  - {fileID: 320170596}
-  - {fileID: 1903400332}
-  GameResultScoreTmp:
-  - {fileID: 252578905}
-  - {fileID: 701181629}
-  - {fileID: 12143406}
-  - {fileID: 32511115}
-  - {fileID: 1894068812}
-  - {fileID: 1303036306}
-  - {fileID: 2061514797}
-  - {fileID: 642028809}
-  - {fileID: 1628804296}
-  - {fileID: 961801644}
-  - {fileID: 1271320989}
-  - {fileID: 662888459}
-  - {fileID: 645913802}
-  - {fileID: 1456835941}
-  - {fileID: 1586933175}
-  - {fileID: 2107381853}
-  - {fileID: 1527365647}
-  - {fileID: 1559036881}
-  - {fileID: 282806882}
-  GameResultRenderer:
-  - {fileID: 1258209400}
-  - {fileID: 492986101}
-  - {fileID: 294527569}
-  GameClearResultSprite:
-  - {fileID: 465256359}
-  - {fileID: 46312941}
-  - {fileID: 284327276}
-  - {fileID: 1074135338}
-  - {fileID: 549322141}
 --- !u!1 &1559036879
 GameObject:
   m_ObjectHideFlags: 0

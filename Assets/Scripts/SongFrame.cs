@@ -66,16 +66,6 @@ public class SongFrame : MonoBehaviour
             gameMusic = music.audMusicFile;
             gamePreMusic = music.audPreMusicFile;
         }
-        switch (music.status) //** Setting Dream Difficulty Sprite
-        {
-            case Music.Status.Null:
-                return;
-            case Music.Status.Hexagon:
-                Difficulty[4].sprite = SpriteManager.getDreamSprite(0);
-                break;
-            case Music.Status.Butterfly:
-                Difficulty[4].sprite = SpriteManager.getDreamSprite(1);
-                break;
-        }
+        //Difficulty[4].sprite = SpriteManager.getDreamSprite(music.status);
     }
 }

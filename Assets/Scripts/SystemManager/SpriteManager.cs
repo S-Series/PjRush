@@ -50,10 +50,20 @@ public class SpriteManager : MonoBehaviour
         }
         catch { return null; }
     }
-    public static Sprite getDreamSprite(int index)
+    public static Sprite getDreamSprite(Music.Status status)
     {
-        if (index < 0 || index > spriteManager.DreamDifficultySprite.Length - 1) return null;
-        else return spriteManager.DreamDifficultySprite[index];
+        switch (status)
+        {
+            case Music.Status.Hexagon:
+                return spriteManager.DreamDifficultySprite[1];
+                
+            case Music.Status.Butterfly:
+                return spriteManager.DreamDifficultySprite[2];
+
+            default:
+            case Music.Status.Null:
+                return spriteManager.DreamDifficultySprite[0];
+        }
     }
     public static string getDifficultyText(int index)
     {
