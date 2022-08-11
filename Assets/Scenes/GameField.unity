@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -245,10 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471a88f5b6a9104688d82ad321ce4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySystem: {fileID: 0}
-  gamePlayScore: {fileID: 0}
-  MainKey: 0
-  SubKey: 0
 --- !u!1 &33592568
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,39 +571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b3d8856d801d446a3cb2f3779e7aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeSystem:
-  - {fileID: 1529055430}
-  - {fileID: 1700311845}
-  - {fileID: 1056155050}
-  - {fileID: 20843093}
-  - {fileID: 1369561685}
-  gameInfo: {fileID: 1921520217}
-  gameScore: {fileID: 0}
-  NoteField: {fileID: 380698247}
-  PrefabObject:
-  - {fileID: 4831643721030676940, guid: 38a5d1fd0567fa443846cb73a99b3ebe, type: 3}
-  - {fileID: 743487184896495676, guid: b1a917a97760d574d96c3ae86dec3fcd, type: 3}
-  - {fileID: 5646146944135517365, guid: cae523a7165b5864aa27a424ab134d1a, type: 3}
-  - {fileID: 8886094102581915859, guid: 3b89c7a38feb7cd4d946c13ddcefc9d2, type: 3}
-  ComboText:
-  - {fileID: 1692520180}
-  - {fileID: 2050151883}
-  - {fileID: 1601999177}
-  - {fileID: 832651716}
-  ComboAnimate: {fileID: 2026930333}
-  ComboAnimationText:
-  - {fileID: 986971423}
-  - {fileID: 2049437625}
-  - {fileID: 762904980}
-  - {fileID: 1609158096}
-  ScoreText: {fileID: 0}
-  JudgeAnimate:
-  - {fileID: 1881104163976144154}
-  - {fileID: 558238144}
-  - {fileID: 58685428}
-  - {fileID: 578373701}
-  - {fileID: 681072136}
-  - {fileID: 988142354}
 --- !u!82 &130466704
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3104,8 +3067,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812693848}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -7.0000153, z: 57.500023}
-  m_LocalScale: {x: 1.2575, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: -7, z: 50}
+  m_LocalScale: {x: 1.2575, y: 10, z: 1}
   m_Children:
   - {fileID: 1518596482}
   - {fileID: 1640969782}
@@ -3788,7 +3751,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: -49.75}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1448016410}
   m_Father: {fileID: 0}
@@ -4475,10 +4438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471a88f5b6a9104688d82ad321ce4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySystem: {fileID: 0}
-  gamePlayScore: {fileID: 0}
-  MainKey: 0
-  SubKey: 0
 --- !u!1 &1067072019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,10 +5553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471a88f5b6a9104688d82ad321ce4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySystem: {fileID: 0}
-  gamePlayScore: {fileID: 0}
-  MainKey: 0
-  SubKey: 0
 --- !u!1 &1375559011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6207,10 +6162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471a88f5b6a9104688d82ad321ce4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySystem: {fileID: 0}
-  gamePlayScore: {fileID: 0}
-  MainKey: 0
-  SubKey: 0
 --- !u!1 &1583434915
 GameObject:
   m_ObjectHideFlags: 0
@@ -7593,10 +7544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471a88f5b6a9104688d82ad321ce4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySystem: {fileID: 0}
-  gamePlayScore: {fileID: 0}
-  MainKey: 0
-  SubKey: 0
 --- !u!1 &1741960486
 GameObject:
   m_ObjectHideFlags: 0
