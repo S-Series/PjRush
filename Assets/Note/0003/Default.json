@@ -3,14 +3,14 @@
         false,
         false,
         false,
-        false,
+        true,
         false
     ],
-    "MusicID": 1,
+    "MusicID": 3,
     "LowBPM": 190.0,
     "HighBPM": 190.0,
-    "MusicName": "Nhelv",
-    "MusicArtist": "Silent Room",
+    "MusicName": "GoodTek",
+    "MusicArtist": "EbiMayo",
     "Effecter": [
         "SSeries",
         "SSeries",

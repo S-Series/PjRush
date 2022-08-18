@@ -2,15 +2,15 @@
     "isAvailable": [
         false,
         false,
-        false,
         true,
+        false,
         false
     ],
     "MusicID": 2,
-    "LowBPM": 190.0,
-    "HighBPM": 190.0,
-    "MusicName": "GoodTek",
-    "MusicArtist": "EbiMayo",
+    "LowBPM": 135.0,
+    "HighBPM": 175.0,
+    "MusicName": "Datamania(tpz Overheat Remix)",
+    "MusicArtist": "t+pazolite",
     "Effecter": [
         "SSeries",
         "SSeries",
@@ -19,10 +19,10 @@
         "SSeries"
     ],
     "Difficulty": [
-        0,
-        0,
-        0,
+        7,
+        11,
         14,
+        15,
         0
     ],
     "NoteCount": [
@@ -61,5 +61,5 @@
         true,
         true
     ],
-    "isSecret": false
+    "isSecret": true
 }

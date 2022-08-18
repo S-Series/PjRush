@@ -6,11 +6,11 @@
         false,
         false
     ],
-    "MusicID": 1,
-    "LowBPM": 190.0,
-    "HighBPM": 190.0,
-    "MusicName": "Nhelv",
-    "MusicArtist": "Silent Room",
+    "MusicID": 5,
+    "LowBPM": 130.0,
+    "HighBPM": 160.0,
+    "MusicName": "We Could Get More Machinegun Psystyle! -And More Genre Switches-",
+    "MusicArtist": "Camellia",
     "Effecter": [
         "SSeries",
         "SSeries",
