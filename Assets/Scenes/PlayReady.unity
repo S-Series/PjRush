@@ -747,6 +747,7 @@ MonoBehaviour:
   - {fileID: 294685206}
   - {fileID: 1096900821}
   - {fileID: 2122682077}
+  _spriteRenderer: {fileID: 150615776}
 --- !u!1 &411692649
 GameObject:
   m_ObjectHideFlags: 0
