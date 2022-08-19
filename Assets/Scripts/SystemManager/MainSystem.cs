@@ -19,7 +19,6 @@ public class MainSystem : MonoBehaviour
 
     private IEnumerator BootingProgram()
     {
-        //AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[0]);
         SystemManager.SetSystemText("Loading Player Data...");
         //yield return SystemManager.ILoadUserData();
         SystemManager.SetSystemText("Loading Music...");
@@ -30,35 +29,30 @@ public class MainSystem : MonoBehaviour
         //yield return OnlineManager.IConnectToDB();
         //AnimatorManager.Booting.SetTrigger(AnimatorManager.TriggerBooting[1]);
         SystemManager.SetSystemText("");
+        yield return new WaitForSeconds(1.5f);
         yield return ILoadMainScene();
     }
     //** Scene Loader
-    public static void LoadMainScene()
-    {
-        main.StartCoroutine(main.ILoadMainScene());
-    }
+    public static void LoadMainScene() { main.StartCoroutine(main.ILoadMainScene()); }
+    public static void LoadSelectScene() { main.StartCoroutine(main.ILoadSelectScene()); }
     private IEnumerator ILoadMainScene()
     {
-        yield return new WaitForSeconds(2.0f);
-        AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[0]);
+        AnimatorManager.PlayAnimation(3, true);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(MainScene);
         yield return new WaitForSeconds(1.0f);
-        AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[1]);
-    }
-    public static void LoadSelectScene()
-    {
-        main.StartCoroutine(main.ILoadSelectScene());
+        AnimatorManager.PlayAnimation(3, false);
     }
     private IEnumerator ILoadSelectScene()
     {
+        AnimatorManager.PlayAnimation(3, true);
         yield return new WaitForSeconds(2.0f);
-        AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[0]);
         SceneManager.LoadScene(MusicSelectScene);
         yield return new WaitForSeconds(1.0f);
         MusicSelectAct.LoadSelectMusic();
         yield return new WaitForSeconds(1.0f);
-        AnimatorManager.AnimatorSceneChange.SetTrigger(AnimatorManager.TriggerSceneChange[1]);
-        yield return new WaitForSeconds(1.0f);
+        AnimatorManager.PlayAnimation(3, false);
+        yield return new WaitForSeconds(1.5f);
         MusicSelectAct.isSelectable = true;
     }
 }

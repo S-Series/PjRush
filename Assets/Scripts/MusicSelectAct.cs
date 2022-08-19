@@ -195,7 +195,7 @@ public class MusicSelectAct : MonoBehaviour
         SelectFrameObject.transform.localPosition
             = new Vector3(-2.65f + 5.0f * Mathf.CeilToInt(musicSelectIndex % 3.0f), 2.25f, 0.0f);
         FrameParentTransform.localPosition
-            = new Vector3(0.0f, -2.25f * (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f) - 1), 0.0f);
+            = new Vector3(0.0f, (2.25f * (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f) - 1)), 0.0f);
     }
     private IEnumerator IKeepDown(KeyCode inputKey)
     {

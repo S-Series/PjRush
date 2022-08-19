@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    public static Animator Booting;
-    public static readonly string[] TriggerBooting = {"", ""};
-
-    public static Animator AnimatorSceneChange;
-    public static readonly string[] TriggerSceneChange = {"",""};
-
-    public static Animator AnimatorLoadMusic;
-    public static readonly string[] TriggerLoadMusic = {"",""};
-
+    private static List<Animator> animators = new List<Animator>();
+    private static string[] trigger = {"Start", "End"};
     [SerializeField] GameObject[] animatorObject;
     private void Awake()
     {
-        Booting = animatorObject[0].GetComponent<Animator>();
-        AnimatorSceneChange = animatorObject[1].GetComponent<Animator>();
-        AnimatorLoadMusic = animatorObject[2].GetComponent<Animator>();
+        for (int i = 0; i < animatorObject.Length; i++)
+            { animators.Add(animatorObject[i].GetComponent<Animator>()); }
+    }
+    public static void PlayAnimation(int index, bool isStart)
+    {
+        if (isStart) animators[index].SetTrigger(trigger[0]);
+        else animators[index].SetTrigger(trigger[1]);
     }
 }

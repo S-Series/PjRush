@@ -22,16 +22,6 @@ public class MainSelect : MonoBehaviour
     private bool isSelectable = true;
     private bool isEventAvailable = false;
     private int ItemIndex = 0;
-    private Vector3[] SelectItemPos = new Vector3[]
-    {
-        new Vector3(-3.0f, +0.0f, 0.0f),
-        new Vector3(+0.0f, +0.0f, 0.0f),
-        new Vector3(+3.0f, +0.0f, 0.0f),
-        new Vector3(-4.5f, -2.6f, 0.0f),
-        new Vector3(-1.5f, -2.6f, 0.0f),
-        new Vector3(+1.5f, -2.6f, 0.0f),
-        new Vector3(+4.5f, -2.6f, 0.0f)
-    };
     //* SerializeField --------------------------------------//
     [SerializeField] private Animator CursorAnimator;
     [SerializeField] private Animator AlertAnimator;
@@ -55,27 +45,25 @@ public class MainSelect : MonoBehaviour
     {
         if (isUp)
         {
-            if (ItemIndex == 6) { ItemIndex = 2; }
-            else if (ItemIndex >= 3) { ItemIndex -= 3; }
-            else return;
+            if (ItemIndex == 0) { ItemIndex = 6; }
+            else ItemIndex--;
         }
         if (isDown) 
         { 
-            if (ItemIndex <= 2) { ItemIndex += 3; } 
-            else return;
+            if (ItemIndex == 6) { ItemIndex = 0; } 
+            else ItemIndex++;
         }
         if (isLeft) 
         {
-            if (ItemIndex != 0 && ItemIndex != 3) { ItemIndex--; } 
-            else return;
+            return;
         }
         if (isRight) 
         { 
-            if (ItemIndex != 2 && ItemIndex != 6) { ItemIndex++; } 
-            else return;
+            return;
         }
         CursorAnimator.SetTrigger("Play");
-        CursorAnimator.gameObject.transform.localPosition = SelectItemPos[ItemIndex];
+        CursorAnimator.gameObject.transform.localPosition 
+            = new Vector3(0.0f, -1.0f * ItemIndex, 0.0f);
     }
     private void RunItem(int index)
     {

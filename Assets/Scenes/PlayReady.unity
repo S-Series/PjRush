@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &148278916
 Transform:
   m_ObjectHideFlags: 0
@@ -682,8 +682,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 8287709cf27adbc45bb8078db83fd114, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
@@ -746,6 +746,7 @@ MonoBehaviour:
   - {fileID: 148278915}
   - {fileID: 294685206}
   - {fileID: 1096900821}
+  - {fileID: 2122682077}
 --- !u!1 &411692649
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,8 +791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprJacket: {fileID: 21300000, guid: 37684e9763026a4498aa17352414d0ec, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 2d38533d64e48e142860bc3f3c26c690, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: a7205dca1da396945871a4a278ffeda8, type: 3}
+  audMusicFile: {fileID: 8300000, guid: 72ebf2bfe04a56944b20a987e6ab395c, type: 3}
+  audPreMusicFile: {fileID: 8300000, guid: 41d6e331cc046fc43abf615da9f3bb5a, type: 3}
   isAvailable: 0000000000
   MusicID: 1
   LowBPM: 190
@@ -811,7 +812,7 @@ MonoBehaviour:
   MaxCombo: 0000000000000000000000000000000000000000
   HighScore: 0000000000000000000000000000000000000000
   isOwned: 0101010101
-  isSecret: 100
+  isSecret: 0
 --- !u!1 &436956747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,8 +1136,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: 921489811
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b14025a549fc25c42a3865b1b4f9264f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1737,9 +1738,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprJacket: {fileID: 21300000, guid: f328c8338c38f10419b4413c2b4b8b7c, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 2d38533d64e48e142860bc3f3c26c690, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: a7205dca1da396945871a4a278ffeda8, type: 3}
+  sprJacket: {fileID: 21300000, guid: 03b032daff30bd74fb87e2fcbf929b76, type: 3}
+  audMusicFile: {fileID: 8300000, guid: 71c2f39893d28c44398356def70cb799, type: 3}
+  audPreMusicFile: {fileID: 8300000, guid: 68b8e66ef175cf744998abc63cf010eb, type: 3}
   isAvailable: 0000000000
   MusicID: 5
   LowBPM: 130
@@ -1759,7 +1760,7 @@ MonoBehaviour:
   MaxCombo: 0000000000000000000000000000000000000000
   HighScore: 0000000000000000000000000000000000000000
   isOwned: 0101010101
-  isSecret: 100
+  isSecret: 0
 --- !u!1 &844489356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,8 +2266,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: 921489811
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8008ac51c16a6cb4ba8d44742cc27855, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2421,8 +2422,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 40915f2831486ea40bbb2235d99d0bb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2502,8 +2503,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: b14025a549fc25c42a3865b1b4f9264f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2995,7 +2996,7 @@ MonoBehaviour:
   MaxCombo: 0000000000000000000000000000000000000000
   HighScore: 0000000000000000000000000000000000000000
   isOwned: 0101010101
-  isSecret: 100
+  isSecret: 0
 --- !u!1 &1427334988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,8 +3064,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 8287709cf27adbc45bb8078db83fd114, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
@@ -3579,8 +3580,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: b192efeca1236cc4db1324383ab37b09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4034,8 +4035,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 8008ac51c16a6cb4ba8d44742cc27855, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4091,14 +4092,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc3cdbdb1da42e4588e3808b123260a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprJacket: {fileID: 21300000, guid: f328c8338c38f10419b4413c2b4b8b7c, type: 3}
-  audMusicFile: {fileID: 8300000, guid: 2d38533d64e48e142860bc3f3c26c690, type: 3}
-  audPreMusicFile: {fileID: 8300000, guid: a7205dca1da396945871a4a278ffeda8, type: 3}
+  sprJacket: {fileID: 21300000, guid: 9acfae89d09b38a47b4fa95edb05c788, type: 3}
+  audMusicFile: {fileID: 8300000, guid: ff3d7612e7605c94e918323ded72ef2b, type: 3}
+  audPreMusicFile: {fileID: 8300000, guid: b354065426e23524ab48da87edeec528, type: 3}
   isAvailable: 0000000000
   MusicID: 4
   LowBPM: 130
   HighBPM: 160
-  MusicName: "Pumpin Junkies (Kobaryo\u2019s Remix"
+  MusicName: "Pumpin Junkies /n(Kobaryo\u2019s Remix)"
   MusicArtist: 't+pazolite '
   Effecter:
   - SSeries
@@ -4113,7 +4114,7 @@ MonoBehaviour:
   MaxCombo: 0000000000000000000000000000000000000000
   HighScore: 0000000000000000000000000000000000000000
   isOwned: 0101010101
-  isSecret: 100
+  isSecret: 0
 --- !u!1 &1655360563
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,8 +4182,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: d978929a9c7aa16489fb842ab12c2fe9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4376,7 +4377,7 @@ MonoBehaviour:
   MaxCombo: 0000000000000000000000000000000000000000
   HighScore: 0000000000000000000000000000000000000000
   isOwned: 0101010101
-  isSecret: 100
+  isSecret: 0
 --- !u!1 &1717238344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,8 +4867,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: d19cf720988cf824ca16cefa72bb714c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5153,8 +5154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: 921489811
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b0025d2d7a05b754d9f2ea6f2239b07a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

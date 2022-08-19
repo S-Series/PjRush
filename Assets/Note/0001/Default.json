@@ -61,5 +61,5 @@
         true,
         true
     ],
-    "isSecret": true
+    "isSecret": false
 }
