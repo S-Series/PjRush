@@ -57,7 +57,22 @@ public class MusicSelectAct : MonoBehaviour
             SelectChange(KeyCode.RightArrow);
             StartCoroutine(IKeepDown(KeyCode.RightArrow));
         }
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            // Todo: Option 기능 구형하여 넣을것
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            // Todo: Sorting 기능 구현하여 넣을것
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // Todo: 게임시작
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Todo: 메인화면으로 돌아가기
+        }
     }
     public static void LoadSelectMusic()
     {
@@ -197,7 +212,7 @@ public class MusicSelectAct : MonoBehaviour
         FrameParentTransform.localPosition
             = new Vector3(0.0f, (2.25f * (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f) - 1)), 0.0f);
     }
-    private IEnumerator IKeepDown(KeyCode inputKey)
+    private static IEnumerator IKeepDown(KeyCode inputKey)
     {
         int count = 0;
         var wait = new WaitForSeconds(.125f);
@@ -208,7 +223,7 @@ public class MusicSelectAct : MonoBehaviour
             if (count < 4) { yield return wait; }
             else { yield return shortWait; }
             if (!Input.GetKey(inputKey)) yield break;
-            SelectChange(inputKey);
+            musicSelectAct.SelectChange(inputKey);
             count++;
         }
     }
