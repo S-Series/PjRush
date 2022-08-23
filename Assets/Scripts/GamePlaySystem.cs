@@ -1,4 +1,4 @@
-using System.IO;
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,22 @@ using TMPro;
 
 public class GamePlaySystem : MonoBehaviour
 {
-    public static int s_gameMs;
+    public static GamePlaySystem gamePlaySystem;
+    public GameObject[] notePrefab;
+    public Transform[] noteGenerateField;
     [SerializeField] private JudgeSystem[] judgeSystems;
-    public static IEnumerator LoadMusicFile()
+    private void Awake()
     {
-        string path;
-        path = Application.dataPath + "/_NoteBox/" 
-            + string.Format("{0:D4}", GameManager.s_OnGameMusic.MusicID) + "/" 
-            + string.Format("{0:D4}", GameManager.s_OnGameDifficultyIndex);
+        gamePlaySystem = this;
+    }
+    public void ClearNoteField()
+    {
+        foreach (Transform noteTransform in noteGenerateField)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Destroy(noteTransform.GetChild(0).gameObject);
+            }
+        }
     }
 }
