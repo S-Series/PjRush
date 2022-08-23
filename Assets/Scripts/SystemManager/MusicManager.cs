@@ -106,7 +106,7 @@ public class MusicManager : MonoBehaviour
             string path = "";
             string savePath = "";
             string jsonData = JsonUtility.ToJson(musicDefault, true);
-            path = "/Note/" + String.Format("{0:D4}", music.MusicID) + "/Default.json";
+            path = "/_NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/Default.json";
             savePath = Application.dataPath + path;
             print(savePath);
             File.WriteAllText(savePath, jsonData);

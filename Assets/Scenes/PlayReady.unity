@@ -794,7 +794,7 @@ MonoBehaviour:
   sprJacket: {fileID: 21300000, guid: 37684e9763026a4498aa17352414d0ec, type: 3}
   audMusicFile: {fileID: 8300000, guid: 72ebf2bfe04a56944b20a987e6ab395c, type: 3}
   audPreMusicFile: {fileID: 8300000, guid: 41d6e331cc046fc43abf615da9f3bb5a, type: 3}
-  isAvailable: 0000000000
+  isAvailable: 0100010000
   MusicID: 1
   LowBPM: 190
   HighBPM: 190
@@ -806,7 +806,7 @@ MonoBehaviour:
   - SSeries
   - SSeries
   - SSeries
-  Difficulty: 0000000000000000000000000e00000000000000
+  Difficulty: 01000000000000000a0000000000000000000000
   NoteCount: 0000000000000000000000000000000000000000
   status: 0
   PerfectCount: 0000000000000000000000000000000000000000
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   sprJacket: {fileID: 21300000, guid: 03b032daff30bd74fb87e2fcbf929b76, type: 3}
   audMusicFile: {fileID: 8300000, guid: 71c2f39893d28c44398356def70cb799, type: 3}
   audPreMusicFile: {fileID: 8300000, guid: 68b8e66ef175cf744998abc63cf010eb, type: 3}
-  isAvailable: 0000000000
+  isAvailable: 0000000100
   MusicID: 5
   LowBPM: 130
   HighBPM: 160
@@ -1754,7 +1754,7 @@ MonoBehaviour:
   - SSeries
   - SSeries
   - SSeries
-  Difficulty: 0000000000000000000000000e00000000000000
+  Difficulty: 0000000000000000000000000f00000000000000
   NoteCount: 0000000000000000000000000000000000000000
   status: 0
   PerfectCount: 0000000000000000000000000000000000000000
@@ -2978,7 +2978,7 @@ MonoBehaviour:
   sprJacket: {fileID: 21300000, guid: f328c8338c38f10419b4413c2b4b8b7c, type: 3}
   audMusicFile: {fileID: 8300000, guid: 2d38533d64e48e142860bc3f3c26c690, type: 3}
   audPreMusicFile: {fileID: 8300000, guid: a7205dca1da396945871a4a278ffeda8, type: 3}
-  isAvailable: 0000000100
+  isAvailable: 0100010100
   MusicID: 3
   LowBPM: 190
   HighBPM: 190
@@ -2990,7 +2990,7 @@ MonoBehaviour:
   - SSeries
   - SSeries
   - SSeries
-  Difficulty: 0000000000000000000000000e00000000000000
+  Difficulty: 04000000000000000b0000000e00000000000000
   NoteCount: 0000000000000000000000000000000000000000
   status: 0
   PerfectCount: 0000000000000000000000000000000000000000
@@ -4096,7 +4096,7 @@ MonoBehaviour:
   sprJacket: {fileID: 21300000, guid: 9acfae89d09b38a47b4fa95edb05c788, type: 3}
   audMusicFile: {fileID: 8300000, guid: ff3d7612e7605c94e918323ded72ef2b, type: 3}
   audPreMusicFile: {fileID: 8300000, guid: b354065426e23524ab48da87edeec528, type: 3}
-  isAvailable: 0000000000
+  isAvailable: 0001000000
   MusicID: 4
   LowBPM: 130
   HighBPM: 160
@@ -4108,7 +4108,7 @@ MonoBehaviour:
   - SSeries
   - SSeries
   - SSeries
-  Difficulty: 0000000000000000000000000e00000000000000
+  Difficulty: 0000000007000000000000000e00000000000000
   NoteCount: 0000000000000000000000000000000000000000
   status: 0
   PerfectCount: 0000000000000000000000000000000000000000
@@ -4359,7 +4359,7 @@ MonoBehaviour:
   sprJacket: {fileID: 21300000, guid: ca1387307b45e334ab6c9841eeb4809e, type: 3}
   audMusicFile: {fileID: 8300000, guid: 7d8ec3ae4a04cd6418930662722dbed3, type: 3}
   audPreMusicFile: {fileID: 8300000, guid: c4663b8ab186bc542be5a7a9da9cada7, type: 3}
-  isAvailable: 0000010000
+  isAvailable: 0000000100
   MusicID: 2
   LowBPM: 135
   HighBPM: 175
@@ -4371,7 +4371,7 @@ MonoBehaviour:
   - SSeries
   - SSeries
   - SSeries
-  Difficulty: 070000000b0000000e0000000f00000000000000
+  Difficulty: 0000000000000000000000000d00000000000000
   NoteCount: 0000000000000000000000000000000000000000
   status: 0
   PerfectCount: 0000000000000000000000000000000000000000
