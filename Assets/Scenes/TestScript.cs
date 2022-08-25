@@ -1,30 +1,29 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    private void Awake() 
+    Thread myThread;
+    private void Start()
     {
-        StartCoroutine(RunCoroutine());
+        myThread = new Thread(slowJob);
+        myThread.Start();
     }
-    IEnumerator RunCoroutine()
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void Update()
     {
-        yield return A();
-        yield return B();
-        yield return C();
-        print("Coroutine End");
+        if (myThread.IsAlive) { print("Alive"); }
     }
-    IEnumerator A(){
-        print("A");
-        yield return new WaitForSeconds(1.0f);
-    }
-    IEnumerator B(){
-        print("B");
-        yield return new WaitForSeconds(1.0f);
-    }
-    IEnumerator C(){
-        print("C");
-        yield return new WaitForSeconds(1.0f);
+    private void slowJob()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Debug.Log("I'm running!");
+            Thread.Sleep(1000);
+        }
     }
 }

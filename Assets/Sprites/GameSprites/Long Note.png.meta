@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 63297e0000676924d912f0e34e6059a8
+guid: 032ab4e72d2acec4f81479104904335b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2303024894996321383
+    second: Long Note_0
+  - first:
+      213: -2057638933059657212
+    second: Long Note_1
+  - first:
+      213: -2266017404297766957
+    second: Long Note_2
+  - first:
+      213: 5879078202449511045
+    second: Long Note_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,7 +109,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Long Note_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 951
+        height: 340
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7641327a0fcf5ff10800000000000000
+      internalID: 2303024894996321383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Note_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 951
+        height: 340
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40227feca4cc173e0800000000000000
+      internalID: -2057638933059657212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Note_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 951
+        height: 340
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d79af93d2d7d80e0800000000000000
+      internalID: -2266017404297766957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Note_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 951
+        height: 340
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582ceb7f97ea69150800000000000000
+      internalID: 5879078202449511045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

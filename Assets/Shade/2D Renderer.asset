@@ -9,63 +9,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11145981673336645838492a2d98e247, type: 3}
+  m_Script: {fileID: 11500000, guid: bf2edee5c58d82540a51f03df9d42094, type: 3}
   m_Name: 2D Renderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
-  m_TransparencySortMode: 0
-  m_TransparencySortAxis: {x: 0, y: 1, z: 0}
-  m_HDREmulationScale: 1
-  m_LightBlendStyles:
-  - enabled: 0
-    name: Default
-    maskTextureChannel: 0
-    renderTextureScale: 1
-    blendMode: 1
-    customBlendFactors:
-      multiplicative: 0
-      additive: 0
-  - enabled: 0
-    name: Blend Style 1
-    maskTextureChannel: 0
-    renderTextureScale: 1
-    blendMode: 1
-    customBlendFactors:
-      multiplicative: 0
-      additive: 0
-  - enabled: 0
-    name: Blend Style 2
-    maskTextureChannel: 0
-    renderTextureScale: 1
-    blendMode: 1
-    customBlendFactors:
-      multiplicative: 0
-      additive: 0
-  - enabled: 0
-    name: Blend Style 3
-    maskTextureChannel: 0
-    renderTextureScale: 1
-    blendMode: 1
-    customBlendFactors:
-      multiplicative: 0
-      additive: 0
-  m_UseDepthStencilBuffer: 1
-  m_DefaultMaterialType: 0
-  m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3,
-    type: 2}
-  m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3,
-    type: 2}
-  m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40,
-    type: 2}
-  m_ShapeLightShader: {fileID: 4800000, guid: d79e1c784eaf80c4585c0be7391f757a, type: 3}
-  m_ShapeLightVolumeShader: {fileID: 4800000, guid: 7e60080c8cd24a2468cb08b4bfee5606,
-    type: 3}
-  m_PointLightShader: {fileID: 4800000, guid: e35a31e1679aeff489e202f5cc4853d5, type: 3}
-  m_PointLightVolumeShader: {fileID: 4800000, guid: c7d04ca57e5449d49ad9cee1c604bc26,
-    type: 3}
-  m_BlitShader: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
-  m_ShadowGroupShader: {fileID: 4800000, guid: d33b6d70b14697547ad0dc2d4debb009, type: 3}
-  m_RemoveSelfShadowShader: {fileID: 4800000, guid: 02e071f10b6a15d4d87dac88ce529302,
-    type: 3}
-  m_PostProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
+  k_AssetVersion: 5
+  k_AssetPreviousVersion: 5
+  m_RendererType: 1
+  m_RendererData: {fileID: 0}
+  m_RendererDataList:
+  - {fileID: 11400000, guid: b1134c345e5a35f41b4cdde5924818ba, type: 2}
+  m_DefaultRendererIndex: 0
+  m_RequireDepthTexture: 0
+  m_RequireOpaqueTexture: 0
+  m_OpaqueDownsampling: 1
+  m_SupportsTerrainHoles: 1
+  m_SupportsHDR: 0
+  m_MSAA: 1
+  m_RenderScale: 1
+  m_MainLightRenderingMode: 1
+  m_MainLightShadowsSupported: 1
+  m_MainLightShadowmapResolution: 2048
+  m_AdditionalLightsRenderingMode: 1
+  m_AdditionalLightsPerObjectLimit: 4
+  m_AdditionalLightShadowsSupported: 0
+  m_AdditionalLightsShadowmapResolution: 512
+  m_ShadowDistance: 50
+  m_ShadowCascades: 0
+  m_Cascade2Split: 0.25
+  m_Cascade4Split: {x: 0.067, y: 0.2, z: 0.467}
+  m_ShadowDepthBias: 1
+  m_ShadowNormalBias: 1
+  m_SoftShadowsSupported: 0
+  m_UseSRPBatcher: 1
+  m_SupportsDynamicBatching: 0
+  m_MixedLightingSupported: 1
+  m_DebugLevel: 0
+  m_PostProcessingFeatureSet: 0
+  m_ColorGradingMode: 0
+  m_ColorGradingLutSize: 32
+  m_ShadowType: 1
+  m_LocalShadowsSupported: 0
+  m_LocalShadowsAtlasResolution: 256
+  m_MaxPixelLights: 0
+  m_ShadowAtlasResolution: 256
+  m_ShaderVariantLogLevel: 0
