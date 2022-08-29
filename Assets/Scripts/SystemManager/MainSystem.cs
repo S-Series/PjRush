@@ -10,6 +10,7 @@ public class MainSystem : MonoBehaviour
     private static MainSystem main;
     private const string MainScene = "Main";
     private const string MusicSelectScene = "Select";
+    private const string GameScene = "GameField";
     private void Start()
     {
         main = this;
@@ -35,6 +36,8 @@ public class MainSystem : MonoBehaviour
     //** Scene Loader
     public static void LoadMainScene() { main.StartCoroutine(main.ILoadMainScene()); }
     public static void LoadSelectScene() { main.StartCoroutine(main.ILoadSelectScene()); }
+    public static void LoadGameScene() { main.StartCoroutine(main.ILoadGameScene()); }
+    
     private IEnumerator ILoadMainScene()
     {
         AnimatorManager.PlayAnimation(3, true);
@@ -49,10 +52,37 @@ public class MainSystem : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(MusicSelectScene);
         yield return new WaitForSeconds(1.0f);
-        MusicSelectAct.LoadSelectMusic();
+        while(true)
+        {
+            try
+            {
+                MusicSelectAct.LoadSelectMusic();
+                break;
+            }
+            catch {}
+            yield return null;
+        }
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.PlayAnimation(3, false);
         yield return new WaitForSeconds(1.5f);
         MusicSelectAct.isSelectable = true;
+    }
+    private IEnumerator ILoadGameScene()
+    {
+        AnimatorManager.PlayAnimation(2, true);
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene(GameScene);
+        yield return new WaitForSeconds(0.25f);
+        while(true)
+        {
+            try { NoteData.getNoteData(); break; }
+            catch { }
+            NoteData.getNoteData();
+            yield return null;
+        }
+        yield return new WaitForSeconds(5.0f);
+        AnimatorManager.PlayAnimation(2, false);
+        yield return new WaitForSeconds(7.5f);
+        
     }
 }

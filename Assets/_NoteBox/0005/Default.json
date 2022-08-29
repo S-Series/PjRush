@@ -3,7 +3,7 @@
         false,
         false,
         false,
-        false,
+        true,
         false
     ],
     "MusicID": 5,
@@ -11,6 +11,7 @@
     "HighBPM": 160.0,
     "MusicName": "We Could Get More Machinegun Psystyle! -And More Genre Switches-",
     "MusicArtist": "Camellia",
+    "JacketIllustrator": "",
     "Effecter": [
         "SSeries",
         "SSeries",
@@ -22,7 +23,7 @@
         0,
         0,
         0,
-        14,
+        15,
         0
     ],
     "NoteCount": [

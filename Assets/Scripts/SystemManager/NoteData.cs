@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,128 +22,134 @@ public class NoteData : MonoBehaviour
         {
             path = Application.dataPath + "/_NoteBox/"
                 + string.Format("{0:D4}", GameManager.s_OnGameMusic.MusicID) + "/"
-                + string.Format("{0:D4}", GameManager.s_OnGameDifficultyIndex);
-            s_noteFile = JsonUtility.FromJson<NoteFile>(path);
+                + string.Format("{0:D4}", GameManager.s_OnGameDifficultyIndex + 1) + ".json";
+            string jsonData = File.ReadAllText(path);
+            s_noteFile = JsonUtility.FromJson<NoteFile>(jsonData);
         }
         catch { throw new System.Exception("Music File None Exist"); }
         GenerateNotes();
     }
-
     private static void SortingNote()
     {
         NormalNote.Sorting();
         SpeedNote.Sorting();
         EffectNote.Sorting();
     }
-
     private static void GenerateNotes()
     {
-        try
+        GameManager.s_bpm = s_noteFile.bpm;
+        GameManager.s_delay = s_noteFile.startDelayMs;
+        GamePlaySystem.s_GameMusic.clip = GameManager.s_OnGameMusic.audMusicFile;
+        for (int i = 0; i < s_noteFile.NoteMs.Count; i++)
         {
-            GameManager.bpm = s_noteFile.bpm;
-            GameManager.delay = s_noteFile.startDelayMs;
-            for (int i = 0; i < s_noteFile.NoteMs.Count; i++)
+            NormalNote normalNote = new NormalNote();
+            normalNote.noteObject = null;
+            normalNote.ms = s_noteFile.NoteMs[i];
+            normalNote.line = s_noteFile.NoteLine[i];
+            normalNote.legnth = s_noteFile.NoteLegnth[i];
+            try { normalNote.pos = s_noteFile.NotePos[i]; }
+            catch { normalNote.pos = s_noteFile.bpm * normalNote.ms / 150.0f; }
+            try { normalNote.isPowered = s_noteFile.NotePowered[i]; }
+            catch { normalNote.isPowered = false; }
+            s_normalNotes.Add(normalNote);
+        }
+        if (s_normalNotes.Count != 0)
+        {
+            print(s_normalNotes[0].pos);
+            if (s_normalNotes[0].pos < 1600.0f)
             {
-                NormalNote normalNote = new NormalNote();
-                normalNote.noteObject = null;
-                normalNote.ms = s_noteFile.NoteMs[i];
-                normalNote.line = s_noteFile.NoteLine[i];
-                normalNote.legnth = s_noteFile.NoteLegnth[i];
-                try { normalNote.pos = s_noteFile.NotePos[i]; }
-                catch { normalNote.pos = s_noteFile.bpm * normalNote.ms / 150.0f; }
-                try { normalNote.isPowered = s_noteFile.NotePowered[i]; }
-                catch { normalNote.isPowered = false; }
-                s_normalNotes.Add(normalNote);
+                foreach (NormalNote _note in s_normalNotes) { _note.pos += 1600.0f; }
             }
-            if (s_normalNotes.Count != 0)
-            {
-                print(s_normalNotes[0].pos);
-                if (s_normalNotes[0].pos < 1600.0f)
-                {
-                    foreach(NormalNote _note in s_normalNotes) { _note.pos += 1600.0f; }
-                }
-            }
-            for (int i = 0; i < s_noteFile.SpeedMs.Count; i++)
-            {
-                SpeedNote speedNote = new SpeedNote();
-                speedNote.ms = s_noteFile.SpeedMs[i];
-                speedNote.pos = s_noteFile.SpeedPos[i];
-                speedNote.bpm = s_noteFile.SpeedBpm[i];
-                speedNote.multiply = s_noteFile.SpeedNum[i];
-                s_speedNotes.Add(speedNote);
-            }
-            for (int i = 0; i < s_noteFile.EffectMs.Count; i++)
-            {
-                EffectNote effectNote = new EffectNote();
-                effectNote.ms = s_noteFile.EffectMs[i];
-                effectNote.pos = s_noteFile.EffectPos[i];
-                effectNote.isPause = s_noteFile.EffectIsPause[i];
-                effectNote.value = s_noteFile.EffectForce[i];
-                s_effectNotes.Add(effectNote);
-            }
-            //*--------------------------------------
-            SortingNote();
-            //*--------------------------------------
-            for (int i = 0; i < s_normalNotes.Count; i++)
-            {
-                NormalNote normalNote;
-                GameObject copyObject;
+        }
+        for (int i = 0; i < s_noteFile.SpeedMs.Count; i++)
+        {
+            SpeedNote speedNote = new SpeedNote();
+            speedNote.ms = s_noteFile.SpeedMs[i];
+            speedNote.pos = s_noteFile.SpeedPos[i];
+            speedNote.bpm = s_noteFile.SpeedBpm[i];
+            speedNote.multiply = s_noteFile.SpeedNum[i];
+            s_speedNotes.Add(speedNote);
+        }
+        for (int i = 0; i < s_noteFile.EffectMs.Count; i++)
+        {
+            EffectNote effectNote = new EffectNote();
+            effectNote.ms = s_noteFile.EffectMs[i];
+            effectNote.pos = s_noteFile.EffectPos[i];
+            effectNote.isPause = s_noteFile.EffectIsPause[i];
+            effectNote.value = s_noteFile.EffectForce[i];
+            s_effectNotes.Add(effectNote);
+        }
+        //*--------------------------------------
+        SortingNote();
+        //*--------------------------------------
+        for (int i = 0; i < s_normalNotes.Count; i++)
+        {
+            NormalNote normalNote;
+            GameObject copyObject;
 
-                Vector3 autoPos = new Vector3(0, 0, 0);
-                Vector3 autoScale = new Vector3(1, 1, 1);
+            Vector3 autoPos = new Vector3(0, 0, 0);
+            Vector3 autoScale = new Vector3(1, 1, 1);
 
-                normalNote = s_normalNotes[i];
-                if (normalNote.line >= 5)
+            normalNote = s_normalNotes[i];
+            if (normalNote.line >= 5)
+            {
+                if (normalNote.legnth == 0)
                 {
-                    if (normalNote.legnth == 0)
-                    {
-                        copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[2], 
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line - 1]);
-                    }
-                    else
-                    {
-                        copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[3],
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line - 1]);
-                        Vector3 scale;
-                        scale = copyObject.transform.localScale;
-                        scale.y = 100.0f * normalNote.legnth;
-                        copyObject.transform.localScale = scale;
-                    }
+                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[3],
+                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
                 }
                 else
                 {
-                    if (normalNote.legnth == 0)
+                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[4],
+                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
+                    Vector3 scale;
+                    scale = copyObject.transform.GetChild(0).localScale;
+                    scale.y = normalNote.legnth;
+                    copyObject.transform.GetChild(0).localScale = scale;
+                }
+            }
+            else
+            {
+                if (normalNote.legnth == 0)
+                {
+                    if (normalNote.isPowered)
                     {
                         copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[0],
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line - 1]);
-                        copyObject.transform.GetChild(0).gameObject.SetActive(normalNote.isPowered);
-                        //copyObject.GetComponent<SpriteRenderer>().enabled = !normalNote.isPowered;
+                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
                     }
                     else
                     {
                         copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[1],
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line - 1]);
-                        Vector3 scale;
-                        scale = copyObject.transform.localScale;
-                        scale.y = 100.0f * normalNote.legnth;
-                        copyObject.transform.localScale = scale;
+                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
                     }
                 }
-
-                if (normalNote.line == 5) 
-                    { autoPos.x = -200.0f; }
-                else if (normalNote.line == 6) 
-                    { autoPos.x = -200.0f; }
-                else 
-                    { autoPos.x = -500.0f + (200.0f * normalNote.line); }
-
-                autoPos.y = normalNote.pos;
-                copyObject.transform.localPosition = autoPos;
-
-                normalNote.noteObject = copyObject;
+                else
+                {
+                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[2],
+                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
+                    Vector3 scale;
+                    scale = copyObject.transform.localScale;
+                    scale.y = 100.0f * normalNote.legnth;
+                    copyObject.transform.localScale = scale;
+                }
             }
+
+            autoPos.x = 0.0f;
+            autoPos.y = normalNote.pos / 100.0f;
+            autoPos.z = 0.0f;
+            copyObject.transform.localPosition = autoPos;
+
+            normalNote.noteObject = copyObject;
         }
-        catch { Debug.Log("파일 오류"); }
+    }
+    private static void LineDivisionNotes()
+    {
+        GamePlaySystem.gamePlaySystem.ClearNoteField();
+        for (int i = 0; i < s_normalNotes.Count; i++)
+        {
+            GamePlaySystem.gamePlaySystem
+                .judgeSystems[s_normalNotes[i].line - 1].notes.Add(s_normalNotes[i]);
+        }
     }
 }
 
@@ -151,7 +158,7 @@ public class NormalNote
     public GameObject noteObject;
     public int line;
     public int legnth;
-    public float ms;
+    public int ms;
     public float pos;
     public bool isPowered;
     public static void Sorting()
@@ -220,7 +227,7 @@ public class NoteFile
     public int startDelayMs;
 
     public List<int> NoteLegnth = new List<int>();
-    public List<float> NoteMs = new List<float>();
+    public List<int> NoteMs = new List<int>();
     public List<float> NotePos = new List<float>();
     public List<int> NoteLine = new List<int>();
     public List<bool> NotePowered = new List<bool>();

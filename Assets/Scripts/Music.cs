@@ -15,6 +15,7 @@ public class Music : MonoBehaviour
     public float HighBPM;
     public string MusicName;
     public string MusicArtist;
+    public string JacketIllustrator;
     public string[] Effecter = new string[5];
     public int[] Difficulty = new int[5];
     public int[] NoteCount = new int[5];

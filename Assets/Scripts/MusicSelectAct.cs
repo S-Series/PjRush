@@ -28,38 +28,72 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField] private Transform FrameParentTransform;
     [SerializeField] private AudioSource SelectEffectAudio;
     [SerializeField] private TopBoxSetting topBox;
+    private readonly string[] DifficultyName = {"Day", "Midday", "Night", "Midnight", "Dream"};
+    private IEnumerator[] keepDown = new IEnumerator[4];
+    private IEnumerator[] option = new IEnumerator[2];
 
     private void Awake() 
     { 
         musicSelectAct = this; 
         PreMusicPlayer = GetComponent<AudioSource>();
+        keepDown[0] = IKeepDown(KeyCode.UpArrow);
+        keepDown[1] = IKeepDown(KeyCode.DownArrow);
+        keepDown[2] = IKeepDown(KeyCode.LeftArrow);
+        keepDown[3] = IKeepDown(KeyCode.RightArrow);
+        option[0] = IOption(false);
+        option[1] = IOption(true);
     }
     private void Update()
     {
+        print(this.gameObject.name);
         if (!isSelectable) { return; }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             SelectChange(KeyCode.UpArrow);
-            StartCoroutine(IKeepDown(KeyCode.UpArrow));
+            StopCoroutine(keepDown[0]);
+            StopCoroutine(keepDown[1]);
+            StopCoroutine(keepDown[2]);
+            StopCoroutine(keepDown[3]);
+            StartCoroutine(keepDown[0]);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             SelectChange(KeyCode.DownArrow);
-            StartCoroutine(IKeepDown(KeyCode.DownArrow));
+            StopCoroutine(keepDown[0]);
+            StopCoroutine(keepDown[1]);
+            StopCoroutine(keepDown[2]);
+            StopCoroutine(keepDown[3]);
+            StartCoroutine(keepDown[1]);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             SelectChange(KeyCode.LeftArrow);
-            StartCoroutine(IKeepDown(KeyCode.LeftArrow));
+            StopCoroutine(keepDown[0]);
+            StopCoroutine(keepDown[1]);
+            StopCoroutine(keepDown[2]);
+            StopCoroutine(keepDown[3]);
+            StartCoroutine(keepDown[2]);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             SelectChange(KeyCode.RightArrow);
-            StartCoroutine(IKeepDown(KeyCode.RightArrow));
+            StopCoroutine(keepDown[0]);
+            StopCoroutine(keepDown[1]);
+            StopCoroutine(keepDown[2]);
+            StopCoroutine(keepDown[3]);
+            StartCoroutine(keepDown[3]);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            // Todo: Option 기능 구형하여 넣을것
+            StopCoroutine(option[0]);
+            StopCoroutine(option[1]);
+            StartCoroutine(option[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            StopCoroutine(option[0]);
+            StopCoroutine(option[1]);
+            StartCoroutine(option[1]);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -67,16 +101,55 @@ public class MusicSelectAct : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            // Todo: 게임시작
+            isSelectable = false;
+            //* index = 0   || MusicName
+            //* index = 1   || MusicArtist
+            //* index = 2   || Bpm
+            //* index = 3   || Difficulty
+            //* index = 4   || Difficulty Name
+            //* index = 5   || NoteEffecter
+            //* index = 6   || Jacket Illustrator
+            string[] info = new string[7];
+            info[0] = SelectingMusic.MusicName;
+            info[1] = SelectingMusic.MusicArtist;
+            if (SelectingMusic.HighBPM == SelectingMusic.LowBPM) 
+                { info[2] = string.Format("{0:F2}", SelectingMusic.LowBPM); }
+            else { info[2] = string.Format("{0:F2}", SelectingMusic.LowBPM) 
+                + " - " + string.Format("{0:F2}", SelectingMusic.HighBPM);}
+            info[3] = string.Format("{0:D2}", SelectingMusic.Difficulty[SelectDifficultyIndex]);
+            info[4] = DifficultyName[SelectDifficultyIndex];
+            info[5] = SelectingMusic.Effecter[SelectDifficultyIndex];
+            info[6] = SelectingMusic.JacketIllustrator;
+
+            GameManager.s_OnGameMusic = SelectingMusic;
+            GameManager.s_OnGameDifficultyIndex = SelectDifficultyIndex;
+
+            AnimatorManager.ChangeMusicInfo(info);
+            AnimatorManager.ChangeJacket
+                (SelectingMusic.sprJacket, SelectDifficultyIndex, SelectingMusic.status);
+            MainSystem.LoadGameScene();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Todo: 메인화면으로 돌아가기
+            isSelectable = false;
+            MainSystem.LoadMainScene();
+        }
+    
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)
+        || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            StopCoroutine(keepDown[0]);
+            StopCoroutine(keepDown[1]);
+            StopCoroutine(keepDown[2]);
+            StopCoroutine(keepDown[3]);
         }
     }
     public static void LoadSelectMusic()
     {
+        //foreach (SongFrame frame in MusicFrame) { Destroy(frame.gameObject); }
+        MusicFrame = new List<SongFrame>();
         selectMusicList = MusicManager.musicList;
+
         for (int i = 0; i < selectMusicList.Count; i++)
         {
             GameObject copy;
@@ -188,7 +261,6 @@ public class MusicSelectAct : MonoBehaviour
                 else { musicSelectIndex++; }
                 break;
         }
-        print(musicSelectIndex);
         SelectingMusic = selectMusicList[musicSelectIndex];
         PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
         UpdateFramePosition();
@@ -212,19 +284,46 @@ public class MusicSelectAct : MonoBehaviour
         FrameParentTransform.localPosition
             = new Vector3(0.0f, (2.25f * (Mathf.CeilToInt((musicSelectIndex + 1) / 3.0f) - 1)), 0.0f);
     }
-    private static IEnumerator IKeepDown(KeyCode inputKey)
+    private void DifficultySetting(bool isLeft)
     {
+        int _change = 1;
+        if (!isLeft) _change = 1;
+        for (int i = 0; i < 5; i++)
+        {
+            SelectDifficultyIndex += _change;
+            if (SelectDifficultyIndex < 0) { SelectDifficultyIndex += 5; }
+            else if (SelectDifficultyIndex > 4) { SelectDifficultyIndex -= 5; }
+            if ( SelectingMusic.isAvailable[SelectDifficultyIndex] )
+            {
+                UpdateFrameInfo();
+                break;
+            }
+        }
+    }
+    private IEnumerator IKeepDown(KeyCode inputKey)
+    {
+        yield return new WaitForSeconds(1f);
         int count = 0;
         var wait = new WaitForSeconds(.125f);
         var shortWait = new WaitForSeconds(.0625f);
-        yield return new WaitForSeconds(.25f);
         while(true)
         {
+            print("BBB");
             if (count < 4) { yield return wait; }
             else { yield return shortWait; }
             if (!Input.GetKey(inputKey)) yield break;
             musicSelectAct.SelectChange(inputKey);
             count++;
         }
+    }
+    private IEnumerator IOption(bool isLeft)
+    {
+        print("AAA");
+        yield return null;
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
+        {
+
+        }
+        else { DifficultySetting(isLeft); }
     }
 }

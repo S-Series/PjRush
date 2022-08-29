@@ -1,7 +1,7 @@
 {
     "isAvailable": [
         false,
-        false,
+        true,
         false,
         false,
         false
@@ -9,8 +9,9 @@
     "MusicID": 4,
     "LowBPM": 130.0,
     "HighBPM": 160.0,
-    "MusicName": "Pumpin Junkies (Kobaryo’s Remix",
+    "MusicName": "Pumpin Junkies /n(Kobaryo’s Remix)",
     "MusicArtist": "t+pazolite ",
+    "JacketIllustrator": "",
     "Effecter": [
         "SSeries",
         "SSeries",
@@ -20,7 +21,7 @@
     ],
     "Difficulty": [
         0,
-        0,
+        7,
         0,
         14,
         0

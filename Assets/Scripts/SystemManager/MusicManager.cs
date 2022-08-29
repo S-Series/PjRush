@@ -38,7 +38,7 @@ public class MusicManager : MonoBehaviour
         string path = "";
         string loadPath = "";
         string loadPlayed = "";
-        path = "Note/" + String.Format("{0:D4}", music.MusicID);
+        path = "_NoteBox/" + String.Format("{0:D4}", music.MusicID);
         loadPath = Application.dataPath + "/" + path + "/Default.json";
         loadPlayed = Application.dataPath + "/" + path + "/Played.json";
         musicDefault = JsonUtility.FromJson<MusicDefault>(File.ReadAllText(loadPath));
@@ -102,6 +102,7 @@ public class MusicManager : MonoBehaviour
             musicDefault.HighScore = music.HighScore;
             musicDefault.isOwned = music.isOwned;
             musicDefault.isSecret = music.isSecret;
+            musicDefault.JacketIllustrator = music.JacketIllustrator;
             #endregion
             string path = "";
             string savePath = "";
@@ -121,6 +122,7 @@ public class MusicDefault
     public float HighBPM;
     public string MusicName;
     public string MusicArtist;
+    public string JacketIllustrator;
     public string[] Effecter = new string[5];
     public int[] Difficulty = new int[5];
     public int[] NoteCount = new int[5];

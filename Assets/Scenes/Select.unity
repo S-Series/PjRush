@@ -22141,7 +22141,7 @@ GameObject:
   - component: {fileID: 900146009}
   - component: {fileID: 900146010}
   m_Layer: 0
-  m_Name: CloudySpace_01
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

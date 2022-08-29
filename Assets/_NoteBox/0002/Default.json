@@ -2,8 +2,8 @@
     "isAvailable": [
         false,
         false,
-        true,
         false,
+        true,
         false
     ],
     "MusicID": 2,
@@ -11,6 +11,7 @@
     "HighBPM": 175.0,
     "MusicName": "Datamania(tpz Overheat Remix)",
     "MusicArtist": "t+pazolite",
+    "JacketIllustrator": "",
     "Effecter": [
         "SSeries",
         "SSeries",
@@ -19,10 +20,10 @@
         "SSeries"
     ],
     "Difficulty": [
-        7,
-        11,
-        14,
-        15,
+        0,
+        0,
+        0,
+        13,
         0
     ],
     "NoteCount": [

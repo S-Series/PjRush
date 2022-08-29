@@ -46,13 +46,13 @@ public class TopBoxSetting : MonoBehaviour
         {
             if (!music.isAvailable[i]) 
             {
-                topDifBox[i].enabled = false;
+                topDifBox[i].gameObject.SetActive(false);
                 topDifText[i].enabled = false;
                 topDifText[i].text = "--";
             }
             else
             {
-                topDifBox[i].enabled = true;
+                topDifBox[i].gameObject.SetActive(true);
                 topDifText[i].enabled = true;
                 topDifText[i].text = string.Format("{0:D2}", music.Difficulty[i]);
             }

@@ -295,8 +295,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &139102692
 GameObject:
@@ -468,8 +468,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: eced538e7094463408f85cc3dcc5f494, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -549,8 +549,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: b14025a549fc25c42a3865b1b4f9264f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -725,8 +725,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 294685207}
-  - {fileID: 2122682078}
   - {fileID: 1096900822}
+  - {fileID: 2122682078}
   m_Father: {fileID: 1821886061}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -742,12 +742,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34272cb9d167faa458990030a55b8c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorObject:
-  - {fileID: 148278915}
-  - {fileID: 294685206}
-  - {fileID: 1096900821}
-  - {fileID: 2122682077}
-  _spriteRenderer: {fileID: 150615776}
+  Animator:
+  - {fileID: 148278917}
+  - {fileID: 294685208}
+  - {fileID: 1096900823}
+  - {fileID: 2122682079}
+  DifficultySprite:
+  - {fileID: 21300000, guid: ff7ce04b9a98b6f409c4a5bb9be6d2d8, type: 3}
+  - {fileID: 21300000, guid: 6f15a65f94843b749bb526e9e1b9db92, type: 3}
+  - {fileID: 21300000, guid: 7813ab9038dbe2e4fa3c3beb9c8e48c2, type: 3}
+  - {fileID: 21300000, guid: c9844450a934547419fa220ffcddad36, type: 3}
+  GameInfoRenderer:
+  - {fileID: 150615778}
+  - {fileID: 1532347641}
+  GameInfoTMP:
+  - {fileID: 766147456}
+  - {fileID: 874328071}
+  - {fileID: 1339649867}
+  - {fileID: 1912863053}
+  - {fileID: 1815004521}
+  - {fileID: 718711212}
+  - {fileID: 721628045}
 --- !u!1 &411692649
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +815,7 @@ MonoBehaviour:
   HighBPM: 190
   MusicName: Nhelv
   MusicArtist: Silent Room
+  JacketIllustrator: 
   Effecter:
   - SSeries
   - SSeries
@@ -1339,8 +1355,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &721628043
 GameObject:
@@ -1516,8 +1532,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &766147454
 GameObject:
@@ -1693,8 +1709,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 16
 --- !u!1 &840311674
 GameObject:
@@ -1748,6 +1764,7 @@ MonoBehaviour:
   HighBPM: 160
   MusicName: We Could Get More Machinegun Psystyle! -And More Genre Switches-
   MusicArtist: Camellia
+  JacketIllustrator: 
   Effecter:
   - SSeries
   - SSeries
@@ -1979,8 +1996,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 16
 --- !u!1 &892046000
 GameObject:
@@ -2049,8 +2066,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 40915f2831486ea40bbb2235d99d0bb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2335,7 +2352,7 @@ Transform:
   - {fileID: 1451386840}
   - {fileID: 1249399816}
   m_Father: {fileID: 391191106}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1096900823
 Animator:
@@ -2585,8 +2602,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 44603bb3c5b3c6b4ca3d8512a3c92dd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2698,8 +2715,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7963afaef5f7bd943a2c45dc5f6e7450, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2886,8 +2903,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &1363444953
 GameObject:
@@ -2984,6 +3001,7 @@ MonoBehaviour:
   HighBPM: 190
   MusicName: GoodTek
   MusicArtist: EbiMayo
+  JacketIllustrator: EbiMayo
   Effecter:
   - SSeries
   - SSeries
@@ -3146,8 +3164,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 8008ac51c16a6cb4ba8d44742cc27855, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3511,8 +3529,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &1519249473
 GameObject:
@@ -3664,8 +3682,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 435cfd926062d154db1e88a7c2f93cc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4102,6 +4120,7 @@ MonoBehaviour:
   HighBPM: 160
   MusicName: "Pumpin Junkies /n(Kobaryo\u2019s Remix)"
   MusicArtist: 't+pazolite '
+  JacketIllustrator: 
   Effecter:
   - SSeries
   - SSeries
@@ -4365,6 +4384,7 @@ MonoBehaviour:
   HighBPM: 175
   MusicName: Datamania(tpz Overheat Remix)
   MusicArtist: t+pazolite
+  JacketIllustrator: 
   Effecter:
   - SSeries
   - SSeries
@@ -4446,8 +4466,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 14
   m_Sprite: {fileID: 21300000, guid: 1cac68fb3e72e864e9e5ce25942d5ddc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4634,8 +4654,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
 --- !u!1 &1735162030
 GameObject:
@@ -4704,8 +4724,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: d19cf720988cf824ca16cefa72bb714c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4787,8 +4807,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: 2ff1a366ea834f24593b6601dcde5cf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5099,8 +5119,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 16
 --- !u!1 &1817186321
 GameObject:
@@ -5342,8 +5362,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: c7f619afa4d1c9348b710a348925804c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5574,8 +5594,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 294311089
-  m_SortingLayer: 5
+  m_SortingLayerID: -637448503
+  m_SortingLayer: 6
   m_SortingOrder: 16
 --- !u!1 &1985063499
 GameObject:
@@ -5678,7 +5698,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122682077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5691,7 +5711,7 @@ Transform:
   - {fileID: 1655360564}
   - {fileID: 1427334989}
   m_Father: {fileID: 391191106}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2122682079
 Animator:

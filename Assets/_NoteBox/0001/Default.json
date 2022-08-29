@@ -1,8 +1,8 @@
 {
     "isAvailable": [
+        true,
         false,
-        false,
-        false,
+        true,
         false,
         false
     ],
@@ -11,6 +11,7 @@
     "HighBPM": 190.0,
     "MusicName": "Nhelv",
     "MusicArtist": "Silent Room",
+    "JacketIllustrator": "",
     "Effecter": [
         "SSeries",
         "SSeries",
@@ -19,10 +20,10 @@
         "SSeries"
     ],
     "Difficulty": [
+        1,
         0,
+        10,
         0,
-        0,
-        14,
         0
     ],
     "NoteCount": [
