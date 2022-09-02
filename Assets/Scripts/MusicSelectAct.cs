@@ -45,7 +45,6 @@ public class MusicSelectAct : MonoBehaviour
     }
     private void Update()
     {
-        print(this.gameObject.name);
         if (!isSelectable) { return; }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {

@@ -5,82 +5,65 @@ using UnityEngine;
 
 public class JudgeSystem : MonoBehaviour
 {
-    public static int s_judgeMs;
     public static bool s_isTesting = false;
+
+    #region Animator Triggers
+    private const string c_sPerfect = "SPerfect";
+    private const string c_Perfect = "Perfect";
+    private const string c_Indirect = "Near";
+    private const string c_Missed = "Missed";
+    private const string c_Long = "Long";
+    private const string c_Dummy = "Dummy";
+    #endregion
     public static float s_bpm;
     public static int s_longDelay;
-    public KeyCode inputKeycode;
+    public KeyCode[] inputKeycode = new KeyCode[2];
     public List<NormalNote> notes = new List<NormalNote>();
     private int noteIndex;
     private int testNoteMs = 0;
     private bool isTestAlive;
     private bool isLongJudge = false;
-    private Thread thread;
     private IEnumerator longKeep;
     [SerializeField] Animator AnimatorJudgeEffect;
-    private void start()
+    private void Awake()
     {
-        thread = new Thread(ThreadWork);
         longKeep = IlongKeep();
+        inputKeycode = new KeyCode[2];
+        inputKeycode[0] = KeyCode.T;
+        inputKeycode[1] = KeyCode.Y;
     }
     private void Update()
     {
         if (!s_isTesting) { return; }
-        if (Input.GetKeyDown(inputKeycode))
+        if (!isTestAlive) { return; }
+        testNoteMs = notes[noteIndex].ms - GamePlaySystem.s_gameMs;
+        if (Input.GetKeyDown(inputKeycode[0]) || Input.GetKeyDown(inputKeycode[1]))
         {
-            if (testNoteMs < 35
-                && testNoteMs > -35)
+            if (testNoteMs < 85.5 && testNoteMs > -75.5)
             {
-                // 세부 퍼펙트 판정
-            }
-            else if (testNoteMs < 47.5
-                && testNoteMs > -47.5)
-            {
-                // 일반 퍼펙트 판정
-            }
-            else if (testNoteMs < 75
-                && testNoteMs > -75)
-            {
-                // 간접 입력 판정
-            }
-            else if (testNoteMs < 100
-                && testNoteMs > 0)
-            {
-                // 빠른 미스 판정
+                JudgeApply(testNoteMs);
             }
             else 
             {
-                // Dummy 입력 
+                AnimatorJudgeEffect.SetTrigger(c_Dummy);
             }
         }
-        if (testNoteMs < -75)
+        if (testNoteMs < -70.5)
         {
-            // 느린 미스 판정
+            JudgeApply(0);
+            print("Losted");
         }
+        if (noteIndex == notes.Count) { print("Dead"); isTestAlive = false; }
     }
-    private void ThreadWork()
+    private IEnumerator ILongJudge(int legnth)
     {
-        while (isTestAlive)
-        {
-            if (noteIndex == notes.Count) { return; }
-            testNoteMs = notes[noteIndex].ms - s_judgeMs;
-            Thread.Sleep(1);
-        }
-    }
-    private void LongJudge(int legnth)
-    {
-        Thread.Sleep(s_longDelay);
+        if (legnth == 0) { yield break; }
         for (int i = 1; i < legnth; i++)
         {
-            if (isLongJudge) 
-            { 
-                
-            }
-            else 
-            { 
-                
-            }
-            Thread.Sleep(s_longDelay);
+            /*if (isLongJudge) { JudgeApply(0, true);}
+            else { JudgeApply(-100, true); }*/
+            JudgeApply(0, true);
+            yield return new WaitForSeconds(s_longDelay);
         }
     }
     private IEnumerator IlongKeep()
@@ -91,6 +74,41 @@ public class JudgeSystem : MonoBehaviour
     public void ActivateTest()
     {
         noteIndex = 0;
-        thread.Start();
+        isTestAlive = true;
+    }
+    private void JudgeApply(int _inputMs, bool isLongJudge = false)
+    {
+        if (!isLongJudge) { StartCoroutine(ILongJudge(notes[noteIndex].legnth)); }
+        int FastLateIndex;
+        if (_inputMs > 0) { FastLateIndex = 0; }
+        else { FastLateIndex = 1; }
+
+        //* 세부 판정
+        if (_inputMs > -22.5 && _inputMs < 22.5) 
+        { 
+            GameManager.s_DetailPerfectJudgeCount++;
+            AnimatorJudgeEffect.SetTrigger(c_Perfect);
+        }
+        //* 퍼펙 판정
+        else if (_inputMs > -45.5 && _inputMs < 45.5)
+        {
+            GameManager.s_PerfectJudgeCount[FastLateIndex]++;
+            AnimatorJudgeEffect.SetTrigger(c_Perfect);
+        }
+        //* 간접 판정
+        else if (_inputMs > -70.5 && _inputMs < 70.5)
+        {
+            GameManager.s_IndirectJudgeCount[FastLateIndex]++;
+            AnimatorJudgeEffect.SetTrigger(c_Indirect);
+        }
+        //* 빠른 미스
+        else
+        {
+            GameManager.s_IndirectJudgeCount[0]++;
+            AnimatorJudgeEffect.SetTrigger(c_Indirect);
+        }
+        if (isLongJudge) { return; }
+        noteIndex++;
+        if (noteIndex >= notes.Count) { isTestAlive = false; }
     }
 }

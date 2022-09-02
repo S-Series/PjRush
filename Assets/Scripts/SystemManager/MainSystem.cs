@@ -43,6 +43,9 @@ public class MainSystem : MonoBehaviour
         AnimatorManager.PlayAnimation(3, true);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(MainScene);
+        yield return null;
+        transform.position = GameObject.FindWithTag("systemPos").transform.position;
+        transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.PlayAnimation(3, false);
     }
@@ -51,6 +54,9 @@ public class MainSystem : MonoBehaviour
         AnimatorManager.PlayAnimation(3, true);
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(MusicSelectScene);
+        yield return null;
+        transform.position = GameObject.FindWithTag("systemPos").transform.position;
+        transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         yield return new WaitForSeconds(1.0f);
         while(true)
         {
@@ -72,6 +78,9 @@ public class MainSystem : MonoBehaviour
         AnimatorManager.PlayAnimation(2, true);
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(GameScene);
+        yield return null;
+        transform.position = GameObject.FindWithTag("systemPos").transform.position;
+        transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         yield return new WaitForSeconds(0.25f);
         while(true)
         {
@@ -83,6 +92,6 @@ public class MainSystem : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         AnimatorManager.PlayAnimation(2, false);
         yield return new WaitForSeconds(7.5f);
-        
+        StartCoroutine(GamePlaySystem.gamePlaySystem.IStartGame());
     }
 }

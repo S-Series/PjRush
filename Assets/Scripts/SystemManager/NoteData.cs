@@ -29,16 +29,12 @@ public class NoteData : MonoBehaviour
         catch { throw new System.Exception("Music File None Exist"); }
         GenerateNotes();
     }
-    private static void SortingNote()
-    {
-        NormalNote.Sorting();
-        SpeedNote.Sorting();
-        EffectNote.Sorting();
-    }
     private static void GenerateNotes()
     {
         GameManager.s_bpm = s_noteFile.bpm;
         GameManager.s_delay = s_noteFile.startDelayMs;
+        print(GameManager.s_bpm);
+        print(GameManager.s_delay);
         GamePlaySystem.s_GameMusic.clip = GameManager.s_OnGameMusic.audMusicFile;
         for (int i = 0; i < s_noteFile.NoteMs.Count; i++)
         {
@@ -80,8 +76,6 @@ public class NoteData : MonoBehaviour
             s_effectNotes.Add(effectNote);
         }
         //*--------------------------------------
-        SortingNote();
-        //*--------------------------------------
         for (int i = 0; i < s_normalNotes.Count; i++)
         {
             NormalNote normalNote;
@@ -104,7 +98,7 @@ public class NoteData : MonoBehaviour
                         GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
                     Vector3 scale;
                     scale = copyObject.transform.GetChild(0).localScale;
-                    scale.y = normalNote.legnth;
+                    scale.y = normalNote.legnth * (GameManager.s_Multiply / 100.0f);
                     copyObject.transform.GetChild(0).localScale = scale;
                 }
             }
@@ -128,19 +122,20 @@ public class NoteData : MonoBehaviour
                     copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[2],
                         GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
                     Vector3 scale;
-                    scale = copyObject.transform.localScale;
-                    scale.y = 100.0f * normalNote.legnth;
-                    copyObject.transform.localScale = scale;
+                    scale = copyObject.transform.GetChild(0).localScale;
+                    scale.y = normalNote.legnth * (GameManager.s_Multiply / 100.0f);
+                    copyObject.transform.GetChild(0).localScale = scale;
                 }
             }
 
             autoPos.x = 0.0f;
-            autoPos.y = normalNote.pos / 100.0f;
+            autoPos.y = normalNote.pos * (GameManager.s_Multiply / 100.0f) / 100.0f;
             autoPos.z = 0.0f;
             copyObject.transform.localPosition = autoPos;
 
             normalNote.noteObject = copyObject;
         }
+        LineDivisionNotes();
     }
     private static void LineDivisionNotes()
     {
@@ -150,6 +145,12 @@ public class NoteData : MonoBehaviour
             GamePlaySystem.gamePlaySystem
                 .judgeSystems[s_normalNotes[i].line - 1].notes.Add(s_normalNotes[i]);
         }
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[0].notes.Count);
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[1].notes.Count);
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[2].notes.Count);
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[3].notes.Count);
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[4].notes.Count);
+        print(GamePlaySystem.gamePlaySystem.judgeSystems[5].notes.Count);
     }
 }
 
