@@ -11,6 +11,7 @@ public class MainSystem : MonoBehaviour
     private const string MainScene = "Main";
     private const string MusicSelectScene = "Select";
     private const string GameScene = "GameField";
+    private const string ResultScene = "Result";
     private void Start()
     {
         main = this;
@@ -37,7 +38,8 @@ public class MainSystem : MonoBehaviour
     public static void LoadMainScene() { main.StartCoroutine(main.ILoadMainScene()); }
     public static void LoadSelectScene() { main.StartCoroutine(main.ILoadSelectScene()); }
     public static void LoadGameScene() { main.StartCoroutine(main.ILoadGameScene()); }
-    
+    public static void LoadResultScene() { main.StartCoroutine(main.ILoadResultScene()); }
+
     private IEnumerator ILoadMainScene()
     {
         AnimatorManager.PlayAnimation(3, true);
@@ -65,7 +67,7 @@ public class MainSystem : MonoBehaviour
                 MusicSelectAct.LoadSelectMusic();
                 break;
             }
-            catch {}
+            catch { ; }
             yield return null;
         }
         yield return new WaitForSeconds(1.0f);
@@ -93,5 +95,24 @@ public class MainSystem : MonoBehaviour
         AnimatorManager.PlayAnimation(2, false);
         yield return new WaitForSeconds(7.5f);
         StartCoroutine(GamePlaySystem.gamePlaySystem.IStartGame());
+    }
+    private IEnumerator ILoadResultScene()
+    {
+        AnimatorManager.PlayAnimation(3, true);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(ResultScene);
+        yield return null;
+        while(true)
+        {
+            try
+            {
+                GameResult.gameResult.DisplayResult();
+                break;
+            }
+            catch { ; }
+            yield return null;
+        }
+        yield return new WaitForSeconds(1.0f);
+        AnimatorManager.PlayAnimation(3, false);
     }
 }

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static bool s_isDetailPerfect;
     public static bool s_isPerfect;
     public static bool s_isMaximum;
+    public static bool s_isComplete;
     public static int s_DetailPerfectJudgeCount;
     public static int[] s_PerfectJudgeCount = {0, 0};
     public static int[] s_IndirectJudgeCount = {0, 0};

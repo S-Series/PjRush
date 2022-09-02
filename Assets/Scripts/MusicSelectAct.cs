@@ -29,17 +29,20 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField] private AudioSource SelectEffectAudio;
     [SerializeField] private TopBoxSetting topBox;
     private readonly string[] DifficultyName = {"Day", "Midday", "Night", "Midnight", "Dream"};
-    private IEnumerator[] keepDown = new IEnumerator[4];
+    private IEnumerator keepDown_U;
+    private IEnumerator keepDown_D;
+    private IEnumerator keepDown_L;
+    private IEnumerator keepDown_R;
     private IEnumerator[] option = new IEnumerator[2];
 
     private void Awake() 
     { 
         musicSelectAct = this; 
         PreMusicPlayer = GetComponent<AudioSource>();
-        keepDown[0] = IKeepDown(KeyCode.UpArrow);
-        keepDown[1] = IKeepDown(KeyCode.DownArrow);
-        keepDown[2] = IKeepDown(KeyCode.LeftArrow);
-        keepDown[3] = IKeepDown(KeyCode.RightArrow);
+        keepDown_U = IKeepDown_U();
+        keepDown_D = IKeepDown_D();
+        keepDown_L = IKeepDown_L();
+        keepDown_R = IKeepDown_R();
         option[0] = IOption(false);
         option[1] = IOption(true);
     }
@@ -48,50 +51,54 @@ public class MusicSelectAct : MonoBehaviour
         if (!isSelectable) { return; }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            keepDown_U = IKeepDown_U();
             SelectChange(KeyCode.UpArrow);
-            StopCoroutine(keepDown[0]);
-            StopCoroutine(keepDown[1]);
-            StopCoroutine(keepDown[2]);
-            StopCoroutine(keepDown[3]);
-            StartCoroutine(keepDown[0]);
+            StartCoroutine(keepDown_U);
         }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            StopCoroutine(keepDown_U);
+        }
+        
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            keepDown_D = IKeepDown_D();
             SelectChange(KeyCode.DownArrow);
-            StopCoroutine(keepDown[0]);
-            StopCoroutine(keepDown[1]);
-            StopCoroutine(keepDown[2]);
-            StopCoroutine(keepDown[3]);
-            StartCoroutine(keepDown[1]);
+            StartCoroutine(keepDown_D);
         }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            StopCoroutine(keepDown_D);
+        }
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            keepDown_L = IKeepDown_L();
             SelectChange(KeyCode.LeftArrow);
-            StopCoroutine(keepDown[0]);
-            StopCoroutine(keepDown[1]);
-            StopCoroutine(keepDown[2]);
-            StopCoroutine(keepDown[3]);
-            StartCoroutine(keepDown[2]);
+            StartCoroutine(keepDown_L);
         }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            StopCoroutine(keepDown_L);
+        }
+        
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            keepDown_R = IKeepDown_R();
             SelectChange(KeyCode.RightArrow);
-            StopCoroutine(keepDown[0]);
-            StopCoroutine(keepDown[1]);
-            StopCoroutine(keepDown[2]);
-            StopCoroutine(keepDown[3]);
-            StartCoroutine(keepDown[3]);
+            StartCoroutine(keepDown_R);
         }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            StopCoroutine(keepDown_R);
+        }
+        
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            StopCoroutine(option[0]);
-            StopCoroutine(option[1]);
             StartCoroutine(option[0]);
         }
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            StopCoroutine(option[0]);
-            StopCoroutine(option[1]);
             StartCoroutine(option[1]);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -132,15 +139,6 @@ public class MusicSelectAct : MonoBehaviour
         {
             isSelectable = false;
             MainSystem.LoadMainScene();
-        }
-    
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)
-        || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            StopCoroutine(keepDown[0]);
-            StopCoroutine(keepDown[1]);
-            StopCoroutine(keepDown[2]);
-            StopCoroutine(keepDown[3]);
         }
     }
     public static void LoadSelectMusic()
@@ -299,18 +297,62 @@ public class MusicSelectAct : MonoBehaviour
             }
         }
     }
-    private IEnumerator IKeepDown(KeyCode inputKey)
+    private IEnumerator IKeepDown_U()
     {
-        yield return new WaitForSeconds(1f);
+        KeyCode inputKey = KeyCode.UpArrow;
         int count = 0;
         var wait = new WaitForSeconds(.125f);
         var shortWait = new WaitForSeconds(.0625f);
+        yield return new WaitForSeconds(1f);
         while(true)
         {
-            print("BBB");
             if (count < 4) { yield return wait; }
             else { yield return shortWait; }
-            if (!Input.GetKey(inputKey)) yield break;
+            musicSelectAct.SelectChange(inputKey);
+            count++;
+        }
+    }
+    private IEnumerator IKeepDown_D()
+    {
+        KeyCode inputKey = KeyCode.DownArrow;
+        int count = 0;
+        var wait = new WaitForSeconds(.125f);
+        var shortWait = new WaitForSeconds(.0625f);
+        yield return new WaitForSeconds(1f);
+        while(true)
+        {
+            if (count < 4) { yield return wait; }
+            else { yield return shortWait; }
+            musicSelectAct.SelectChange(inputKey);
+            count++;
+        }
+    }
+    private IEnumerator IKeepDown_L()
+    {
+        KeyCode inputKey = KeyCode.LeftArrow;
+        int count = 0;
+        var wait = new WaitForSeconds(.125f);
+        var shortWait = new WaitForSeconds(.0625f);
+        yield return new WaitForSeconds(1f);
+        while(true)
+        {
+            if (count < 4) { yield return wait; }
+            else { yield return shortWait; }
+            musicSelectAct.SelectChange(inputKey);
+            count++;
+        }
+    }
+    private IEnumerator IKeepDown_R()
+    {
+        KeyCode inputKey = KeyCode.RightArrow;
+        int count = 0;
+        var wait = new WaitForSeconds(.125f);
+        var shortWait = new WaitForSeconds(.0625f);
+        yield return new WaitForSeconds(0.5f);
+        while(true)
+        {
+            if (count < 4) { yield return wait; }
+            else { yield return shortWait; }
             musicSelectAct.SelectChange(inputKey);
             count++;
         }

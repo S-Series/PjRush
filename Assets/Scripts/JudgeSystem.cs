@@ -19,9 +19,9 @@ public class JudgeSystem : MonoBehaviour
     public static int s_longDelay;
     public KeyCode[] inputKeycode = new KeyCode[2];
     public List<NormalNote> notes = new List<NormalNote>();
+    public bool isTestAlive;
     private int noteIndex;
     private int testNoteMs = 0;
-    private bool isTestAlive;
     private bool isLongJudge = false;
     private IEnumerator longKeep;
     [SerializeField] Animator AnimatorJudgeEffect;
@@ -50,10 +50,10 @@ public class JudgeSystem : MonoBehaviour
         }
         if (testNoteMs < -70.5)
         {
-            JudgeApply(0);
+            JudgeApply(-100);
             print("Losted");
         }
-        if (noteIndex == notes.Count) { print("Dead"); isTestAlive = false; }
+        if (noteIndex == notes.Count) { isTestAlive = false; GamePlaySystem.CheckGameEnd(); }
     }
     private IEnumerator ILongJudge(int legnth)
     {
@@ -75,6 +75,10 @@ public class JudgeSystem : MonoBehaviour
     {
         noteIndex = 0;
         isTestAlive = true;
+    }
+    public void ChangeKey(KeyCode[] _keys)
+    {
+        inputKeycode = _keys;
     }
     private void JudgeApply(int _inputMs, bool isLongJudge = false)
     {
@@ -102,10 +106,15 @@ public class JudgeSystem : MonoBehaviour
             AnimatorJudgeEffect.SetTrigger(c_Indirect);
         }
         //* 빠른 미스
+        else if (_inputMs > 0 && _inputMs < 85.5)
+        {
+            GameManager.s_LostedJudgeCount[FastLateIndex]++;
+            AnimatorJudgeEffect.SetTrigger(c_Missed);
+        }
         else
         {
-            GameManager.s_IndirectJudgeCount[0]++;
-            AnimatorJudgeEffect.SetTrigger(c_Indirect);
+            GameManager.s_LostedJudgeCount[FastLateIndex]++;
+            AnimatorJudgeEffect.SetTrigger(c_Missed);
         }
         if (isLongJudge) { return; }
         noteIndex++;
