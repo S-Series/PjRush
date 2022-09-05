@@ -64,13 +64,14 @@ public class GamePlaySystem : MonoBehaviour
     {
         GameManager.ResetGameData();
         JudgeSystem.s_bpm = GameManager.s_bpm;
-        JudgeSystem.s_longDelay = Mathf.RoundToInt(15.0f / GameManager.s_bpm);
+        JudgeSystem.s_longDelay = 15.0f / GameManager.s_bpm;
         gameBpm = GameManager.s_bpm;
         SpeedMs = 0;
         EffectMs = 0;
         SpeedPos = 0;
         EffectPos = 0;
         isEffect = false;
+        s_gameMs = 0;
         SpeedMultiply = (GameManager.s_Multiply / 100.0f);
         PlayerInputManager.SetKeyOption();
         judgeSystems[0].ChangeKey(PlayerInputManager.s_Line1);
@@ -79,6 +80,8 @@ public class GamePlaySystem : MonoBehaviour
         judgeSystems[3].ChangeKey(PlayerInputManager.s_Line4);
         judgeSystems[4].ChangeKey(PlayerInputManager.s_Line5);
         judgeSystems[5].ChangeKey(PlayerInputManager.s_Line6);
+        GameInfoField.s_score = 0;
+        GameInfoField.gameInfoField.InfoSetting();
         yield return new WaitForSeconds(1.0f);
         JudgeSystem.s_isTesting = true;
         foreach (JudgeSystem judge in judgeSystems) { judge.ActivateTest(); }
@@ -93,16 +96,16 @@ public class GamePlaySystem : MonoBehaviour
         if (gamePlaySystem.judgeSystems[3].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[4].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[5].isTestAlive) { return; }
-        //* 게임 종료처리
+        GamePlaySystem.gamePlaySystem.StartCoroutine(GamePlaySystem.gamePlaySystem.IEndGame());
     }
     private IEnumerator IEndGame()
     {
-        if (GameManager.s_isDetailPerfect) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[0]); }
+        /*if (GameManager.s_isDetailPerfect) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[0]); }
         else if (GameManager.s_isDetailPerfect) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[1]); }
-        else if (GameManager.s_isDetailPerfect) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[2]); }
+        else if (GameManager.s_isDetailPerfect) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[2]); }*/
         yield return new WaitForSeconds(5.0f);
-        if (GameManager.s_isComplete) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[3]); }
-        else { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[4]); }
+        /*if (GameManager.s_isComplete) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[3]); }
+        else { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[4]); }*/
         yield return new WaitForSeconds(5.0f);
         MainSystem.LoadResultScene();
     }

@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     public static Music s_OnGameMusic;
     public static float s_bpm;
     public static float s_delay;
-    public static int s_Multiply = 300;
+    public static int s_Multiply = 700;
     public static int s_OnGameDifficultyIndex;
 
     public static bool s_isDetailPerfect;
     public static bool s_isPerfect;
     public static bool s_isMaximum;
+    public static bool s_isHardMode;
     public static bool s_isComplete;
     public static int s_DetailPerfectJudgeCount;
     public static int[] s_PerfectJudgeCount = {0, 0};
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public static int s_NoteCount;
     public static int s_GameScore;
+    public static int s_MaxCombo;
+    public static int s_MaximumCombo;
 
     public static void ResetGameData()
     {

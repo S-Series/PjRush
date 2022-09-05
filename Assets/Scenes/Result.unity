@@ -4634,7 +4634,7 @@ GameObject:
   - component: {fileID: 1042955293}
   - component: {fileID: 1042955292}
   m_Layer: 0
-  m_Name: 1
+  m_Name: Judge_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4656,8 +4656,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1, y: 0.5}
-  m_SizeDelta: {x: 0.75, y: 0.25}
+  m_AnchoredPosition: {x: -0.25, y: 0.5}
+  m_SizeDelta: {x: 0.8, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042955292
 MonoBehaviour:
@@ -4678,7 +4678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1234
+  m_text: 0000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -5547,7 +5547,7 @@ GameObject:
   - component: {fileID: 1177303379}
   - component: {fileID: 1177303378}
   m_Layer: 0
-  m_Name: 4
+  m_Name: Judge_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5569,8 +5569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1, y: -0.85}
-  m_SizeDelta: {x: 0.75, y: 0.25}
+  m_AnchoredPosition: {x: -0.25, y: -0.85}
+  m_SizeDelta: {x: 0.8, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177303378
 MonoBehaviour:
@@ -5591,7 +5591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1234
+  m_text: 0000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -6646,7 +6646,7 @@ GameObject:
   - component: {fileID: 1395179070}
   - component: {fileID: 1395179069}
   m_Layer: 0
-  m_Name: 2
+  m_Name: Judge_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6668,8 +6668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1, y: 0.05}
-  m_SizeDelta: {x: 0.75, y: 0.25}
+  m_AnchoredPosition: {x: -0.25, y: 0.05}
+  m_SizeDelta: {x: 0.8, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395179069
 MonoBehaviour:
@@ -6690,7 +6690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1234
+  m_text: 0000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -7374,10 +7374,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70930a6527df98347a1718544210f5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resultRenderer: []
-  infoTmp: []
-  resultTmp: []
-  scoreTmp: []
+  resultRenderer:
+  - {fileID: 1258209400}
+  - {fileID: 492986101}
+  - {fileID: 294527569}
+  gameResultRenderer:
+  - {fileID: 465256359}
+  - {fileID: 46312941}
+  - {fileID: 284327276}
+  - {fileID: 1074135338}
+  - {fileID: 1074135338}
+  - {fileID: 549322141}
+  infoTmp:
+  - {fileID: 1032835496}
+  - {fileID: 932998253}
+  - {fileID: 1780168670}
+  - {fileID: 778952416}
+  userTmp:
+  - {fileID: 1824725477}
+  - {fileID: 286883841}
+  judgeTmp:
+  - {fileID: 1042955292}
+  - {fileID: 1395179069}
+  - {fileID: 1633524605}
+  - {fileID: 1177303378}
+  - {fileID: 2134064786}
+  - {fileID: 1270676075}
+  scoreTmp:
+  - {fileID: 252578905}
+  - {fileID: 701181629}
+  - {fileID: 12143406}
+  - {fileID: 32511115}
+  - {fileID: 1894068812}
+  - {fileID: 1303036306}
+  - {fileID: 2061514797}
+  - {fileID: 642028809}
+  - {fileID: 1628804296}
+  plusScoreTmp:
+  - {fileID: 961801644}
+  - {fileID: 1271320989}
+  - {fileID: 662888459}
+  - {fileID: 645913802}
+  - {fileID: 1456835941}
+  - {fileID: 1586933175}
+  - {fileID: 2107381853}
+  - {fileID: 1527365647}
+  - {fileID: 1559036881}
+  - {fileID: 282806882}
+  - {fileID: 1052103715}
 --- !u!1 &1559036879
 GameObject:
   m_ObjectHideFlags: 0
@@ -8049,7 +8093,7 @@ GameObject:
   - component: {fileID: 1633524606}
   - component: {fileID: 1633524605}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Judge_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8071,8 +8115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1, y: -0.4}
-  m_SizeDelta: {x: 0.75, y: 0.25}
+  m_AnchoredPosition: {x: -0.25, y: -0.4}
+  m_SizeDelta: {x: 0.8, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633524605
 MonoBehaviour:
@@ -8093,7 +8137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1234
+  m_text: 0000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,

@@ -102,6 +102,8 @@ public class MainSystem : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(ResultScene);
         yield return null;
+        transform.position = GameObject.FindWithTag("systemPos").transform.position;
+        transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         while(true)
         {
             try

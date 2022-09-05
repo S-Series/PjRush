@@ -16,7 +16,7 @@ public class JudgeSystem : MonoBehaviour
     private const string c_Dummy = "Dummy";
     #endregion
     public static float s_bpm;
-    public static int s_longDelay;
+    public static float s_longDelay;
     public KeyCode[] inputKeycode = new KeyCode[2];
     public List<NormalNote> notes = new List<NormalNote>();
     public bool isTestAlive;
@@ -51,9 +51,8 @@ public class JudgeSystem : MonoBehaviour
         if (testNoteMs < -70.5)
         {
             JudgeApply(-100);
-            print("Losted");
         }
-        if (noteIndex == notes.Count) { isTestAlive = false; GamePlaySystem.CheckGameEnd(); }
+        if (noteIndex == notes.Count) { print("dead"); isTestAlive = false; GamePlaySystem.CheckGameEnd(); }
     }
     private IEnumerator ILongJudge(int legnth)
     {
@@ -92,18 +91,21 @@ public class JudgeSystem : MonoBehaviour
         { 
             GameManager.s_DetailPerfectJudgeCount++;
             AnimatorJudgeEffect.SetTrigger(c_Perfect);
+            GameInfoField.AddScore(0);
         }
         //* 퍼펙 판정
         else if (_inputMs > -45.5 && _inputMs < 45.5)
         {
             GameManager.s_PerfectJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Perfect);
+            GameInfoField.AddScore(1);
         }
         //* 간접 판정
         else if (_inputMs > -70.5 && _inputMs < 70.5)
         {
             GameManager.s_IndirectJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Indirect);
+            GameInfoField.AddScore(2);
         }
         //* 빠른 미스
         else if (_inputMs > 0 && _inputMs < 85.5)

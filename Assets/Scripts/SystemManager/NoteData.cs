@@ -33,9 +33,9 @@ public class NoteData : MonoBehaviour
     {
         GameManager.s_bpm = s_noteFile.bpm;
         GameManager.s_delay = s_noteFile.startDelayMs;
-        print(GameManager.s_bpm);
-        print(GameManager.s_delay);
         GamePlaySystem.s_GameMusic.clip = GameManager.s_OnGameMusic.audMusicFile;
+
+        int _noteChain = 0;
         for (int i = 0; i < s_noteFile.NoteMs.Count; i++)
         {
             NormalNote normalNote = new NormalNote();
@@ -48,7 +48,13 @@ public class NoteData : MonoBehaviour
             try { normalNote.isPowered = s_noteFile.NotePowered[i]; }
             catch { normalNote.isPowered = false; }
             s_normalNotes.Add(normalNote);
+
+            if (normalNote.legnth == 0) { _noteChain++; }
+            else { _noteChain += normalNote.legnth; }
         }
+        GameInfoField.gameInfoField.maxCount = _noteChain;
+        print(_noteChain);
+
         if (s_normalNotes.Count != 0)
         {
             print(s_normalNotes[0].pos);
