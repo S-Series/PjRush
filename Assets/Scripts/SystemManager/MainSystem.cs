@@ -12,6 +12,7 @@ public class MainSystem : MonoBehaviour
     private const string MusicSelectScene = "Select";
     private const string GameScene = "GameField";
     private const string ResultScene = "Result";
+    private static IEnumerator startGame;
     private void Start()
     {
         main = this;
@@ -77,6 +78,7 @@ public class MainSystem : MonoBehaviour
     }
     private IEnumerator ILoadGameScene()
     {
+        print("A");
         AnimatorManager.PlayAnimation(2, true);
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(GameScene);
@@ -84,17 +86,17 @@ public class MainSystem : MonoBehaviour
         transform.position = GameObject.FindWithTag("systemPos").transform.position;
         transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         yield return new WaitForSeconds(0.25f);
-        while(true)
+        while (true)
         {
             try { NoteData.getNoteData(); break; }
-            catch { }
-            NoteData.getNoteData();
+            catch { ; }
             yield return null;
         }
         yield return new WaitForSeconds(5.0f);
         AnimatorManager.PlayAnimation(2, false);
         yield return new WaitForSeconds(7.5f);
-        StartCoroutine(GamePlaySystem.gamePlaySystem.IStartGame());
+        startGame = GamePlaySystem.gamePlaySystem.IStartGame();
+        StartCoroutine(startGame);
     }
     private IEnumerator ILoadResultScene()
     {
@@ -106,11 +108,7 @@ public class MainSystem : MonoBehaviour
         transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         while(true)
         {
-            try
-            {
-                GameResult.gameResult.DisplayResult();
-                break;
-            }
+            try { GameResult.gameResult.DisplayResult(); break; }
             catch { ; }
             yield return null;
         }

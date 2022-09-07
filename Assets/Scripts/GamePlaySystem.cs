@@ -71,6 +71,7 @@ public class GamePlaySystem : MonoBehaviour
         EffectMs = 0;
         SpeedPos = 0;
         EffectPos = 0;
+        MovingPos.y = 0;
         isEffect = false;
         s_gameMs = 0;
         SpeedMultiply = (GameManager.s_Multiply / 100.0f);
@@ -83,10 +84,12 @@ public class GamePlaySystem : MonoBehaviour
         judgeSystems[5].ChangeKey(PlayerInputManager.s_Line6);
         GameInfoField.s_score = 0;
         GameInfoField.gameInfoField.InfoSetting();
+        s_GameMusic.time = 0;
         yield return new WaitForSeconds(1.0f);
         JudgeSystem.s_isTesting = true;
         foreach (JudgeSystem judge in judgeSystems) { judge.ActivateTest(); }
         yield return new WaitForSeconds(GameManager.s_delay / 1000.0f);
+        print(GameManager.s_delay);
         s_GameMusic.Play();
     }
     public static void CheckGameEnd()
@@ -97,6 +100,7 @@ public class GamePlaySystem : MonoBehaviour
         if (gamePlaySystem.judgeSystems[3].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[4].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[5].isTestAlive) { return; }
+        JudgeSystem.s_isTesting = false;
         GamePlaySystem.gamePlaySystem.StartCoroutine(GamePlaySystem.gamePlaySystem.IEndGame());
     }
     private IEnumerator IEndGame()

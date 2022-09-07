@@ -48,8 +48,7 @@ public class ComboSystem : MonoBehaviour
             {
                 s_isSemiPerfect = false;
                 s_isPerfect = false;
-                //nowSprite = comboSystem.MaximumSprite;
-                nowSprite = comboSystem.NormalSprite;
+                nowSprite = comboSystem.MaximumSprite;
             }
             else if (!_isSemi)
             {
@@ -62,7 +61,7 @@ public class ComboSystem : MonoBehaviour
             if (!_isPerfect && !_isSemi)
             {
                 s_isPerfect = false;
-                //nowSprite = comboSystem.MaximumSprite;
+                nowSprite = comboSystem.MaximumSprite;
                 nowSprite = comboSystem.NormalSprite;
             }
         }

@@ -17,7 +17,8 @@ public class SongFrame : MonoBehaviour
     public void SetFrame(Music music)
     {
         MusicJacket.sprite = music.sprJacket;
-        int index = SystemManager.difficultyIndex;
+        int index;
+        index = MusicSelectAct.SelectDifficultyIndex;
         foreach (SpriteRenderer sprite in Difficulty) { sprite.gameObject.SetActive(false); }
         foreach (SpriteRenderer sprite in MusicBlock) { sprite.enabled = false; }
         if (music.isSecret)

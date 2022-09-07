@@ -146,13 +146,16 @@ public class MusicSelectAct : MonoBehaviour
         SelectingMusic = selectMusicList[0];
         musicSelectIndex = 0;
         musicSelectMaxIndex = selectMusicList.Count - 1;
-        UpdateFrameInfo();
+        if (!UserManager.UserOptionData.s_LastDifficulty.HasValue) { SelectDifficultyIndex = 0; }
+        else { SelectDifficultyIndex = UserManager.UserOptionData.s_LastDifficulty.Value; }
+        SrotingFrameInfo();
+        musicSelectAct.UpdateFrameInfo(SelectDifficultyIndex);
         SelectingMusic = selectMusicList[musicSelectIndex];
         PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
         musicSelectAct.topBox.SetInfo(SelectingMusic, SelectDifficultyIndex);
         PreMusicPlayer.Play();
     }
-    public static void UpdateFrameInfo()
+    public static void SrotingFrameInfo()
     {
         print(SelectDifficultyIndex);
         //** Sorting MusicMaanger List By Order
@@ -204,6 +207,11 @@ public class MusicSelectAct : MonoBehaviour
         /*if (selectMusicList.Exists(item => item.MusicID == lastId))
             { nowIndex = selectMusicList.FindIndex(item => item.MusicID == lastId); }
         else { nowIndex = SelectDifficultyIndex; }*/
+    }
+    public void UpdateFrameInfo(int _difficultyIndex)
+    {
+        for (int i = 0; i < MusicManager.musicList.Count; i++)
+            { MusicFrame[i].SetFrame(MusicManager.musicList[i]); }
     }
     private void SelectChange(KeyCode inputKey)
     {
@@ -278,10 +286,11 @@ public class MusicSelectAct : MonoBehaviour
             else if (SelectDifficultyIndex > 4) { SelectDifficultyIndex -= 5; }
             if ( SelectingMusic.isAvailable[SelectDifficultyIndex] )
             {
-                UpdateFrameInfo();
+                UpdateFrameInfo(SelectDifficultyIndex);
                 break;
             }
         }
+        UserManager.UserOptionData.s_LastDifficulty = SelectDifficultyIndex;
     }
     private IEnumerator IKeepDown(KeyCode _inputKey)
     {

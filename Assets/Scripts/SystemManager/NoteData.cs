@@ -139,12 +139,13 @@ public class NoteData : MonoBehaviour
             copyObject.transform.localPosition = autoPos;
 
             normalNote.noteObject = copyObject;
-            print(i);
         }
         LineDivisionNotes();
     }
     private static void LineDivisionNotes()
     {
+        foreach(JudgeSystem judgeSystem in GamePlaySystem.gamePlaySystem.judgeSystems)
+            { judgeSystem.notes = new List<NormalNote>(); }
         for (int i = 0; i < s_normalNotes.Count; i++)
         {
             GamePlaySystem.gamePlaySystem

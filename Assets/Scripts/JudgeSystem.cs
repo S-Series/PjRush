@@ -41,18 +41,17 @@ public class JudgeSystem : MonoBehaviour
         {
             if (testNoteMs < 85.5 && testNoteMs > -75.5)
             {
-                JudgeApply(testNoteMs);
+                if ( notes[noteIndex].isPowered )
+                { 
+                    if (testNoteMs < 75.5) { JudgeApply(0); }
+                    else { JudgeApply(80); }
+                }
+                else { JudgeApply(testNoteMs); }
             }
-            else 
-            {
-                AnimatorJudgeEffect.SetTrigger(c_Dummy);
-            }
+            else { AnimatorJudgeEffect.SetTrigger(c_Dummy); }
         }
-        if (testNoteMs < -70.5)
-        {
-            JudgeApply(-100);
-        }
-        if (noteIndex == notes.Count) { print("dead"); isTestAlive = false; GamePlaySystem.CheckGameEnd(); }
+        if (testNoteMs < -75.5) { JudgeApply(-100); }
+        if (noteIndex == notes.Count) { isTestAlive = false; GamePlaySystem.CheckGameEnd(); }
     }
     private IEnumerator ILongJudge(int legnth)
     {

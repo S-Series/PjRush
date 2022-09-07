@@ -624,7 +624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Extra
+  m_text: Midnight
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal
+  m_text: Midday
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Expert
+  m_text: Night
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Basic
+  m_text: Day
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Error
+  m_text: Dream
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f481fc2809370044810c70c12a89872, type: 2}
   m_sharedMaterial: {fileID: 1906802666615714487, guid: 1f481fc2809370044810c70c12a89872,
