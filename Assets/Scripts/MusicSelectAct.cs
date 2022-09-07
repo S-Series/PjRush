@@ -246,16 +246,18 @@ public class MusicSelectAct : MonoBehaviour
         PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
         UpdateFramePosition();
         //SelectEffectAudio.Play();
+        int _displayDifficulty;
+        _displayDifficulty = SelectDifficultyIndex;
         for (int i = 0; i < 5; i++)
         {
-            if (SelectingMusic.isAvailable[SelectDifficultyIndex]) break;
+            if (SelectingMusic.isAvailable[_displayDifficulty]) break;
             else
             {
-                SelectDifficultyIndex--;
-                if (SelectDifficultyIndex < 0) { SelectDifficultyIndex += 5; }
+                _displayDifficulty--;
+                if (_displayDifficulty < 0) { _displayDifficulty += 5; }
             }
         }
-        musicSelectAct.topBox.SetInfo(SelectingMusic, SelectDifficultyIndex);
+        musicSelectAct.topBox.SetInfo(SelectingMusic, _displayDifficulty);
         PreMusicPlayer.Play();
     }
     private void UpdateFramePosition()

@@ -100,7 +100,7 @@ public class ComboSystem : MonoBehaviour
             ColorIndex++;
             comboTrigger = Mathf.FloorToInt(Mathf.Pow(10, ColorIndex));
         }
-        return;
+        return;     //! Debugging Return
         if (s_playCombo >= 50 * animateIndex)
         {
             ComboAnimateRenderer[0].sprite = nowSprite[Mathf.FloorToInt(animateIndex / 20.0f)];

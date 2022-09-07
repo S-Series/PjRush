@@ -81,8 +81,8 @@ public class GameResult : MonoBehaviour
         // resultRenderer[3].sprite = SpriteManager.getCharacterSprite(UserManager.characterIndex);
         // resultRenderer[4].sprite = SpriteManager.getCharacterIconSprite(UserManager.characterIndex);
 
-        userTmp[0].text = UserManager.userName;
-        userTmp[1].text = "LV." + string.Format("{0:D4}", UserManager.userLevel);
+        userTmp[0].text = UserManager.UserInfoData.s_userName;
+        userTmp[1].text = "LV." + string.Format("{0:D4}", UserManager.UserInfoData.s_userLevel);
 
         StartCoroutine(IStartInput());
     }

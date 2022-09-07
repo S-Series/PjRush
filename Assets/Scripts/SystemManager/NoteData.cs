@@ -31,6 +31,7 @@ public class NoteData : MonoBehaviour
     }
     private static void GenerateNotes()
     {
+        GamePlaySystem.gamePlaySystem.ClearNoteField();
         GameManager.s_bpm = s_noteFile.bpm;
         GameManager.s_delay = s_noteFile.startDelayMs;
         GamePlaySystem.s_GameMusic.clip = GameManager.s_OnGameMusic.audMusicFile;
@@ -138,12 +139,12 @@ public class NoteData : MonoBehaviour
             copyObject.transform.localPosition = autoPos;
 
             normalNote.noteObject = copyObject;
+            print(i);
         }
         LineDivisionNotes();
     }
     private static void LineDivisionNotes()
     {
-        GamePlaySystem.gamePlaySystem.ClearNoteField();
         for (int i = 0; i < s_normalNotes.Count; i++)
         {
             GamePlaySystem.gamePlaySystem
