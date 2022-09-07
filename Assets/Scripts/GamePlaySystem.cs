@@ -65,6 +65,7 @@ public class GamePlaySystem : MonoBehaviour
         GameManager.ResetGameData();
         JudgeSystem.s_bpm = GameManager.s_bpm;
         JudgeSystem.s_longDelay = 15.0f / GameManager.s_bpm;
+        ComboSystem.ResetComboSystem();
         gameBpm = GameManager.s_bpm;
         SpeedMs = 0;
         EffectMs = 0;

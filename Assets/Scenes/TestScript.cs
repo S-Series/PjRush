@@ -12,13 +12,39 @@ public class TestScript : MonoBehaviour
     KeyCode targetKeycode = KeyCode.Return;
     private bool nowOnBinding = false;
 
+    private IEnumerator testCoroutine;
+    private void Awake()
+    {
+        testCoroutine = ITest();
+    }
     private void Update()
     {
-        if (nowOnBinding) { return; }
+        /*if (nowOnBinding) { return; }
         if (Input.GetKeyDown(targetKeycode))
         {
             print("Input : " + targetKeycode.ToString());
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            StopCoroutine(testCoroutine);
+            testCoroutine = ITest();
+            StartCoroutine(testCoroutine);
         }
+    }
+
+    private IEnumerator ITest()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
+            {
+                print("Multy Pressed");
+                yield break;
+            }
+            yield return null;
+        }
+        print("Single Pressed");
     }
 
     public void BindingButton()

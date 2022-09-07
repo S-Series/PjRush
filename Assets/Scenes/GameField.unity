@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -821,7 +821,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0832d5bddcbb2ea4b90696673eeee566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ComboRenderer: []
+  ComboRenderer:
+  - {fileID: 1833756605}
+  - {fileID: 1111331520}
+  - {fileID: 1155952071}
+  - {fileID: 892233669}
+  ComboAnimateRenderer:
+  - {fileID: 385164899}
+  - {fileID: 736039109}
+  - {fileID: 1659759995}
+  SemiPerfectSprite: []
   PerfectSprite:
   - {fileID: 21300000, guid: c1a40479d62f90042aa4aceea50fbb9b, type: 3}
   - {fileID: 21300000, guid: 62be7543a6d784446b71d7eba02d59a6, type: 3}
@@ -833,7 +842,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e1fbcbb9826fb3848a64c5aa367051dd, type: 3}
   - {fileID: 21300000, guid: 4750e5f05fd5ce94cb0218131ff64896, type: 3}
   - {fileID: 21300000, guid: 41c933c40beb5024b8c0b6527db00f00, type: 3}
-  MaximumSprite: []
+  MaximumSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   NormalSprite:
   - {fileID: 21300000, guid: 3648d85c6fd4dc449a2cdf7c6f90b418, type: 3}
   - {fileID: 21300000, guid: 4a69ee3a2513f9f42912d8e42e091651, type: 3}
@@ -1902,7 +1921,7 @@ GameObject:
   - component: {fileID: 385164898}
   - component: {fileID: 385164899}
   m_Layer: 0
-  m_Name: 1000 (1)
+  m_Name: A_1000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1962,7 +1981,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3648d85c6fd4dc449a2cdf7c6f90b418, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3656,7 +3675,7 @@ GameObject:
   - component: {fileID: 736039108}
   - component: {fileID: 736039109}
   m_Layer: 0
-  m_Name: 100 (1)
+  m_Name: A_100
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3716,7 +3735,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3648d85c6fd4dc449a2cdf7c6f90b418, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5287,7 +5306,7 @@ GameObject:
   - component: {fileID: 1043856362}
   - component: {fileID: 1043856363}
   m_Layer: 0
-  m_Name: 1 (1)
+  m_Name: A_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5347,7 +5366,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3648d85c6fd4dc449a2cdf7c6f90b418, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8201,7 +8220,7 @@ GameObject:
   - component: {fileID: 1659759994}
   - component: {fileID: 1659759995}
   m_Layer: 0
-  m_Name: 10 (1)
+  m_Name: A_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8261,7 +8280,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3648d85c6fd4dc449a2cdf7c6f90b418, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

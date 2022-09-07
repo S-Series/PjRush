@@ -53,11 +53,9 @@ public class NoteData : MonoBehaviour
             else { _noteChain += normalNote.legnth; }
         }
         GameInfoField.gameInfoField.maxCount = _noteChain;
-        print(_noteChain);
 
         if (s_normalNotes.Count != 0)
         {
-            print(s_normalNotes[0].pos);
             if (s_normalNotes[0].pos < 1600.0f)
             {
                 foreach (NormalNote _note in s_normalNotes) { _note.pos += 1600.0f; }
@@ -151,12 +149,6 @@ public class NoteData : MonoBehaviour
             GamePlaySystem.gamePlaySystem
                 .judgeSystems[s_normalNotes[i].line - 1].notes.Add(s_normalNotes[i]);
         }
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[0].notes.Count);
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[1].notes.Count);
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[2].notes.Count);
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[3].notes.Count);
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[4].notes.Count);
-        print(GamePlaySystem.gamePlaySystem.judgeSystems[5].notes.Count);
     }
 }
 

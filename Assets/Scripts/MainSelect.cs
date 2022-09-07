@@ -22,11 +22,11 @@ public class MainSelect : MonoBehaviour
     private bool isSelectable = true;
     private bool isEventAvailable = false;
     private int ItemIndex = 0;
+    private IEnumerator shiftCoroutine;
     //* SerializeField --------------------------------------//
     [SerializeField] private Animator CursorAnimator;
     [SerializeField] private Animator AlertAnimator;
     [SerializeField] private TextMeshPro TmpAlertMessage;
-
     private void Update()
     {
         if (!isSelectable) return;
@@ -72,7 +72,7 @@ public class MainSelect : MonoBehaviour
         {
             // World Mode
             case 0:
-                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                StartCoroutine(ISendAlert("This Content is UnAvailable."));
                 break;
             // Normal Mode
             case 1:
@@ -81,27 +81,27 @@ public class MainSelect : MonoBehaviour
                 break;
             // Event
             case 2:
-                if (!isEventAvailable) { StartCoroutine(SendAlert("There is no Event now.")); }
+                if (!isEventAvailable) { StartCoroutine(ISendAlert("There is no Event now.")); }
                 break;
             // Memorial
             case 3:
-                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                StartCoroutine(ISendAlert("This Content is UnAvailable."));
                 break;
             // Shop
             case 4:
-                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                StartCoroutine(ISendAlert("This Content is UnAvailable."));
                 break;
             // Setting
             case 5:
-                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                StartCoroutine(ISendAlert("This Content is UnAvailable."));
                 break;
             // More
             case 6:
-                StartCoroutine(SendAlert("This Content is UnAvailable."));
+                StartCoroutine(ISendAlert("This Content is UnAvailable."));
                 break;
         }
     }
-    private IEnumerator SendAlert(string message)
+    private IEnumerator ISendAlert(string message)
     {
         isSelectable = false;
         TmpAlertMessage.text = message;

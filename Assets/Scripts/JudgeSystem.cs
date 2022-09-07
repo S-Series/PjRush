@@ -92,6 +92,7 @@ public class JudgeSystem : MonoBehaviour
             GameManager.s_DetailPerfectJudgeCount++;
             AnimatorJudgeEffect.SetTrigger(c_Perfect);
             GameInfoField.AddScore(0);
+            ComboSystem.AddCombo(_isSemi:true);
         }
         //* 퍼펙 판정
         else if (_inputMs > -45.5 && _inputMs < 45.5)
@@ -99,6 +100,7 @@ public class JudgeSystem : MonoBehaviour
             GameManager.s_PerfectJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Perfect);
             GameInfoField.AddScore(1);
+            ComboSystem.AddCombo(_isPerfect:true);
         }
         //* 간접 판정
         else if (_inputMs > -70.5 && _inputMs < 70.5)
@@ -106,17 +108,20 @@ public class JudgeSystem : MonoBehaviour
             GameManager.s_IndirectJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Indirect);
             GameInfoField.AddScore(2);
+            ComboSystem.AddCombo();
         }
         //* 빠른 미스
         else if (_inputMs > 0 && _inputMs < 85.5)
         {
             GameManager.s_LostedJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Missed);
+            ComboSystem.ComboCutoff();
         }
         else
         {
             GameManager.s_LostedJudgeCount[FastLateIndex]++;
             AnimatorJudgeEffect.SetTrigger(c_Missed);
+            ComboSystem.ComboCutoff();
         }
         if (isLongJudge) { return; }
         noteIndex++;

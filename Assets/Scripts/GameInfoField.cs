@@ -45,7 +45,6 @@ public class GameInfoField : MonoBehaviour
     }
     public static void AddScore(int _judgeType)
     {
-        print("A");
         if (_judgeType == 0) 
         {
             gameInfoField.StartCoroutine(gameInfoField.IAddScore(20, true));
