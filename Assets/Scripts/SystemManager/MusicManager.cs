@@ -17,9 +17,21 @@ public class MusicManager : MonoBehaviour
         musicTransform = this.transform;    
     }
 
-    public static void SaveMusic()
+    public static void SaveMusic(Music music)
     {
+        musicSave = new MusicSave();
 
+        string path = "";
+        path = Application.dataPath + "/" + 
+            "_NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/PlayData.json";
+
+        musicSave.PerfectCount = music.PerfectCount;
+        musicSave.MaxCombo = music.MaxCombo;
+        musicSave.HighScore = music.HighScore;
+        musicSave.isOwned = music.isOwned;
+        musicSave.isSecret = music.isSecret;
+
+        File.WriteAllText(path, JsonUtility.ToJson(musicSave, true));
     }
     public static IEnumerator ILoadMusic()
     {
@@ -40,7 +52,7 @@ public class MusicManager : MonoBehaviour
         string loadPlayed = "";
         path = "_NoteBox/" + String.Format("{0:D4}", music.MusicID);
         loadPath = Application.dataPath + "/" + path + "/Default.json";
-        loadPlayed = Application.dataPath + "/" + path + "/Played.json";
+        loadPlayed = Application.dataPath + "/" + path + "/PlayData.json";
         musicDefault = JsonUtility.FromJson<MusicDefault>(File.ReadAllText(loadPath));
         #region Load Default Data
         music.isAvailable = musicDefault.isAvailable;
@@ -60,6 +72,7 @@ public class MusicManager : MonoBehaviour
         music.isSecret = musicDefault.isSecret;
         #endregion
         //** Played Data
+        print(loadPlayed);
         if (File.Exists(loadPlayed))
         {
             try
@@ -72,6 +85,10 @@ public class MusicManager : MonoBehaviour
                 music.isSecret = musicSave.isSecret;
             }
             catch { throw new Exception("Null Played Data Exist"); }
+        }
+        else
+        {
+            print("None Exist Played File");
         }
         musicList.Add(music);
         yield return null;

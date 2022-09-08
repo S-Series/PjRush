@@ -18,7 +18,8 @@ public class GamePlaySystem : MonoBehaviour
     public List<EffectNote> effectNotes = new List<EffectNote>();
     [SerializeField] private GameObject DefaultMovingObject;
     [SerializeField] private Animator GameEndAnimator;
-    private readonly string[] GameEndAnimatorTriggers = {"SPerfect", "Perfect", "Maximum", "Clear", "Fail"};
+    private readonly string[] GameEndAnimatorTriggers 
+        = {"SPerfect", "Perfect", "Maximum", "Clear", "Fail"};
     private float gameBpm;
     private bool isEffect;
     private int SpeedMs;
@@ -100,7 +101,6 @@ public class GamePlaySystem : MonoBehaviour
         if (gamePlaySystem.judgeSystems[3].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[4].isTestAlive) { return; }
         if (gamePlaySystem.judgeSystems[5].isTestAlive) { return; }
-        JudgeSystem.s_isTesting = false;
         GamePlaySystem.gamePlaySystem.StartCoroutine(GamePlaySystem.gamePlaySystem.IEndGame());
     }
     private IEnumerator IEndGame()
@@ -111,6 +111,11 @@ public class GamePlaySystem : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         /*if (GameManager.s_isComplete) { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[3]); }
         else { GameEndAnimator.SetTrigger(GameEndAnimatorTriggers[4]); }*/
+        JudgeSystem.s_isTesting = false;
+        GameManager.s_isDetailPerfect = ComboSystem.s_isSemiPerfect;
+        GameManager.s_isPerfect = ComboSystem.s_isPerfect;
+        GameManager.s_isMaximum = ComboSystem.s_isMaximum;
+        GameManager.s_MaxCombo = ComboSystem.s_playMaxCombo;
         yield return new WaitForSeconds(5.0f);
         MainSystem.LoadResultScene();
     }

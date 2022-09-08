@@ -84,7 +84,7 @@ public class GameResult : MonoBehaviour
         userTmp[0].text = UserManager.UserInfoData.s_userName;
         userTmp[1].text = "LV." + string.Format("{0:D4}", UserManager.UserInfoData.s_userLevel);
 
-        StartCoroutine(IStartInput());
+        StartSave();
     }
     private int getScoreIndex(int score)
     {
@@ -97,6 +97,27 @@ public class GameResult : MonoBehaviour
         else if (score >= 85000000) { return 06; }          // B
         else if (score >= 80000000) { return 07; }          // C
         else { return 08; }                                 // D
+    }
+    private void StartSave()
+    {
+        Music _music;
+        int _index;
+        _music = GameManager.s_OnGameMusic;
+        _index = GameManager.s_OnGameDifficultyIndex;
+
+        if (_music.PerfectCount[_index] <= GameManager.s_DetailPerfectJudgeCount
+            + GameManager.s_PerfectJudgeCount[0] + GameManager.s_PerfectJudgeCount[1])
+        { _music.PerfectCount[_index] = GameManager.s_DetailPerfectJudgeCount
+            + GameManager.s_PerfectJudgeCount[0] + GameManager.s_PerfectJudgeCount[1]; }
+
+        if (_music.HighScore[_index] <= GameManager.s_GameScore)
+            { _music.HighScore[_index] = GameManager.s_GameScore; }
+
+        if (_music.MaxCombo[_index] <= GameManager.s_MaxCombo)
+            { _music.MaxCombo[_index] = GameManager.s_MaxCombo; }
+        
+        MusicManager.SaveMusic(_music);
+        StartCoroutine(IStartInput());
     }
     private IEnumerator IStartInput()
     {
