@@ -20,11 +20,9 @@ public class NoteData : MonoBehaviour
         string path;
         try
         {
-            path = Application.dataPath + "/_NoteBox/"
-                + string.Format("{0:D4}", GameManager.s_OnGameMusic.MusicID) + "/"
-                + string.Format("{0:D4}", GameManager.s_OnGameDifficultyIndex + 1) + ".json";
-            string jsonData = File.ReadAllText(path);
-            s_noteFile = JsonUtility.FromJson<NoteFile>(jsonData);
+            path = "NoteBox/" + string.Format("{0:D4}", GameManager.s_OnGameMusic.MusicID) 
+            + "/" + string.Format("{0:D4}", GameManager.s_OnGameDifficultyIndex + 1);
+            s_noteFile = JsonUtility.FromJson<NoteFile>((Resources.Load<TextAsset>(path)).ToString());
         }
         catch { throw new System.Exception("Music File None Exist"); }
         GenerateNotes();
@@ -54,6 +52,7 @@ public class NoteData : MonoBehaviour
             else { _noteChain += normalNote.legnth; }
         }
         GameInfoField.gameInfoField.maxCount = _noteChain;
+        print(_noteChain);
 
         if (s_normalNotes.Count != 0)
         {
@@ -92,44 +91,32 @@ public class NoteData : MonoBehaviour
             normalNote = s_normalNotes[i];
             if (normalNote.line >= 5)
             {
-                if (normalNote.legnth == 0)
-                {
-                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[3],
-                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
-                }
+                copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[2],
+                    GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
+                if (normalNote.legnth == 0) 
+                    { copyObject.transform.GetChild(0).gameObject.SetActive(false); }
                 else
                 {
-                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[4],
-                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
-                    Vector3 scale;
-                    scale = copyObject.transform.GetChild(0).localScale;
-                    scale.y = normalNote.legnth * (GameManager.s_Multiply / 100.0f);
-                    copyObject.transform.GetChild(0).localScale = scale;
+                    copyObject.transform.GetChild(0).localScale = new Vector3
+                    (1.0f, 0.44046875f * normalNote.legnth * (GameManager.s_Multiply / 100.0f), 1.0f);
                 }
+                if (normalNote.line == 6) { copyObject.GetComponent<SpriteRenderer>().flipX = true; }
             }
             else
             {
-                if (normalNote.legnth == 0)
-                {
-                    if (normalNote.isPowered)
-                    {
-                        copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[0],
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
-                    }
-                    else
-                    {
-                        copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[1],
-                            GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
-                    }
-                }
+                if (normalNote.isPowered) 
+                    { copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[1],
+                    GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]); }
+                else 
+                    { copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[0],
+                    GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]); }
+                
+                if (normalNote.legnth == 0) 
+                    { copyObject.transform.GetChild(0).gameObject.SetActive(false); }
                 else
                 {
-                    copyObject = Instantiate(GamePlaySystem.gamePlaySystem.notePrefab[2],
-                        GamePlaySystem.gamePlaySystem.noteGenerateField[normalNote.line]);
-                    Vector3 scale;
-                    scale = copyObject.transform.GetChild(0).localScale;
-                    scale.y = normalNote.legnth * (GameManager.s_Multiply / 100.0f);
-                    copyObject.transform.GetChild(0).localScale = scale;
+                    copyObject.transform.GetChild(0).localScale = new Vector3
+                    (1.0f, 0.44046875f * normalNote.legnth * (GameManager.s_Multiply / 100.0f), 1.0f);
                 }
             }
 

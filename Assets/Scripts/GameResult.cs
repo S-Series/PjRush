@@ -58,8 +58,17 @@ public class GameResult : MonoBehaviour
             if (GameManager.s_isHardMode) { gameResultRenderer[3].enabled = true; }
             else { gameResultRenderer[4].enabled = true; }
         }
-        else { gameResultRenderer[5].enabled = true; }
-        resultRenderer[2].sprite = SpriteManager.getRankSprite(getScoreIndex(GameManager.s_GameScore));
+        else { gameResultRenderer[4].enabled = true; }
+        //else { gameResultRenderer[5].enabled = true; }
+
+        if (GameManager.s_isDetailPerfect) 
+            { resultRenderer[2].sprite = SpriteManager.getRankSprite(isDetail:true); }
+        else if (GameManager.s_isPerfect) 
+            { resultRenderer[2].sprite = SpriteManager.getRankSprite(isPerfect:true); }
+        else if (GameManager.s_isMaximum) 
+            { resultRenderer[2].sprite = SpriteManager.getRankSprite(isMax:true); }
+        else if (GameManager.s_isComplete) 
+            { resultRenderer[2].sprite = SpriteManager.getRankSprite(score:GameManager.s_GameScore); }
 
         //* 판정 정보 세팅
         int _MaxCombo;

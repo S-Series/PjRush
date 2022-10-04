@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +20,7 @@ public class GameInfoField : MonoBehaviour
     public int maxCount;
     private float judgeCount;
     private int semiCount;
+    public static int s_noteJudgeCount;
 
     private void Awake()
     {
@@ -58,6 +59,11 @@ public class GameInfoField : MonoBehaviour
             gameInfoField.StartCoroutine(gameInfoField.IAddScore(10));
         }
         else { throw new System.Exception("Wrong JudgeType"); }
+    }
+    public static void AddCount()
+    {
+        s_noteJudgeCount++;
+        if (gameInfoField.maxCount == s_noteJudgeCount) { GamePlaySystem.GameEnd(); }
     }
     private void UpdateScoreInfo()
     {

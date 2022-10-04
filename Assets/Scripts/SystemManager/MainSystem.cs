@@ -12,6 +12,7 @@ public class MainSystem : MonoBehaviour
     private const string MusicSelectScene = "Select";
     private const string GameScene = "GameField";
     private const string ResultScene = "Result";
+    private const string SettingScene = "Setting";
     private static IEnumerator startGame;
     private void Start()
     {
@@ -19,9 +20,9 @@ public class MainSystem : MonoBehaviour
         DontDestroyOnLoad(this);
         StartCoroutine(BootingProgram());
     }
-
     private IEnumerator BootingProgram()
     {
+        yield return new WaitForSeconds(2.0f);
         SystemManager.SetSystemText("Loading Player Data...");
         //yield return SystemManager.ILoadUserData();
         SystemManager.SetSystemText("Loading Music...");
@@ -40,6 +41,7 @@ public class MainSystem : MonoBehaviour
     public static void LoadSelectScene() { main.StartCoroutine(main.ILoadSelectScene()); }
     public static void LoadGameScene() { main.StartCoroutine(main.ILoadGameScene()); }
     public static void LoadResultScene() { main.StartCoroutine(main.ILoadResultScene()); }
+    public static void LoadSettingScene() { main.StartCoroutine(main.ILoadSettingScene()); }
 
     private IEnumerator ILoadMainScene()
     {
@@ -78,7 +80,6 @@ public class MainSystem : MonoBehaviour
     }
     private IEnumerator ILoadGameScene()
     {
-        print("A");
         AnimatorManager.PlayAnimation(2, true);
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(GameScene);
@@ -94,7 +95,7 @@ public class MainSystem : MonoBehaviour
         }
         yield return new WaitForSeconds(5.0f);
         AnimatorManager.PlayAnimation(2, false);
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(2.5f);
         startGame = GamePlaySystem.gamePlaySystem.IStartGame();
         StartCoroutine(startGame);
     }
@@ -112,6 +113,17 @@ public class MainSystem : MonoBehaviour
             catch { ; }
             yield return null;
         }
+        yield return new WaitForSeconds(1.0f);
+        AnimatorManager.PlayAnimation(3, false);
+    }
+    private IEnumerator ILoadSettingScene()
+    {
+        AnimatorManager.PlayAnimation(3, true);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(SettingScene);
+        yield return null;
+        transform.position = GameObject.FindWithTag("systemPos").transform.position;
+        transform.eulerAngles = GameObject.FindWithTag("systemPos").transform.eulerAngles;
         yield return new WaitForSeconds(1.0f);
         AnimatorManager.PlayAnimation(3, false);
     }

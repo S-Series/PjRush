@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
+    public bool isPlayable;
     public enum Status { Null, Hexagon, Butterfly };
     //** Data UnChange
     public Sprite sprJacket;

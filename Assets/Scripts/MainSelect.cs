@@ -93,7 +93,8 @@ public class MainSelect : MonoBehaviour
                 break;
             // Setting
             case 5:
-                StartCoroutine(ISendAlert("This Content is UnAvailable."));
+                MainSystem.LoadSettingScene();
+                isSelectable = false;
                 break;
             // More
             case 6:

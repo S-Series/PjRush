@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class MusicManager : MonoBehaviour
 {
@@ -21,9 +20,12 @@ public class MusicManager : MonoBehaviour
     {
         musicSave = new MusicSave();
 
+        if (!Directory.Exists(Application.dataPath + "/_PlayData/")) 
+            { Directory.CreateDirectory(Application.dataPath + "/_PlayData/"); }
+
         string path = "";
-        path = Application.dataPath + "/" + 
-            "_NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/PlayData.json";
+        path = Application.dataPath + "/_PlayData/" 
+            + String.Format("{0:D4}", music.MusicID) +".json";
 
         musicSave.PerfectCount = music.PerfectCount;
         musicSave.MaxCombo = music.MaxCombo;
@@ -31,7 +33,7 @@ public class MusicManager : MonoBehaviour
         musicSave.isOwned = music.isOwned;
         musicSave.isSecret = music.isSecret;
 
-        File.WriteAllText(path, JsonUtility.ToJson(musicSave, true));
+        File.WriteAllText(path, Utils.EncryptAES(JsonUtility.ToJson(musicSave)));
     }
     public static IEnumerator ILoadMusic()
     {
@@ -44,16 +46,18 @@ public class MusicManager : MonoBehaviour
     }
     private static IEnumerator ILoadMusicForEach(Music music)
     {
+        string loadPath = "";
+        string loadPlayed = "";
         musicSave = new MusicSave();
         MusicDefault musicDefault = new MusicDefault();
 
-        string path = "";
-        string loadPath = "";
-        string loadPlayed = "";
-        path = "_NoteBox/" + String.Format("{0:D4}", music.MusicID);
-        loadPath = Application.dataPath + "/" + path + "/Default.json";
-        loadPlayed = Application.dataPath + "/" + path + "/PlayData.json";
-        musicDefault = JsonUtility.FromJson<MusicDefault>(File.ReadAllText(loadPath));
+        loadPath = "NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/Default";
+
+        musicDefault = JsonUtility.FromJson<MusicDefault>
+            ((Resources.Load<TextAsset>(loadPath)).ToString());
+        
+        loadPlayed = Application.dataPath + "/_PlayData/" 
+            + String.Format("{0:D4}", music.MusicID) +".json";
         #region Load Default Data
         music.isAvailable = musicDefault.isAvailable;
         music.MusicID = musicDefault.MusicID;
@@ -72,25 +76,22 @@ public class MusicManager : MonoBehaviour
         music.isSecret = musicDefault.isSecret;
         #endregion
         //** Played Data
-        print(loadPlayed);
         if (File.Exists(loadPlayed))
         {
             try
             {
-                musicSave = JsonUtility.FromJson<MusicSave>(File.ReadAllText(loadPlayed));
+                musicSave = 
+                    JsonUtility.FromJson<MusicSave>(Utils.DecryptAES(File.ReadAllText(loadPlayed)));
                 music.PerfectCount = musicSave.PerfectCount;
                 music.MaxCombo = musicSave.MaxCombo;
                 music.HighScore = musicSave.HighScore;
                 music.isOwned = musicSave.isOwned;
                 music.isSecret = musicSave.isSecret;
             }
-            catch { throw new Exception("Null Played Data Exist"); }
+            catch { ; }
         }
-        else
-        {
-            print("None Exist Played File");
-        }
-        musicList.Add(music);
+        else { ; }
+        if (music.isPlayable) { musicList.Add(music); }
         yield return null;
     }
     [ContextMenu("Save Default MusicData")]
@@ -122,12 +123,9 @@ public class MusicManager : MonoBehaviour
             musicDefault.JacketIllustrator = music.JacketIllustrator;
             #endregion
             string path = "";
-            string savePath = "";
-            string jsonData = JsonUtility.ToJson(musicDefault, true);
-            path = "/_NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/Default.json";
-            savePath = Application.dataPath + path;
-            print(savePath);
-            File.WriteAllText(savePath, jsonData);
+            path = "Assets/Resources/NoteBox/" + String.Format("{0:D4}", music.MusicID) + "/Default.json";
+            File.WriteAllText(path, JsonUtility.ToJson(musicDefault, true));
+            print(path);
         }
     }
 }

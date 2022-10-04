@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static Music s_OnGameMusic;
     public static float s_bpm;
     public static float s_delay;
-    public static int s_Multiply = 700;
+    public static int s_Multiply = 1000;
     public static int s_OnGameDifficultyIndex;
 
     public static bool s_isDetailPerfect;

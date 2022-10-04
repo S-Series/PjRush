@@ -1,0 +1,66 @@
+{
+    "isAvailable": [
+        false,
+        false,
+        false,
+        true,
+        false
+    ],
+    "MusicID": 2,
+    "LowBPM": 135.0,
+    "HighBPM": 175.0,
+    "MusicName": "Datamania(tpz Overheat Remix)",
+    "MusicArtist": "t+pazolite",
+    "JacketIllustrator": "",
+    "Effecter": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "Difficulty": [
+        0,
+        0,
+        0,
+        13,
+        0
+    ],
+    "NoteCount": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "status": 0,
+    "PerfectCount": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "MaxCombo": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "HighScore": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "isOwned": [
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "isSecret": false
+}

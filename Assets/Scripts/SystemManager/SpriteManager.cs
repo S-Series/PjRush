@@ -34,13 +34,24 @@ public class SpriteManager : MonoBehaviour
         }
         catch { return null; }
     }
-    public static Sprite getRankSprite(int index)
+    public static Sprite getRankSprite(bool isDetail = false, bool isPerfect = false, bool isMax = false, int score = 0)
     {
-        try
-        {
-            return spriteManager.RankSprite[index];
-        }
-        catch { return null; }
+        if (score == 0) { return null; }
+        if (isDetail) { return spriteManager.RankSprite[0]; }
+        else if (isPerfect) { return spriteManager.RankSprite[1]; }
+        else if (isMax) { return spriteManager.RankSprite[2]; }
+        else if (score >= 99000000) { return spriteManager.RankSprite[3]; }
+        else if (score >= 98000000) { return spriteManager.RankSprite[4]; }
+        else if (score >= 97000000) { return spriteManager.RankSprite[5]; }
+        else if (score >= 96000000) { return spriteManager.RankSprite[6]; }
+        else if (score >= 95000000) { return spriteManager.RankSprite[7]; }
+        else if (score >= 92500000) { return spriteManager.RankSprite[8]; }
+        else if (score >= 90000000) { return spriteManager.RankSprite[9]; }
+        else if (score >= 87500000) { return spriteManager.RankSprite[10]; }
+        else if (score >= 85000000) { return spriteManager.RankSprite[11]; }
+        else if (score >= 82500000) { return spriteManager.RankSprite[12]; }
+        else if (score >= 80000000) { return spriteManager.RankSprite[13]; }
+        else { return spriteManager.RankSprite[14]; }
     }
     public static Sprite getDifficultySprite(int index)
     {

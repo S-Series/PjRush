@@ -19,18 +19,7 @@ public class TestScript : MonoBehaviour
     }
     private void Update()
     {
-        /*if (nowOnBinding) { return; }
-        if (Input.GetKeyDown(targetKeycode))
-        {
-            print("Input : " + targetKeycode.ToString());
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
-        {
-            StopCoroutine(testCoroutine);
-            testCoroutine = ITest();
-            StartCoroutine(testCoroutine);
-        }
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { print("Push"); }
     }
 
     private IEnumerator ITest()

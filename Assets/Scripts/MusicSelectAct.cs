@@ -26,11 +26,12 @@ public class MusicSelectAct : MonoBehaviour
     [SerializeField] private GameObject SelectFrameObject;
     [SerializeField] private GameObject FramePrefab;
     [SerializeField] private Transform FrameParentTransform;
-    [SerializeField] private AudioSource SelectEffectAudio;
+    [SerializeField] private AudioSource[] SelectEffectAudio;
     [SerializeField] private TopBoxSetting topBox;
     private readonly string[] DifficultyName = {"Day", "Midday", "Night", "Midnight", "Dream"};
     private IEnumerator arrowCoroutine;
     private IEnumerator shiftCoroutine;
+    private int displayMusicDifficultyIndex;
 
     private void Awake() 
     { 
@@ -105,17 +106,17 @@ public class MusicSelectAct : MonoBehaviour
                 { info[2] = string.Format("{0:F2}", SelectingMusic.LowBPM); }
             else { info[2] = string.Format("{0:F2}", SelectingMusic.LowBPM) 
                 + " - " + string.Format("{0:F2}", SelectingMusic.HighBPM);}
-            info[3] = string.Format("{0:D2}", SelectingMusic.Difficulty[SelectDifficultyIndex]);
-            info[4] = DifficultyName[SelectDifficultyIndex];
-            info[5] = SelectingMusic.Effecter[SelectDifficultyIndex];
+            info[3] = string.Format("{0:D2}", SelectingMusic.Difficulty[displayMusicDifficultyIndex]);
+            info[4] = DifficultyName[displayMusicDifficultyIndex];
+            info[5] = SelectingMusic.Effecter[displayMusicDifficultyIndex];
             info[6] = SelectingMusic.JacketIllustrator;
 
             GameManager.s_OnGameMusic = SelectingMusic;
-            GameManager.s_OnGameDifficultyIndex = SelectDifficultyIndex;
+            GameManager.s_OnGameDifficultyIndex = displayMusicDifficultyIndex;
 
             AnimatorManager.ChangeMusicInfo(info);
             AnimatorManager.ChangeJacket
-                (SelectingMusic.sprJacket, SelectDifficultyIndex, SelectingMusic.status);
+                (SelectingMusic.sprJacket, displayMusicDifficultyIndex, SelectingMusic.status);
             MainSystem.LoadGameScene();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -146,8 +147,7 @@ public class MusicSelectAct : MonoBehaviour
         SelectingMusic = selectMusicList[0];
         musicSelectIndex = 0;
         musicSelectMaxIndex = selectMusicList.Count - 1;
-        if (!UserManager.UserOptionData.s_LastDifficulty.HasValue) { SelectDifficultyIndex = 0; }
-        else { SelectDifficultyIndex = UserManager.UserOptionData.s_LastDifficulty.Value; }
+        SelectDifficultyIndex = UserManager.UserOptionData.s_LastDifficulty;
         SrotingFrameInfo();
         musicSelectAct.UpdateFrameInfo(SelectDifficultyIndex);
         SelectingMusic = selectMusicList[musicSelectIndex];
@@ -157,7 +157,6 @@ public class MusicSelectAct : MonoBehaviour
     }
     public static void SrotingFrameInfo()
     {
-        print(SelectDifficultyIndex);
         //** Sorting MusicMaanger List By Order
         switch(sotringState)
         {
@@ -253,19 +252,18 @@ public class MusicSelectAct : MonoBehaviour
         SelectingMusic = selectMusicList[musicSelectIndex];
         PreMusicPlayer.clip = SelectingMusic.audPreMusicFile;
         UpdateFramePosition();
-        //SelectEffectAudio.Play();
-        int _displayDifficulty;
-        _displayDifficulty = SelectDifficultyIndex;
+        SelectEffectAudio[0].Play();
+        int _displayDifficulty = 0;
         for (int i = 0; i < 5; i++)
         {
+            _displayDifficulty = SelectDifficultyIndex - i;
+            if (_displayDifficulty < 0) 
+                { _displayDifficulty = Mathf.Abs(_displayDifficulty) + SelectDifficultyIndex; }
+
             if (SelectingMusic.isAvailable[_displayDifficulty]) break;
-            else
-            {
-                _displayDifficulty--;
-                if (_displayDifficulty < 0) { _displayDifficulty += 5; }
-            }
         }
         musicSelectAct.topBox.SetInfo(SelectingMusic, _displayDifficulty);
+        displayMusicDifficultyIndex = _displayDifficulty;
         PreMusicPlayer.Play();
     }
     private void UpdateFramePosition()
@@ -277,7 +275,7 @@ public class MusicSelectAct : MonoBehaviour
     }
     private void DifficultySetting(bool isLeft)
     {
-        int _change = 1;
+        int _change = -1;
         if (!isLeft) _change = 1;
         for (int i = 0; i < 5; i++)
         {
@@ -290,6 +288,9 @@ public class MusicSelectAct : MonoBehaviour
                 break;
             }
         }
+        SelectEffectAudio[1].Play();
+        musicSelectAct.topBox.SetInfo(SelectingMusic, SelectDifficultyIndex);
+        displayMusicDifficultyIndex = SelectDifficultyIndex;
         UserManager.UserOptionData.s_LastDifficulty = SelectDifficultyIndex;
     }
     private IEnumerator IKeepDown(KeyCode _inputKey)

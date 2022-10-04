@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: bed6e712d5951114f83cbd364e3fd712
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -782866681852401765
+    second: _Judge_2
+  - first:
+      213: -1020483010722325729
+    second: _Judge_3
+  - first:
+      213: 4846173624206678824
+    second: _Judge_4
+  - first:
+      213: 4508400014039776504
+    second: _Judge_5
+  - first:
+      213: 5067127585182312195
+    second: _Judge_6
+  - first:
+      213: -5822517721133538561
+    second: _Judge_7
+  - first:
+      213: 6541931466030789453
+    second: _Judge_8
+  - first:
+      213: -1856132759254160749
+    second: _Judge_10
+  - first:
+      213: 531615483594352382
+    second: _Judge_11
+  - first:
+      213: 6012330249681837766
+    second: _Judge_12
+  - first:
+      213: -4347167081381887348
+    second: _Judge_13
+  - first:
+      213: -8364703541979773505
+    second: _Judge_14
+  - first:
+      213: 7708499220617189775
+    second: _Judge_15
+  - first:
+      213: -1269056935828296382
+    second: _Judge_16
+  - first:
+      213: 8208587183516430264
+    second: _Judge_18
+  - first:
+      213: -685542261231153723
+    second: _Judge_19
+  - first:
+      213: -4664991787640609187
+    second: _Judge_20
+  - first:
+      213: -2589604605343264821
+    second: _Judge_21
+  - first:
+      213: -5049119098288593562
+    second: _Judge_22
+  - first:
+      213: -4004716794818370311
+    second: _Judge_23
+  - first:
+      213: -9161634414117273066
+    second: _Judge_25
+  - first:
+      213: 4878673834434805667
+    second: _Judge_26
+  - first:
+      213: -8258148118572708739
+    second: _Judge_27
+  - first:
+      213: 8828637254580892649
+    second: _Judge_28
+  - first:
+      213: -6986648513638868911
+    second: _Judge_29
+  - first:
+      213: -5970678009245989374
+    second: _Judge_30
+  - first:
+      213: -3004992984721231327
+    second: _Judge_0
+  - first:
+      213: -5537651163623540119
+    second: _Judge_1
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: _Judge_0
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 528
+        width: 360
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12276213dce1c46d0800000000000000
+      internalID: -3004992984721231327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Judge_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 370
+        width: 360
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ab03e3b9f4623b0800000000000000
+      internalID: -5537651163623540119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Judge_2
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 211
+        width: 360
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b97e2b196e2b225f0800000000000000
+      internalID: -782866681852401765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Judge_3
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 54
+        width: 360
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1b1396cb1486d1f0800000000000000
+      internalID: -1020483010722325729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

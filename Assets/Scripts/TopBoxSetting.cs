@@ -31,12 +31,13 @@ public class TopBoxSetting : MonoBehaviour
         else
         {
             topScore[9].enabled = false;
-            char[] scoreArr = string.Format("{0:D9}", music.HighScore[index]).ToCharArray();
+            string scoreArr = string.Format("{0:D9}", music.HighScore[index]);
             for (int i = 0; i < 9; i++)
             {
                 topScore[i].enabled = true;
                 if (music.HighScore[index] >= Mathf.Pow(10, 8 - i))
-                { topScore[i].color = new Color32(255, 255, 255, 100); }
+                    { topScore[i].color = new Color32(255, 255, 255, 255); }
+                else { topScore[i].color = new Color32(255, 255, 255, 100); }
                 topScore[i].text = scoreArr[i].ToString();
             }
         }

@@ -43,12 +43,17 @@ public class SongFrame : MonoBehaviour
         {
             SongNameTmp.text = music.MusicName;
             SongArtistTmp.text = music.MusicArtist;
+            int _displayDifficulty = 0;
             for (int i = 0; i < 5; i++)
             {
-                if (music.isAvailable[index])
+                _displayDifficulty = index - i;
+                if (_displayDifficulty < 0) 
+                { _displayDifficulty = Mathf.Abs(_displayDifficulty) + index; }
+
+                if (music.isAvailable[_displayDifficulty])
                 {
-                    Difficulty[index].gameObject.SetActive(true);
-                    if (music.isOwned[4] && index == 4)
+                    Difficulty[_displayDifficulty].gameObject.SetActive(true);
+                    if (music.isOwned[4] && _displayDifficulty == 4)
                     {
                         Difficulty[index].GetComponentInChildren<TextMeshPro>().text = "??";
                         MusicBlock[0].enabled = true;
@@ -59,10 +64,13 @@ public class SongFrame : MonoBehaviour
                             = string.Format("{0:D2}", music.Difficulty[index]);
                         if (music.isOwned[index]) { MusicBlock[0].enabled = true; }
                     }
+                    if (music.NoteCount[_displayDifficulty] == music.PerfectCount[_displayDifficulty])
+                        { Rank.sprite = SpriteManager.getRankSprite(isPerfect:true); }
+                    else if (music.NoteCount[_displayDifficulty] == music.MaxCombo[_displayDifficulty])
+                        { Rank.sprite = SpriteManager.getRankSprite(isMax:true); }
+                    else { Rank.sprite = SpriteManager.getRankSprite(score:music.HighScore[_displayDifficulty]); }
                     break;
                 }
-                index--;
-                if (index < 0) { index += 5; }
             }
             gameMusic = music.audMusicFile;
             gamePreMusic = music.audPreMusicFile;
